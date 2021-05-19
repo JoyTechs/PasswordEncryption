@@ -1,6 +1,5 @@
 package org.example;
 
-public class AccountCreation
-{
+public class AccountCreation {
 
 }
