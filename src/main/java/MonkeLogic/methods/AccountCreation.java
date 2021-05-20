@@ -1,4 +1,4 @@
-package org.example;
+package MonkeLogic.methods;
 
 public class AccountCreation {
 

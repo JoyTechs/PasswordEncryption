@@ -1,4 +1,4 @@
-package controllers;
+package MonkeLogic.controllers;
 
 import javafx.scene.Scene;
 
