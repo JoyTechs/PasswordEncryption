@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class Login {
 
@@ -20,6 +21,8 @@ public class Login {
     private Label userNameLabel;
     @FXML
     private Label passwordLabel;
+    @FXML
+    private Text scenetitle;
 
     private String username;
     private String password;
