@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.methods.FirstStartFrontEnd">
+
+
+    <Label fx:id="label1" layoutX="162.0" layoutY="175.0" text="Username:" />
+    <Label fx:id="label2" layoutX="165.0" layoutY="235.0" text="Password:" />
+
+    <Button fx:id="button1" layoutX="251.0" layoutY="275.0" text="Create Account" />
+
+    <TextField fx:id="textfield1" layoutX="226.0" layoutY="171.0" />
+
+    <CheckBox fx:id="checkBox1" layoutX="380.0" layoutY="235.0" />
+
+    <PasswordField fx:id="passwordField1" layoutX="225.0" layoutY="231.0" />
+   <Label layoutX="190.0" layoutY="29.0" prefHeight="120.0" prefWidth="220.0" text="Create an Admin Account for this Application" textAlignment="CENTER" wrapText="true">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <Label layoutX="410.0" layoutY="235.0" text="Show Password" />
+
+</AnchorPane>
