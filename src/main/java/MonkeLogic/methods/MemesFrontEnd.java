@@ -9,6 +9,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MemesFrontEnd {
 
@@ -19,15 +20,28 @@ public class MemesFrontEnd {
 
 
     private final SceneManager sceneManager;
+    private static final List<String> files = new ArrayList<>();
 
     public MemesFrontEnd() {
         sceneManager = SceneManager.getInstance();
+        File directoryPath = new File("E:\\Filer\\Intellij Project\\Projects\\PasswordEncryption\\src\\main\\java\\MonkeLogic\\mp4");
+        File[] filesList = directoryPath.listFiles();
+        for (File file : filesList) {
+            System.out.println("File Name: " + file.getName());
+            files.add(file.getAbsolutePath());
+        }
     }
 
-    private final List<File> Files = new ArrayList<>();
-
     public File getMemed() throws MalformedURLException {
-        File mediaFile = new File("src/main/java/MonkeLogic/mp4/1.mp4");
+        Random rng = new Random();
+        int maxFileNr = files.size();
+
+        int rngMeme = rng.nextInt(maxFileNr);
+
+        String pathDirectory = files.get(rngMeme);
+
+
+        File mediaFile = new File(pathDirectory);
 
         return mediaFile;
     }

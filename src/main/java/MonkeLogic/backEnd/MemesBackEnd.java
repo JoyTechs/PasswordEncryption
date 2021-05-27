@@ -10,12 +10,11 @@ import java.util.List;
 public class MemesBackEnd {
 
     private final SceneManager sceneManager;
-
+    private static final List<File> files = new ArrayList<>();
     public MemesBackEnd() {
         sceneManager = SceneManager.getInstance();
     }
 
-    private final List<File> Files = new ArrayList<>();
 
     public File randomVideo() throws MalformedURLException {
         File mediaFile = new File("src/main/java/MonkeLogic/mp4/1.mp4");

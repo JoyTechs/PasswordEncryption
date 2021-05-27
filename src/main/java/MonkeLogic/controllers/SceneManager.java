@@ -177,9 +177,11 @@ public class SceneManager {
             Media media = new Media(meme.toURI().toURL().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             MediaView mediaView = new MediaView(mediaPlayer);
-
-            scene = new Scene(new AnchorPane(mediaView), 1024, 600);
+            mediaView.fitWidthProperty().bind(primaryStage.widthProperty());
+            mediaView.fitHeightProperty().bind(primaryStage.heightProperty());
+            scene = new Scene(new AnchorPane(mediaView));
             primaryStage.setScene(scene);
+            primaryStage.setFullScreen(true);
             primaryStage.show();
             mediaPlayer.play();
 
