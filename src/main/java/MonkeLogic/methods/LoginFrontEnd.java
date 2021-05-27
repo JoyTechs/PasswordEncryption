@@ -4,13 +4,17 @@ import MonkeLogic.backEnd.LoginBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class LoginFrontEnd {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginFrontEnd implements Initializable {
 
     //region Variables
     @FXML
@@ -33,10 +37,10 @@ public class LoginFrontEnd {
     //endregion
 
     private SceneManager sceneManager;
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
+    public LoginFrontEnd ()
+    {
+        sceneManager = SceneManager.getInstance();
     }
-
 
     @FXML
     public void loginAttempt(ActionEvent e) throws Exception
@@ -47,7 +51,8 @@ public class LoginFrontEnd {
 
         if (!username.equals("") && ! password.equals(""))
         {
-            new LoginBackEnd(username, password, sceneManager);
+            sceneManager.createAccount();
+            //new LoginBackEnd(username, password, sceneManager);
         }
         else
         {
@@ -56,4 +61,8 @@ public class LoginFrontEnd {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        sceneManager = SceneManager.getInstance();
+    }
 }

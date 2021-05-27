@@ -12,7 +12,7 @@ public class LoginBackEnd {
         this.sceneManager = sceneManager;
         activeUsersID = username;
         activeUsersClearanceLevel = password;
-        this.sceneManager.setActiveUser(activeUsersID, activeUsersClearanceLevel);
+        //this.sceneManager.setActiveUser(activeUsersID, activeUsersClearanceLevel);
         sceneManager.login();
 
     }
