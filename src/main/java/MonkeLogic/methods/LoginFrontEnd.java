@@ -1,5 +1,6 @@
 package MonkeLogic.methods;
 
+import MonkeLogic.backEnd.LoginBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import org.w3c.dom.events.Event;
 
 public class LoginFrontEnd {
 
@@ -33,7 +33,6 @@ public class LoginFrontEnd {
     //endregion
 
     private SceneManager sceneManager;
-
     public void setSceneManager(SceneManager sceneManager) {
         this.sceneManager = sceneManager;
     }
@@ -48,7 +47,7 @@ public class LoginFrontEnd {
 
         if (!username.equals("") && ! password.equals(""))
         {
-
+            new LoginBackEnd(username, password, sceneManager);
         }
         else
         {

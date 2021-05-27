@@ -17,16 +17,18 @@ public class SceneManager
 
     private final Scene scene;
     private static String userID;
+    private static String userClearanceLevel;
 
-    public void setUserID(String userID)
-    {
+    public void setActiveUser(String userID, String userClearanceLevel) {
+        System.out.println(SceneManager.userID + " UserId " + SceneManager.userClearanceLevel + " UserClearanceLevel");
         SceneManager.userID = userID;
+        System.out.println(SceneManager.userID + " UserId ");
+        SceneManager.userClearanceLevel = userClearanceLevel;
+        System.out.println(SceneManager.userClearanceLevel + " UserClearanceLevel");
     }
 
-    public SceneManager(Scene scene)
-    {
+    public SceneManager(Scene scene) {
         this.scene = scene;
-
     }
 
     public void login(){loginScene();}
@@ -41,10 +43,11 @@ public class SceneManager
 
     private void loginScene(){
         try {
+            System.out.println("Working");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
-            scene.setRoot(loader.load());
             LoginFrontEnd controller = loader.getController();
             controller.setSceneManager(this);
+            scene.setRoot(loader.load());
 
         } catch (IOException e)
         {
