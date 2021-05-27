@@ -16,6 +16,12 @@ import java.util.ResourceBundle;
 
 public class LoginFrontEnd implements Initializable {
 
+    //This happens when the instance is created
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        sceneManager = SceneManager.getInstance();
+    }
+
     //region Variables
     @FXML
     private Button login;
@@ -32,37 +38,47 @@ public class LoginFrontEnd implements Initializable {
 
     private String username;
     private String password;
-    private Boolean usernameNull;
-    private Boolean passwordNull;
+    private Boolean isUsernameNull;
+    private Boolean isPasswordNull;
     //endregion
 
+    //region This Sets the Scene Manager
     private SceneManager sceneManager;
-    public LoginFrontEnd ()
-    {
+
+    public LoginFrontEnd() {
         sceneManager = SceneManager.getInstance();
     }
+    //endregion
 
+    //region This Verifies User Credentials
     @FXML
-    public void loginAttempt(ActionEvent e) throws Exception
-    {
+    public void loginAttempt(ActionEvent e) throws Exception {
 
         username = usernameInpt.getText();
         password = passwordInpt.getText();
 
-        if (!username.equals("") && ! password.equals(""))
-        {
-            sceneManager.createAccount();
-            //new LoginBackEnd(username, password, sceneManager);
-        }
-        else
-        {
-            //Display Message
+        if (isStringNull(username) || isStringNull(password)) {
+            if (isStringNull(username)) {
+                isUsernameNull = true;
+            }
+            if (isStringNull(password)) {
+                isPasswordNull = true;
+            }
+
+
+        } else if (!isStringNull(username) && !isStringNull(password)) {
+            new LoginBackEnd(username, password);
         }
 
     }
+    //endregion
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        sceneManager = SceneManager.getInstance();
+    //region This Checks if Input is Null
+    private Boolean isStringNull(String str) {
+
+        return str.equals("");
     }
+    //endregion
+
+
 }
