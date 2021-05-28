@@ -12,8 +12,6 @@ public class LoginBackEnd {
         sceneManager = SceneManager.getInstance();
         activeUsersID = username;
         activeUsersClearanceLevel = password;
-        sceneManager.memes();
-
     }
 
 }

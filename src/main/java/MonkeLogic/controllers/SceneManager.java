@@ -23,22 +23,6 @@ public class SceneManager {
     private Stage primaryStage;
     //endregion
 
-
-    /* TODO Move TO Another Class
-
-    private static String userID;
-    private static String userClearanceLevel;
-
-    public void setActiveUser(String userID, String userClearanceLevel) {
-        System.out.println(SceneManager.userID + " UserId " + SceneManager.userClearanceLevel + " UserClearanceLevel");
-        SceneManager.userID = userID;
-        System.out.println(SceneManager.userID + " UserId ");
-        SceneManager.userClearanceLevel = userClearanceLevel;
-        System.out.println(SceneManager.userClearanceLevel + " UserClearanceLevel");
-    }
- */
-
-
     //region Creates A Singleton SceneManager
     public static SceneManager getInstance() {
         if (instance == null) {
@@ -64,7 +48,9 @@ public class SceneManager {
 
     public void createUser(){createUserScene();}
 
-    public void setAdmin(){setAdminScene();}
+    public void firstStart() {
+        firstStartScene();
+    }
 
     public void settings(){settingsScene();}
 
@@ -103,9 +89,9 @@ public class SceneManager {
         }
     }
 
-    private void setAdminScene(){
+    private void firstStartScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/CreateUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/FirstStart.fxml"));
             scene.setRoot(loader.load());
             primaryStage.setScene(scene);
             primaryStage.show();
