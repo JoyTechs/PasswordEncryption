@@ -71,8 +71,8 @@ public class FirstStartFrontEnd implements Initializable {
         username = usernameInpt.getText();
         password = passwordInpt.getText();
 
-        if (isStringToShort(username, 3)) {
-            setShortUsernameVisibility(isStringToShort(username, 3));
+        if (isStringToShort(username, 2)) {
+            setShortUsernameVisibility(isStringToShort(username, 2));
 
         } else if (doesStringContainSpaces(username)) {
             setInvalidUsernameVisibility(doesStringContainSpaces(username));

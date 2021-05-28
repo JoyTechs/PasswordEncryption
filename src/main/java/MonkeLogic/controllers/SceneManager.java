@@ -139,8 +139,9 @@ public class SceneManager {
 
     private void showAccountsScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ShowAccounts.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ShowAccountsUser.fxml"));
             scene.setRoot(loader.load());
+
             primaryStage.setScene(scene);
             primaryStage.show();
 
