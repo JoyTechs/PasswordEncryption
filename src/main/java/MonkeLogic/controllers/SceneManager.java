@@ -24,9 +24,6 @@ public class SceneManager {
     //endregion
 
 
-
-
-
     /* TODO Move TO Another Class
 
     private static String userID;
@@ -39,9 +36,8 @@ public class SceneManager {
         SceneManager.userClearanceLevel = userClearanceLevel;
         System.out.println(SceneManager.userClearanceLevel + " UserClearanceLevel");
     }
-
-
  */
+
 
     //region Creates A Singleton SceneManager
     public static SceneManager getInstance() {
@@ -169,9 +165,6 @@ public class SceneManager {
 
     private void memesScene() {
         try {
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/Memes.fxml"));
-            //scene.setRoot(loader.load());
-            //MemesFrontEnd memesFrontEnd = loader.getController();
             MemesFrontEnd memesFrontEnd = new MemesFrontEnd();
             File meme = memesFrontEnd.getMemed();
             Media media = new Media(meme.toURI().toURL().toString());
@@ -179,6 +172,7 @@ public class SceneManager {
             MediaView mediaView = new MediaView(mediaPlayer);
             mediaView.fitWidthProperty().bind(primaryStage.widthProperty());
             mediaView.fitHeightProperty().bind(primaryStage.heightProperty());
+            mediaPlayer.setVolume(0.2);
             scene = new Scene(new AnchorPane(mediaView));
             primaryStage.setScene(scene);
             primaryStage.setFullScreen(true);
