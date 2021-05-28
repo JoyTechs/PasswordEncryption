@@ -1,16 +1,26 @@
 package MonkeLogic.methods;
 
+import MonkeLogic.backEnd.LoginBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import org.w3c.dom.events.Event;
 
-public class LoginFrontEnd {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginFrontEnd implements Initializable {
+
+    //This happens when the instance is created
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        sceneManager = SceneManager.getInstance();
+    }
 
     //region Variables
     @FXML
@@ -28,33 +38,47 @@ public class LoginFrontEnd {
 
     private String username;
     private String password;
-    private Boolean usernameNull;
-    private Boolean passwordNull;
+    private Boolean isUsernameNull;
+    private Boolean isPasswordNull;
     //endregion
 
+    //region This Sets the Scene Manager
     private SceneManager sceneManager;
 
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
+    public LoginFrontEnd() {
+        sceneManager = SceneManager.getInstance();
     }
+    //endregion
 
-
+    //region This Verifies User Credentials
     @FXML
-    public void loginAttempt(ActionEvent e) throws Exception
-    {
+    public void loginAttempt(ActionEvent e) throws Exception {
 
         username = usernameInpt.getText();
         password = passwordInpt.getText();
 
-        if (!username.equals("") && ! password.equals(""))
-        {
+        if (isStringNull(username) || isStringNull(password)) {
+            if (isStringNull(username)) {
+                isUsernameNull = true;
+            }
+            if (isStringNull(password)) {
+                isPasswordNull = true;
+            }
 
-        }
-        else
-        {
-            //Display Message
+
+        } else if (!isStringNull(username) && !isStringNull(password)) {
+            new LoginBackEnd(username, password);
         }
 
     }
+    //endregion
+
+    //region This Checks if Input is Null
+    private Boolean isStringNull(String str) {
+
+        return str.equals("");
+    }
+    //endregion
+
 
 }

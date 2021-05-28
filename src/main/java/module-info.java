@@ -11,4 +11,6 @@ module org.example {
     opens MonkeLogic to javafx.fxml;
     exports MonkeLogic.methods;
     opens MonkeLogic.methods to javafx.fxml;
+    exports MonkeLogic.backEnd;
+    opens MonkeLogic.backEnd to javafx.fxml;
 }

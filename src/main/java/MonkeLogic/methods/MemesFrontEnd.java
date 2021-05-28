@@ -1,26 +1,47 @@
 package MonkeLogic.methods;
 
 import MonkeLogic.controllers.SceneManager;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.media.MediaView;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class MemesFrontEnd
-{
+public class MemesFrontEnd {
 
-    private SceneManager sceneManager;
-    public void setSceneManager(SceneManager sceneManager){this.sceneManager = sceneManager;}
+    @FXML
+    private MediaView mediaView;
+    @FXML
+    private Label label;
 
-    private List<File> Files = new ArrayList<>();
 
-   public void randomVideo() throws MalformedURLException {
-        File mediaFile = new File("MonkeLogic/mp4/1.mp4");
+    private final SceneManager sceneManager;
+    private static final List<String> files = new ArrayList<>();
 
-        sceneManager.play(mediaFile);
-
+    public MemesFrontEnd() {
+        sceneManager = SceneManager.getInstance();
+        File directoryPath = new File("E:\\Filer\\Intellij Project\\Projects\\PasswordEncryption\\src\\main\\java\\MonkeLogic\\mp4");
+        File[] filesList = directoryPath.listFiles();
+        for (File file : filesList) {
+            //System.out.println("File Name: " + file.getName());
+            files.add(file.getAbsolutePath());
+        }
     }
 
+    public File getMemed() throws MalformedURLException {
+        Random rng = new Random();
+        int maxFileNr = files.size();
 
+        int rngMeme = rng.nextInt(maxFileNr);
+
+        String pathDirectory = files.get(rngMeme);
+
+        File mediaFile = new File(pathDirectory);
+
+        return mediaFile;
+    }
 }

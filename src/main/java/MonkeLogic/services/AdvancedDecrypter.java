@@ -12,8 +12,8 @@ import java.util.Base64;
 public class AdvancedDecrypter
 {
 
-    public static String decrypt(String strToDecrypt, String oldSecretKey, String oldSalt)
-    {
+    //This Decrypts the input string according to the Key and Salt
+    public static String decrypt(String strToDecrypt, String oldSecretKey, String oldSalt) {
         try {
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             IvParameterSpec ivspec = new IvParameterSpec(iv);
@@ -27,7 +27,7 @@ public class AdvancedDecrypter
             cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
             return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
         } catch (Exception e) {
-            System.out.println("Error while decrypting: " + e.toString());
+            System.out.println("Error while decrypting: " + e);
         }
         return null;
     }
