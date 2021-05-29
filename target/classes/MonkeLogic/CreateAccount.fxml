@@ -12,7 +12,7 @@
     <Label fx:id="label3" layoutX="115.0" layoutY="235.0" text="Password" />
     <Label fx:id="label4" layoutX="409.0" layoutY="235.0" text="Show Password" />
     <Button fx:id="button1" layoutX="110.0" layoutY="287.0" text="Go Back" />
-    <Button fx:id="button2" layoutX="388.0" layoutY="287.0" text="Create Account" />
+    <Button fx:id="button2" layoutX="388.0" layoutY="287.0" onAction="#saveAccInfo" text="Create Account" />
 
     <TextField fx:id="textfield1" layoutX="215.0" layoutY="116.0" />
     <TextField fx:id="textField2" layoutX="215.0" layoutY="171.0" />
