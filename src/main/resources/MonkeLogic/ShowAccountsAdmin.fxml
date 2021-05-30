@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="MonkeLogic.methods.ShowAccountsAdminFrontEnd"
-            prefHeight="400.0" prefWidth="600.0">
-
+<?import javafx.scene.layout.HBox?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.methods.ShowAccountsAdminFrontEnd">
+   <children>
+      <HBox fx:id="listsHBox" layoutY="101.0" prefHeight="250.0" prefWidth="600.0">
+         <children>
+            <ListView fx:id="websites" prefHeight="200.0" prefWidth="200.0"/>
+            <ListView fx:id="users" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0"/>
+            <ListView fx:id="usernames" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0"/>
+         </children>
+      </HBox>
+      <Button layoutX="534.0" layoutY="56.0" text="Search"/>
+      <TextField layoutX="385.0" layoutY="56.0"/>
+   </children>
 </AnchorPane>
