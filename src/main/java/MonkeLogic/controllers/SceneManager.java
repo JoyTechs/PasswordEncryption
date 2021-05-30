@@ -52,19 +52,32 @@ public class SceneManager {
         firstStartScene();
     }
 
-    public void settings(){settingsScene();}
+    public void settings() {
+        settingsScene();
+    }
 
-    public void createAccount(){createAccountScene();}
+    public void createAccount() {
+        createAccountScene();
+    }
 
-    public void editAccountInfo(){editAccountInfoScene();}
+    public void editAccountInfo() {
+        editAccountInfoScene();
+    }
 
-    public void showAccounts(){showAccountsScene();}
+    public void showAccounts() {
+        showAccountsScene();
+    }
 
-    public void memes(){memesScene();}
+    public void showAccountsAdmin() {
+    }
+
+    public void memes() {
+        memesScene();
+    }
     //endregion
 
     //region Methods That Changes the Scenes
-    private void loginScene(){
+    private void loginScene() {
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/Login.fxml"));
@@ -140,6 +153,19 @@ public class SceneManager {
     private void showAccountsScene() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ShowAccountsUser.fxml"));
+            scene.setRoot(loader.load());
+
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAccountsAdminScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ShowAccountsAdmin.fxml"));
             scene.setRoot(loader.load());
 
             primaryStage.setScene(scene);

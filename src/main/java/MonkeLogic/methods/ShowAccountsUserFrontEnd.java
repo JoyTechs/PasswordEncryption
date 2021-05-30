@@ -7,13 +7,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ShowAccountsUserFrontEnd implements Initializable {
     //region Variables
     @FXML
-    private ListView<String> yourAccountsView;
-    private static ObservableList<String> yourAccountsList;
+    private ListView<String> websites;
+    @FXML
+    private ListView<String> usernames;
+    @FXML
+    private ListView<String> passwords;
+    private static ObservableList<String> yourWebsites;
+    private static ObservableList<String> yourUsernames;
+    private static ObservableList<String> yourPasswords;
 
     //endregion
 
@@ -33,26 +40,13 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     //endregion
 
 
-    //Todo Work on getting a List of accounts to show up when the user logs in, maybe use Listview instead of tableView.
+    //Todo: Add Reading And ListView here when latest version is updated.
     //region Adds Accounts to TableView
-    /*
-    private void addAccountsToTable()
-    {
-        websiteColumn.setCellValueFactory(new PropertyValueFactory<>("website"));
-        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
-
-        accountsTable.getColumns().add(websiteColumn);
-        accountsTable.getColumns().add(userNameColumn);
-        accountsTable.getColumns().add(passwordColumn);
-        TempAccounts tempAccounts = new TempAccounts();
-        for (Account account: tempAccounts.getTempAccounts())
-        {
-            accountsTable.getItems().add(new Account(account.getUsername(), account.getPassword(), account.getWebsite()));
-        }
-
+    private void addAccountsToList() {
+        ArrayList<String> tmpWebsites = new ArrayList<>();
+        ArrayList<String> tmpUsernames = new ArrayList<>();
+        ArrayList<String> tmpPasswords = new ArrayList<>();
     }
-    */
     //endregion
 
     //region Displays Accounts on List

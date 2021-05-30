@@ -24,7 +24,7 @@ public class MemesFrontEnd {
 
     public MemesFrontEnd() {
         sceneManager = SceneManager.getInstance();
-        File directoryPath = new File("E:\\Filer\\Intellij Project\\Projects\\PasswordEncryption\\src\\main\\java\\MonkeLogic\\mp4");
+        File directoryPath = new File("\\src\\main\\java\\MonkeLogic\\mp4");
         File[] filesList = directoryPath.listFiles();
         for (File file : filesList) {
             files.add(file.getAbsolutePath());
