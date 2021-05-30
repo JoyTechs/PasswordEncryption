@@ -1,6 +1,5 @@
-package MonkeLogic.methods;
+package MonkeLogic.frontEnd;
 
-import MonkeLogic.backEnd.FirstStartBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -86,7 +85,8 @@ public class FirstStartFrontEnd implements Initializable {
 
         }
         if (noErrors().equals(true)) {
-            new FirstStartBackEnd(username, password);
+            sceneManager.memes();
+            //new FirstStartBackEnd(username, password);
         }
 
     }

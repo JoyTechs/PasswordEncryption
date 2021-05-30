@@ -3,7 +3,7 @@
  */
 package MonkeLogic.controllers;
 
-import MonkeLogic.methods.MemesFrontEnd;
+import MonkeLogic.frontEnd.MemesFrontEnd;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -38,15 +38,28 @@ public class SceneManager {
         this.scene = scene;
     }
 
+    public Scene getScene() {
+        return scene;
+    }
+
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     //endregion
 
     //region Scene Calling Methods
-    public void login(){loginScene();}
+    public void login() {
+        loginScene();
+    }
 
-    public void createUser(){createUserScene();}
+    public void createUser() {
+        createUserScene();
+    }
 
     public void firstStart() {
         firstStartScene();
@@ -69,6 +82,7 @@ public class SceneManager {
     }
 
     public void showAccountsAdmin() {
+        showAccountsAdminScene();
     }
 
     public void memes() {
@@ -114,6 +128,7 @@ public class SceneManager {
         }
     }
 
+    //Todo: delete Settings menu, we don't need it for a base build
     private void settingsScene(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/Settings.fxml"));
@@ -140,7 +155,7 @@ public class SceneManager {
 
     private void editAccountInfoScene(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/EditAccountInfo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/EditAccountInfoAdmin.fxml"));
             scene.setRoot(loader.load());
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -154,7 +169,6 @@ public class SceneManager {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ShowAccountsUser.fxml"));
             scene.setRoot(loader.load());
-
             primaryStage.setScene(scene);
             primaryStage.show();
 
@@ -167,7 +181,6 @@ public class SceneManager {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ShowAccountsAdmin.fxml"));
             scene.setRoot(loader.load());
-
             primaryStage.setScene(scene);
             primaryStage.show();
 

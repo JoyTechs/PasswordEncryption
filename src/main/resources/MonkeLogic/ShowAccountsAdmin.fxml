@@ -2,18 +2,22 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.methods.ShowAccountsAdminFrontEnd">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.ShowAccountsAdminFrontEnd">
    <children>
-      <HBox fx:id="listsHBox" layoutY="101.0" prefHeight="250.0" prefWidth="600.0">
-         <children>
-            <ListView fx:id="websites" prefHeight="200.0" prefWidth="200.0"/>
-            <ListView fx:id="users" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0"/>
-            <ListView fx:id="usernames" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0"/>
-         </children>
-      </HBox>
-      <Button layoutX="534.0" layoutY="56.0" text="Search"/>
-      <TextField layoutX="385.0" layoutY="56.0"/>
+      <TableView fx:id="accountsTable" layoutY="75.0" prefHeight="275.0" prefWidth="600.0">
+         <columns>
+            <TableColumn fx:id="websiteCol" editable="false" prefWidth="150.0" text="Website"/>
+            <TableColumn fx:id="userCol" editable="false" prefWidth="150.0" text="User"/>
+            <TableColumn fx:id="usernameCol" editable="false" prefWidth="150.0" text="Username"/>
+            <TableColumn fx:id="password" editable="false" prefWidth="150.0" text="Password"/>
+         </columns>
+      </TableView>
+
+      <Button layoutX="540.0" layoutY="35.0" mnemonicParsing="false" text="Search"/>
+      <TextField layoutX="385.0" layoutY="35.0"/>
+      <Button layoutX="502.0" layoutY="360.0" mnemonicParsing="false" onAction="#editChosenAccount"
+              text="Edit Account"/>
+      <Button layoutX="14.0" layoutY="360.0" mnemonicParsing="false" text="Back"/>
    </children>
 </AnchorPane>

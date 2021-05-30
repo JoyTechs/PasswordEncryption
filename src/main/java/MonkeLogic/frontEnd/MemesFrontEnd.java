@@ -1,4 +1,4 @@
-package MonkeLogic.methods;
+package MonkeLogic.frontEnd;
 
 import MonkeLogic.controllers.SceneManager;
 import javafx.fxml.FXML;
@@ -24,7 +24,7 @@ public class MemesFrontEnd {
 
     public MemesFrontEnd() {
         sceneManager = SceneManager.getInstance();
-        File directoryPath = new File("\\src\\main\\java\\MonkeLogic\\mp4");
+        File directoryPath = new File("src\\main\\java\\MonkeLogic\\mp4");
         File[] filesList = directoryPath.listFiles();
         for (File file : filesList) {
             files.add(file.getAbsolutePath());

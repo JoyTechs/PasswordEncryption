@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.methods.CreateUserFrontEnd">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.CreateUserFrontEnd">
 
 
     <Label fx:id="label2" layoutX="137.0" layoutY="163.0" text="UserName" />
