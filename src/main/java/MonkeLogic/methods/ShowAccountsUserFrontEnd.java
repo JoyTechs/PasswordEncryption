@@ -1,11 +1,10 @@
 package MonkeLogic.methods;
 
 import MonkeLogic.controllers.SceneManager;
-import MonkeLogic.dbo.Account;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,13 +12,9 @@ import java.util.ResourceBundle;
 public class ShowAccountsUserFrontEnd implements Initializable {
     //region Variables
     @FXML
-    private TableView accountsTable;
-    @FXML
-    private TableColumn<Account, String> websiteColumn;
-    @FXML
-    private TableColumn<Account, String> userNameColumn;
-    @FXML
-    private TableColumn<Account, String> passwordColumn;
+    private ListView<String> yourAccountsView;
+    private static ObservableList<String> yourAccountsList;
+
     //endregion
 
     //region This happens when the instance is created
