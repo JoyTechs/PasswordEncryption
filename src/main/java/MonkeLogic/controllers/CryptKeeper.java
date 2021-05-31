@@ -9,11 +9,28 @@ import java.util.Random;
 
 public class CryptKeeper {
     //region Lists Containing the Keys and Salts for Crypto
+    private static CryptKeeper cryptKeeper;
     private static final List<String> secretKeys = new ArrayList<>();
     private static final List<String> salts = new ArrayList<>();
     //endregion
 
-    //This Adds Keys and Salts to the above Lists
+    //region
+
+    private CryptKeeper() {
+        init();
+    }
+
+    public static CryptKeeper getInstance() {
+        if (cryptKeeper == null) {
+            cryptKeeper = new CryptKeeper();
+        }
+        return cryptKeeper;
+    }
+
+
+    //endregion
+
+    //region This Adds Keys and Salts to the above Lists
     public static void init() {
         secretKeys.add("9gLHTonoaDF");
         secretKeys.add("BdhF58CX2bS");
@@ -22,6 +39,7 @@ public class CryptKeeper {
         salts.add("3coHDPEj9RK");
         salts.add("p8VD9gDmXM7");
     }
+    //endregion
 
     //region This Paragraph randomizes Key and Salt for the Encryption
     public static String enCrypt(String strToEncrypt) {

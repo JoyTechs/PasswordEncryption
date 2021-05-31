@@ -3,6 +3,7 @@
  */
 package MonkeLogic.controllers;
 
+import MonkeLogic.dbo.User;
 import MonkeLogic.frontEnd.MemesFrontEnd;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ public class SceneManager {
 
     //region Variables
     private static SceneManager instance;
+    private static User activeUser;
     private Scene scene;
     private Stage primaryStage;
     //endregion
@@ -27,6 +29,7 @@ public class SceneManager {
     public static SceneManager getInstance() {
         if (instance == null) {
             instance = new SceneManager();
+
         }
         return instance;
     }
@@ -34,6 +37,7 @@ public class SceneManager {
     private SceneManager() {
     }
 
+    //region Getters/Setters
     public void setScene(Scene scene) {
         this.scene = scene;
     }
@@ -49,6 +53,19 @@ public class SceneManager {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+
+    public static void setInstance(SceneManager instance) {
+        SceneManager.instance = instance;
+    }
+
+    public static void setActiveUser(User activeUser) {
+        SceneManager.activeUser = activeUser;
+    }
+
+    public static User getActiveUser() {
+        return activeUser;
+    }
+    //endregion
 
     //endregion
 

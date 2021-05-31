@@ -1,6 +1,7 @@
 package MonkeLogic.services;
 
-import MonkeLogic.DbConnection;
+import MonkeLogic.databasemethods.DbConnection;
+import MonkeLogic.dbo.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,10 +26,11 @@ public class ReadFromDb {
         return readFromDb;
     }
 
-    public static void readFromDbToLoginIn(String username, String password) {
+    public static User readFromDbToLoginIn(String username, String password) {
+        User user = null;
         c = DbConnection.connect();
         try {
-            String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? ";
+            String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
             statement = c.prepareStatement(query);
             statement.setString(1, username);
             statement.setString(2, password);
@@ -37,18 +39,62 @@ public class ReadFromDb {
             int count = 0;
             while (resultSet.next()) {
                 count = count + 1;
-            }
-            if (count == 1) {
-                System.out.println("Username and password is correct");
-            } else {
-                System.out.println("Username and password is incorrect");
+                System.out.println(count);
+
+                if (count == 1) {
+                    System.out.println("Username and password is correct");
+                    user = new User(Integer.parseInt(
+                            resultSet.getString("ID")),
+                            resultSet.getString("USERNAME"),
+                            resultSet.getString("PASSWORD"),
+                            resultSet.getString("CLEARANCELEVEL"));
+                    return user;
+                } else {
+                    System.out.println("Username and password is incorrect");
+                }
             }
             statement.close();
             resultSet.close();
             c.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
+        return null;
     }
+
+    public static Boolean firstStart() {
+        User user = null;
+        c = DbConnection.connect();
+
+        try {
+
+            String query = "SELECT * FROM USERS WHERE ID = 1 and USERNAME = ? and PASSWORD = ?";
+            statement = c.prepareStatement(query);
+            statement.setString(1, "Admin");
+            statement.setString(2, "FirstStart");
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+                count = count + 1;
+            }
+            if (count == 1) {
+                System.out.println("Username and password is correct");
+                return true;
+
+            } else {
+
+                System.out.println("Not First Start");
+            }
+            statement.close();
+            resultSet.close();
+            c.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
 
 }
