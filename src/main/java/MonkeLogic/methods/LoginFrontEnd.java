@@ -1,5 +1,6 @@
 package MonkeLogic.methods;
 
+import MonkeLogic.DbConnection;
 import MonkeLogic.backEnd.LoginBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import javafx.event.ActionEvent;
@@ -12,6 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginFrontEnd implements Initializable {

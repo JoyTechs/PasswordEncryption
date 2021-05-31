@@ -2,25 +2,19 @@ package MonkeLogic;
 
 import java.sql.*;
 
-public class SQLiteJDBC {
-    public static void main(String[] args) {
-        CreateDB();
-        CreateTable();
-        InsertData();
-    }
-
-    public static void CreateDB() {
+public class DbConnection {
+    public static Connection connect() {
         Connection c = null;
 
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:MonkeLogic.db");
-            System.out.println("Opened database successfully");
-            c.close();
+            System.out.println("Connected with database successfully");
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
+        return c;
     }
 
     public static void CreateTable() {
