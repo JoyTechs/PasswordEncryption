@@ -15,4 +15,7 @@ module org.example {
     opens MonkeLogic.backEnd to javafx.fxml;
     exports MonkeLogic.dbo;
     opens MonkeLogic.dbo to javafx.fxml;
+    exports MonkeLogic.databasemethods;
+    opens MonkeLogic.databasemethods to javafx.fxml;
+    exports MonkeLogic.controllers;
 }
