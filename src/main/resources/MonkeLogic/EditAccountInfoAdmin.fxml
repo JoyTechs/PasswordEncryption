@@ -2,9 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.CreateAccountFrontEnd">
-
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="MonkeLogic.frontEnd.EditAccountInfoAdminFrontEnd" prefHeight="400.0" prefWidth="600.0">
 
     <Label fx:id="websiteLabel" layoutX="180.0" layoutY="123.0" text="Website: "/>
     <TextField fx:id="websiteInpt" layoutX="240.0" layoutY="175.0"/>
@@ -26,7 +25,7 @@
     <Label fx:id="invalidCharacterPassword" layoutX="201.0" layoutY="257.0"
            text="Password is not allowed to contain Spaces." textFill="red" visible="false"/>
 
-    <Button fx:id="createAccount" layoutX="388.0" layoutY="287.0" onAction="#createAccount" text="Create Account"/>
+    <Button fx:id="createAccount" layoutX="388.0" layoutY="287.0" onAction="#editAccount" text="Edit Account"/>
     <Button fx:id="goBack" layoutX="110.0" layoutY="287.0" onAction="#goBack" text="Go Back"/>
 
 

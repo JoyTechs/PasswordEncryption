@@ -1,4 +1,4 @@
-package MonkeLogic.methods;
+package MonkeLogic.frontEnd;
 
 import MonkeLogic.DbConnection;
 import MonkeLogic.backEnd.LoginBackEnd;
@@ -21,11 +21,14 @@ import java.util.ResourceBundle;
 
 public class LoginFrontEnd implements Initializable {
 
-    //This happens when the instance is created
+    //region This happens when the instance is created
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
+        wrongUsername.setVisible(false);
+        wrongPassword.setVisible(false);
     }
+    //endregion
 
     //region Variables
     @FXML
@@ -39,12 +42,14 @@ public class LoginFrontEnd implements Initializable {
     @FXML
     private Label passwordLabel;
     @FXML
+    private Label wrongUsername;
+    @FXML
+    private Label wrongPassword;
+    @FXML
     private Text text1;
 
     private String username;
     private String password;
-    private Boolean isUsernameNull;
-    private Boolean isPasswordNull;
     //endregion
 
     //region This Sets the Scene Manager
@@ -63,13 +68,8 @@ public class LoginFrontEnd implements Initializable {
         password = passwordInpt.getText();
 
         if (isStringNull(username) || isStringNull(password)) {
-            if (isStringNull(username)) {
-                isUsernameNull = true;
-            }
-            if (isStringNull(password)) {
-                isPasswordNull = true;
-            }
-
+            setWrongUsername(isStringNull(username));
+            setWrongPassword(isStringNull(password));
 
         } else if (!isStringNull(username) && !isStringNull(password)) {
             new LoginBackEnd(username, password);
@@ -82,6 +82,16 @@ public class LoginFrontEnd implements Initializable {
     private Boolean isStringNull(String str) {
 
         return str.equals("");
+    }
+    //endregion
+
+    //region Shows/Hides Text on Application
+    public void setWrongUsername(Boolean show) {
+        wrongUsername.setVisible(show);
+    }
+
+    public void setWrongPassword(Boolean show) {
+        wrongPassword.setVisible(show);
     }
     //endregion
 

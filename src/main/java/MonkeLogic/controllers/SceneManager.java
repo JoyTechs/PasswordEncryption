@@ -3,7 +3,7 @@
  */
 package MonkeLogic.controllers;
 
-import MonkeLogic.methods.MemesFrontEnd;
+import MonkeLogic.frontEnd.MemesFrontEnd;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -23,22 +23,6 @@ public class SceneManager {
     private Stage primaryStage;
     //endregion
 
-
-    /* TODO Move TO Another Class
-
-    private static String userID;
-    private static String userClearanceLevel;
-
-    public void setActiveUser(String userID, String userClearanceLevel) {
-        System.out.println(SceneManager.userID + " UserId " + SceneManager.userClearanceLevel + " UserClearanceLevel");
-        SceneManager.userID = userID;
-        System.out.println(SceneManager.userID + " UserId ");
-        SceneManager.userClearanceLevel = userClearanceLevel;
-        System.out.println(SceneManager.userClearanceLevel + " UserClearanceLevel");
-    }
- */
-
-
     //region Creates A Singleton SceneManager
     public static SceneManager getInstance() {
         if (instance == null) {
@@ -54,31 +38,60 @@ public class SceneManager {
         this.scene = scene;
     }
 
+    public Scene getScene() {
+        return scene;
+    }
+
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     //endregion
 
     //region Scene Calling Methods
-    public void login(){loginScene();}
+    public void login() {
+        loginScene();
+    }
 
-    public void createUser(){createUserScene();}
+    public void createUser() {
+        createUserScene();
+    }
 
-    public void setAdmin(){setAdminScene();}
+    public void firstStart() {
+        firstStartScene();
+    }
 
-    public void settings(){settingsScene();}
+    public void settings() {
+        settingsScene();
+    }
 
-    public void createAccount(){createAccountScene();}
+    public void createAccount() {
+        createAccountScene();
+    }
 
-    public void editAccountInfo(){editAccountInfoScene();}
+    public void editAccountInfo() {
+        editAccountInfoScene();
+    }
 
-    public void showAccounts(){showAccountsScene();}
+    public void showAccountsUser() {
+        showAccountsUserScene();
+    }
 
-    public void memes(){memesScene();}
+    public void showAccountsAdmin() {
+        showAccountsAdminScene();
+    }
+
+    public void memes() {
+        memesScene();
+    }
     //endregion
 
     //region Methods That Changes the Scenes
-    private void loginScene(){
+    private void loginScene() {
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/Login.fxml"));
@@ -103,9 +116,9 @@ public class SceneManager {
         }
     }
 
-    private void setAdminScene(){
+    private void firstStartScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/CreateUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/FirstStart.fxml"));
             scene.setRoot(loader.load());
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -115,6 +128,7 @@ public class SceneManager {
         }
     }
 
+    //Todo: delete Settings menu, we don't need it for a base build
     private void settingsScene(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/Settings.fxml"));
@@ -141,7 +155,7 @@ public class SceneManager {
 
     private void editAccountInfoScene(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/EditAccountInfo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/EditAccountInfoAdmin.fxml"));
             scene.setRoot(loader.load());
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -151,9 +165,21 @@ public class SceneManager {
         }
     }
 
-    private void showAccountsScene() {
+    private void showAccountsUserScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ShowAccounts.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ShowAccountsUser.fxml"));
+            scene.setRoot(loader.load());
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAccountsAdminScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ShowAccountsAdmin.fxml"));
             scene.setRoot(loader.load());
             primaryStage.setScene(scene);
             primaryStage.show();

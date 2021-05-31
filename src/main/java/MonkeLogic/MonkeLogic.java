@@ -23,6 +23,10 @@ public class MonkeLogic extends Application {
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.setPrimaryStage(primaryStage);
         sceneManager.setScene(scene);
-        sceneManager.login();
+        //Todo remove the "scenemanager.login();" line when the DB connection is implemented.
+        //Todo And Implement an if check to see if it's the first time the application is run.
+        sceneManager.showAccountsAdmin();
+
+
     }
 }

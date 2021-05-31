@@ -1,4 +1,4 @@
-package MonkeLogic.methods;
+package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.CreateUserBackEnd;
 import MonkeLogic.controllers.SceneManager;
