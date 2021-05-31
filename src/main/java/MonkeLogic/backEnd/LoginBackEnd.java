@@ -13,6 +13,7 @@ public class LoginBackEnd {
         activeUsersID = username;
         activeUsersClearanceLevel = password;
         sceneManager.memes();
+        sceneManager.createAccount();
 
     }
 

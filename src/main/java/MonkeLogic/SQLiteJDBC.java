@@ -230,4 +230,17 @@ public class SQLiteJDBC {
         }
         System.out.println("Operation done successfully");
     }
+
+    public static Connection ConnectionDB(){
+        try{
+            Class.forName("org.sqlite.JDBC");
+            Connection c = DriverManager.getConnection("jdbc:sqlite:MonkeLogic.db");
+            System.out.println("Connection succeeded");
+            return c;
+        }
+        catch(Exception e){
+            System.out.println("Connection failed" + e);
+            return null;
+        }
+    }
 }
