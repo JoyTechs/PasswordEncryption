@@ -77,8 +77,8 @@ public class SceneManager {
         editAccountInfoScene();
     }
 
-    public void showAccounts() {
-        showAccountsScene();
+    public void showAccountsUser() {
+        showAccountsUserScene();
     }
 
     public void showAccountsAdmin() {
@@ -165,7 +165,7 @@ public class SceneManager {
         }
     }
 
-    private void showAccountsScene() {
+    private void showAccountsUserScene() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ShowAccountsUser.fxml"));
             scene.setRoot(loader.load());
