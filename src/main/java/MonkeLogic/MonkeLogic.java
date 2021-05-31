@@ -25,5 +25,4 @@ public class MonkeLogic extends Application {
         sceneManager.setScene(scene);
         sceneManager.login();
     }
-
 }
