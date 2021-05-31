@@ -1,6 +1,5 @@
 package MonkeLogic.frontEnd;
 
-import MonkeLogic.DbConnection;
 import MonkeLogic.backEnd.LoginBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import javafx.event.ActionEvent;
@@ -13,10 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginFrontEnd implements Initializable {
@@ -25,8 +20,7 @@ public class LoginFrontEnd implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
-        wrongUsername.setVisible(false);
-        wrongPassword.setVisible(false);
+        wrongLogin.setVisible(false);
     }
     //endregion
 
@@ -42,9 +36,7 @@ public class LoginFrontEnd implements Initializable {
     @FXML
     private Label passwordLabel;
     @FXML
-    private Label wrongUsername;
-    @FXML
-    private Label wrongPassword;
+    private Label wrongLogin;
     @FXML
     private Text text1;
 
@@ -68,11 +60,10 @@ public class LoginFrontEnd implements Initializable {
         password = passwordInpt.getText();
 
         if (isStringNull(username) || isStringNull(password)) {
-            setWrongUsername(isStringNull(username));
-            setWrongPassword(isStringNull(password));
+            setWrongLogin(true);
 
         } else if (!isStringNull(username) && !isStringNull(password)) {
-            new LoginBackEnd(username, password);
+            new LoginBackEnd(username, password, this);
         }
 
     }
@@ -86,12 +77,8 @@ public class LoginFrontEnd implements Initializable {
     //endregion
 
     //region Shows/Hides Text on Application
-    public void setWrongUsername(Boolean show) {
-        wrongUsername.setVisible(show);
-    }
-
-    public void setWrongPassword(Boolean show) {
-        wrongPassword.setVisible(show);
+    public void setWrongLogin(Boolean show) {
+        wrongLogin.setVisible(show);
     }
     //endregion
 

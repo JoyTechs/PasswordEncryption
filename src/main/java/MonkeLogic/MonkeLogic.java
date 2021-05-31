@@ -1,6 +1,8 @@
 package MonkeLogic;
 
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.controllers.StartUp;
+import MonkeLogic.services.ReadFromDb;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -10,6 +12,7 @@ public class MonkeLogic extends Application {
 
 
     public static void main(String[] args) {
+        StartUp startUp = new StartUp();
         launch(args);
     }
 
@@ -25,7 +28,11 @@ public class MonkeLogic extends Application {
         sceneManager.setScene(scene);
         //Todo remove the "scenemanager.login();" line when the DB connection is implemented.
         //Todo And Implement an if check to see if it's the first time the application is run.
-        sceneManager.showAccountsAdmin();
+        if (ReadFromDb.firstStart()) {
+            sceneManager.firstStart();
+        } else {
+            sceneManager.login();
+        }
 
 
     }

@@ -4,6 +4,7 @@ import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.dbo.Account;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -21,9 +22,10 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     @FXML
     private TableColumn websiteCol;
     @FXML
-    private TableColumn userCol;
-    @FXML
     private TableColumn usernameCol;
+    @FXML
+    private TableColumn password;
+
     private final ObservableList<Account> accountObservableLists = FXCollections.observableArrayList(
             new Account(1, 1, "Abdi", "Abdi", "Jag1234", "Google"),
             new Account(2, 2, "Andrej", "Andrej", "Orkar12", "Twitter"),
@@ -39,40 +41,33 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
     //region This happens when the instance is created
     private SceneManager sceneManager;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
         loadAccounts();
     }
-
-    public ShowAccountsUserFrontEnd() {
-        sceneManager = SceneManager.getInstance();
-
-    }
     //endregion
 
 
-    //Todo: Add Reading And ListView here when latest version is updated.
     //region Adds Accounts to TableView
     public void loadAccounts() {
 
         accountsTable.setEditable(true);
         websiteCol.setCellValueFactory(new PropertyValueFactory<>("website"));
-        userCol.setCellValueFactory(new PropertyValueFactory<>("username"));
-        usernameCol.setCellValueFactory(new PropertyValueFactory<>("password"));
+        usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
+        password.setCellValueFactory(new PropertyValueFactory<>("password"));
 
         accountsTable.setItems(accountObservableLists);
+        accountsTable.setEditable(false);
 
     }
     //endregion
 
-    //region Displays Accounts on List
+    @FXML
+    public void editChosenAccount(ActionEvent e) throws Exception {
 
-    //endregion
+        sceneManager.editAccountInfo();
 
-    //region Shows/Hides Elements on Application
-
-    //endregion
+    }
 
 }

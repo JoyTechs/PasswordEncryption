@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 public class CreateAccountFrontEnd {
@@ -40,7 +39,6 @@ public class CreateAccountFrontEnd {
     public void setSceneManager(SceneManager sceneManager) {
         this.sceneManager = sceneManager;
     }
-
 
 
     public void saveAccInfo(ActionEvent event) {
