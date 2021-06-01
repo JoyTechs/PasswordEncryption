@@ -2,7 +2,7 @@ package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.EditAccountInfoBackEnd;
 import MonkeLogic.controllers.SceneManager;
-import MonkeLogic.dbo.Account;
+import MonkeLogic.dto.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

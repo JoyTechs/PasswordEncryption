@@ -1,7 +1,7 @@
 package MonkeLogic.services;
 
 import MonkeLogic.databasemethods.DbConnection;
-import MonkeLogic.dbo.User;
+import MonkeLogic.dto.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

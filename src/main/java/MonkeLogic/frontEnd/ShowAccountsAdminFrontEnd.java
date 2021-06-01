@@ -1,7 +1,7 @@
 package MonkeLogic.frontEnd;
 
 import MonkeLogic.controllers.SceneManager;
-import MonkeLogic.dbo.Account;
+import MonkeLogic.dto.Account;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

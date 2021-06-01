@@ -3,7 +3,7 @@
  */
 package MonkeLogic.controllers;
 
-import MonkeLogic.dbo.User;
+import MonkeLogic.dto.User;
 import MonkeLogic.frontEnd.MemesFrontEnd;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

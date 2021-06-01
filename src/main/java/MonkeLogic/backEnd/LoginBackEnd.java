@@ -1,7 +1,7 @@
 package MonkeLogic.backEnd;
 
 import MonkeLogic.controllers.SceneManager;
-import MonkeLogic.dbo.User;
+import MonkeLogic.dto.User;
 import MonkeLogic.frontEnd.LoginFrontEnd;
 import MonkeLogic.services.ReadFromDb;
 
