@@ -7,7 +7,6 @@ public class SessionManager {
     private static User activeUser;
     private static SessionManager instance;
 
-    //TODO: Add to StartUp
     public static SessionManager getInstance() {
         if (instance == null) {
             instance = new SessionManager();
@@ -21,6 +20,10 @@ public class SessionManager {
 
     public static User getActiveUser() {
         return activeUser;
+    }
+
+    public static String getActiveUserClearanceLevel() {
+        return activeUser.getClearanceLevel();
     }
 
     public static void setActiveUser(User activeUser) {

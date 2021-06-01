@@ -7,7 +7,7 @@ public class EditAccountInfoBackEnd {
     public EditAccountInfoBackEnd() {
     }
 
-    public Account editAcount(String website, String username, String password, Account account) {
+    public Account editAccount(String website, String username, String password, Account account) {
         account.setWebsite(website);
         account.setUsername(username);
         account.setPassword(password);

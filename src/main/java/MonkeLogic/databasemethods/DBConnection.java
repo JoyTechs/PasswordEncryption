@@ -41,10 +41,11 @@ public class DBConnection {
             stmt = c.createStatement();
             String sql2 = "CREATE TABLE IF NOT EXISTS ACCOUNT " +
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
+                    " USERID            INTEGER    NOT NULL," +
+                    " EMPLOYEE          TEXT    NOT NULL," +
                     " WEBSITE           TEXT    NOT NULL, " +
                     " USERNAME          TEXT    NOT NULL, " +
-                    " PASSWORD          TEXT    NOT NULL," +
-                    "FOREIGN KEY(ID) REFERENCES USERS(ID))";
+                    " PASSWORD          TEXT    NOT NULL)";
             stmt.executeUpdate(sql2);
 
             stmt = c.createStatement();

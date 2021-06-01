@@ -1,12 +1,15 @@
 package MonkeLogic.databasemethods;
 
 
+import MonkeLogic.controllers.SessionManager;
+import MonkeLogic.dto.Account;
 import MonkeLogic.dto.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ReadFromDB {
 
@@ -14,7 +17,7 @@ public class ReadFromDB {
     private static Connection c = null;
     private static PreparedStatement statement = null;
     private static ResultSet resultSet = null;
-    private static User user = null;
+    private static User user = SessionManager.getActiveUser();
 
     private ReadFromDB() {
 
@@ -59,9 +62,75 @@ public class ReadFromDB {
             resultSet.close();
             c.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return null;
+    }
+
+
+    public static ArrayList<Account> getAccountsAdmin() {
+
+        c = DBConnection.connect();
+        Account tempAccount = null;
+        ArrayList<Account> tempList = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM ACCOUNT";
+            statement = c.prepareStatement(query);
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+
+                tempAccount = new Account(
+                        resultSet.getInt("ID"),
+                        resultSet.getInt("USERID"),
+                        resultSet.getString("WEBSITE"),
+                        resultSet.getString("EMPLOYEE"),
+                        resultSet.getString("USERNAME"),
+                        resultSet.getString("PASSWORD"));
+                tempList.add(tempAccount);
+
+            }
+            statement.close();
+            resultSet.close();
+            c.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return tempList;
+    }
+
+    public static ArrayList<Account> getAccountsUser() {
+
+        c = DBConnection.connect();
+        Account tempAccount = null;
+        ArrayList<Account> tempList = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM ACCOUNT WHERE ID = ?";
+            statement = c.prepareStatement(query);
+            statement.setString(1, String.valueOf(user.getUserID()));
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+
+                tempAccount = new Account(
+                        resultSet.getInt("ID"),
+                        resultSet.getInt("USERID"),
+                        resultSet.getString("WEBSITE"),
+                        resultSet.getString("EMPLOYEE"),
+                        resultSet.getString("USERNAME"),
+                        resultSet.getString("PASSWORD"));
+                tempList.add(tempAccount);
+
+            }
+            statement.close();
+            resultSet.close();
+            c.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return tempList;
     }
 
     public static Boolean firstStart() {
@@ -88,7 +157,7 @@ public class ReadFromDB {
             resultSet.close();
             c.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return false;
     }

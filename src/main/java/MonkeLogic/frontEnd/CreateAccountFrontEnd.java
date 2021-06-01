@@ -2,6 +2,7 @@ package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.CreateAccountBackEnd;
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -81,7 +82,11 @@ public class CreateAccountFrontEnd {
 
     @FXML
     public void goBack(ActionEvent e) {
-        sceneManager.showAccountsAdmin();
+        if (SessionManager.getActiveUserClearanceLevel().equals("Admin")) {
+            sceneManager.showAccountsAdmin();
+        } else {
+            sceneManager.showAccountsUser();
+        }
     }
 
 

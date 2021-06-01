@@ -2,6 +2,7 @@ package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.EditAccountInfoBackEnd;
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +12,7 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditAccountInfoAdminFrontEnd implements Initializable {
+public class EditAccountInfoFrontEnd implements Initializable {
 
 
     @FXML
@@ -67,9 +68,6 @@ public class EditAccountInfoAdminFrontEnd implements Initializable {
         username = usernameInpt.getText();
         password = passwordInpt.getText();
 
-        //Todo: check if there's any difference changing the
-        // "setShortUsernameVisibility(isStringToShort(username, 2));"
-        // parts to just "true".
         if (isStringToShort(username, 2)) {
             setShortUsernameVisibility(true);
         } else if (doesStringContainSpaces(username)) {
@@ -82,13 +80,17 @@ public class EditAccountInfoAdminFrontEnd implements Initializable {
         }
         if (noErrors().equals(true)) {
             //Todo: implement Saving the updated account details.
-            editAccountInfoBackEnd.editAcount(website, username, password, account);
+            editAccountInfoBackEnd.editAccount(website, username, password, account);
         }
     }
 
     @FXML
     public void goBack(ActionEvent e) {
-        sceneManager.showAccountsAdmin();
+        if (SessionManager.getActiveUserClearanceLevel().equals("Admin")) {
+            sceneManager.showAccountsAdmin();
+        } else {
+            sceneManager.showAccountsUser();
+        }
     }
 
     //region These Checks if Inputs are Correct

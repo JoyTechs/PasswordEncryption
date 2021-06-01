@@ -4,11 +4,7 @@ import MonkeLogic.backEnd.CreateUserBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
+import javafx.scene.control.*;
 
 public class CreateUserFrontEnd {
 
@@ -16,15 +12,22 @@ public class CreateUserFrontEnd {
     @FXML
     private Button login;
     @FXML
+    private Button goBack;
+    @FXML
+    private CheckBox showPassword;
+    @FXML
+    private Label showPasswordLabel;
+    @FXML
     private TextField usernameInpt;
     @FXML
     private PasswordField passwordInpt;
     @FXML
+    private TextField passwordInptVisible;
+    @FXML
     private Label userNameLabel;
     @FXML
     private Label passwordLabel;
-    @FXML
-    private Text text1;
+
 
     private String username;
     private String password;
@@ -56,7 +59,27 @@ public class CreateUserFrontEnd {
         }
     }
 
+    @FXML
+    public void goBack(ActionEvent e) throws Exception {
+        sceneManager.showAccountsAdmin();
+    }
+
     private Boolean isStringNull(String str) {
         return str.equals("");
     }
+
+    @FXML
+    public void setPasswordVisibility(ActionEvent e) {
+        //This Binds the TextField and PasswordField to the Checkbox
+        //But Makes them Opposites so that only one is active at a time.
+        passwordInptVisible.managedProperty().bind(showPassword.selectedProperty());
+        passwordInptVisible.visibleProperty().bind(showPassword.selectedProperty());
+        passwordInpt.managedProperty().bind(showPassword.selectedProperty().not());
+        passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
+
+        //This Binds the Text in the TextField and PasswordField to each other
+        //So that they will always contain the same text.
+        passwordInptVisible.textProperty().bindBidirectional(passwordInpt.textProperty());
+    }
+
 }
