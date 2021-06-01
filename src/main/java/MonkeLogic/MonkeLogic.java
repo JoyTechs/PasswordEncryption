@@ -8,7 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class MonkeLogic extends Application {
+public class MonkeLogic extends Application
+{
 
 
     public static void main(String[] args) {
@@ -33,7 +34,6 @@ public class MonkeLogic extends Application {
         } else {
             sceneManager.login();
         }
-
 
     }
 }

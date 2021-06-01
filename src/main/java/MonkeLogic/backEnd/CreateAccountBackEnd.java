@@ -1,7 +1,7 @@
 package MonkeLogic.backEnd;
 
 import MonkeLogic.databasemethods.DBConnection;
-import MonkeLogic.dbo.Account;
+import MonkeLogic.dto.Account;
 
 import java.sql.Connection;
 import java.sql.SQLException;
