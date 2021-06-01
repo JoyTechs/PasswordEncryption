@@ -50,17 +50,13 @@ public class CreateUserFrontEnd {
             if (isStringNull(password)) {
                 isPasswordNull = true;
             }
-
             sceneManager.createAccount();
         } else if (!isStringNull(username) && !isStringNull(password)) {
             new CreateUserBackEnd(username, password);
         }
-
     }
 
     private Boolean isStringNull(String str) {
-
         return str.equals("");
     }
-
 }

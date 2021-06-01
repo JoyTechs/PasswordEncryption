@@ -1,12 +1,11 @@
 package MonkeLogic.controllers;
 
 
-import MonkeLogic.services.ReadFromDb;
+import MonkeLogic.databasemethods.ReadFromDB;
 
 public class StartUp {
     public StartUp() {
         CryptKeeper crypto = CryptKeeper.getInstance();
-        ReadFromDb readFromDb = ReadFromDb.getInstance();
-
+        ReadFromDB readFromDb = ReadFromDB.getInstance();
     }
 }

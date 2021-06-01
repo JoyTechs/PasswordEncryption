@@ -60,18 +60,8 @@ public class EditAccountInfoAdminFrontEnd implements Initializable {
     }
     //endregion
 
-    /*public EditAccountInfoAdminFrontEnd(Account account){
-        this.account = account;
-        websiteInpt.textProperty().setValue(account.getWebsite());
-        usernameInpt.textProperty().setValue(account.getUsername());
-        passwordInpt.textProperty().setValue(account.getPassword());
-    }
-
-     */
-
-
     @FXML
-    public void editAccount(ActionEvent e) throws Exception {
+    public void editAccount(ActionEvent e) {
         setAllErrorVisibilities();
         website = websiteInpt.getText();
         username = usernameInpt.getText();
@@ -81,14 +71,14 @@ public class EditAccountInfoAdminFrontEnd implements Initializable {
         // "setShortUsernameVisibility(isStringToShort(username, 2));"
         // parts to just "true".
         if (isStringToShort(username, 2)) {
-            setShortUsernameVisibility(isStringToShort(username, 2));
+            setShortUsernameVisibility(true);
         } else if (doesStringContainSpaces(username)) {
-            setInvalidUsernameVisibility(doesStringContainSpaces(username));
+            setInvalidUsernameVisibility(true);
         }
         if (isStringToShort(password, 6)) {
-            setShortPasswordVisibility(isStringToShort(password, 6));
+            setShortPasswordVisibility(true);
         } else if (doesStringContainSpaces(password)) {
-            setInvalidPasswordVisibility(doesStringContainSpaces(password));
+            setInvalidPasswordVisibility(true);
         }
         if (noErrors().equals(true)) {
             //Todo: implement Saving the updated account details.
@@ -97,14 +87,12 @@ public class EditAccountInfoAdminFrontEnd implements Initializable {
     }
 
     @FXML
-    public void goBack(ActionEvent e) throws Exception {
+    public void goBack(ActionEvent e) {
         sceneManager.showAccountsAdmin();
     }
 
-
     //region These Checks if Inputs are Correct
     private Boolean doesStringContainSpaces(String str) {
-
         return str.contains(" ");
     }
 
@@ -138,11 +126,14 @@ public class EditAccountInfoAdminFrontEnd implements Initializable {
     }
 
     public Boolean noErrors() {
-        return !usernameToShort.isVisible() && !passwordToShort.isVisible() && !invalidCharacterUsername.isVisible() && !invalidCharacterPassword.isVisible();
+        return !usernameToShort.isVisible()
+                && !passwordToShort.isVisible()
+                && !invalidCharacterUsername.isVisible()
+                && !invalidCharacterPassword.isVisible();
     }
 
     @FXML
-    public void setPasswordVisibility(ActionEvent e) throws Exception {
+    public void setPasswordVisibility(ActionEvent e) {
         //This Binds the TextField and PasswordField to the Checkbox
         //But Makes them Opposites so that only one is active at a time.
         passwordInptTextField.managedProperty().bind(showPassword.selectedProperty());
@@ -155,5 +146,4 @@ public class EditAccountInfoAdminFrontEnd implements Initializable {
         passwordInptTextField.textProperty().bindBidirectional(passwordInpt.textProperty());
     }
     //endregion
-
 }

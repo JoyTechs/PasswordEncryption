@@ -21,7 +21,6 @@ public class Account {
         this.username = username;
         this.password = password;
         this.website = website;
-
     }
 
     public String getUser() {
@@ -32,10 +31,10 @@ public class Account {
         this.user = user;
     }
 
-    public Account(String username, String password, String website) {
+    public Account( String website, String username, String password) {
+        this.website = website;
         this.username = username;
         this.password = password;
-        this.website = website;
     }
 
     public String getUsername() {

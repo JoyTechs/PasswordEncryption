@@ -1,4 +1,4 @@
-package MonkeLogic.services;
+package MonkeLogic.encryption;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;

@@ -1,6 +1,5 @@
-package MonkeLogic.services;
+package MonkeLogic.databasemethods;
 
-import MonkeLogic.databasemethods.DbConnection;
 import MonkeLogic.dbo.User;
 
 import java.sql.Connection;
@@ -8,27 +7,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ReadFromDb {
-    private static ReadFromDb readFromDb;
+public class ReadFromDB {
+
+    private static ReadFromDB readFromDb;
     private static Connection c = null;
     private static PreparedStatement statement = null;
     private static ResultSet resultSet = null;
+    private static User user = null;
 
-
-    private ReadFromDb() {
+    private ReadFromDB() {
 
     }
 
-    public static ReadFromDb getInstance() {
+    public static ReadFromDB getInstance() {
         if (readFromDb == null) {
-            readFromDb = new ReadFromDb();
+            readFromDb = new ReadFromDB();
         }
         return readFromDb;
     }
 
     public static User readFromDbToLoginIn(String username, String password) {
-        User user = null;
-        c = DbConnection.connect();
+
+        c = DBConnection.connect();
+
         try {
             String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
             statement = c.prepareStatement(query);
@@ -57,17 +58,15 @@ public class ReadFromDb {
             resultSet.close();
             c.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return null;
     }
 
     public static Boolean firstStart() {
-        User user = null;
-        c = DbConnection.connect();
+        c = DBConnection.connect();
 
         try {
-
             String query = "SELECT * FROM USERS WHERE ID = 1 and USERNAME = ? and PASSWORD = ?";
             statement = c.prepareStatement(query);
             statement.setString(1, "Admin");
@@ -81,20 +80,15 @@ public class ReadFromDb {
             if (count == 1) {
                 System.out.println("Username and password is correct");
                 return true;
-
             } else {
-
                 System.out.println("Not First Start");
             }
             statement.close();
             resultSet.close();
             c.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
-
         return false;
     }
-
-
 }

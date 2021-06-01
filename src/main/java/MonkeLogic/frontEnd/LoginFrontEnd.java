@@ -54,24 +54,20 @@ public class LoginFrontEnd implements Initializable {
 
     //region This Verifies User Credentials
     @FXML
-    public void loginAttempt(ActionEvent e) throws Exception {
-
+    public void loginAttempt(ActionEvent e) {
         username = usernameInpt.getText();
         password = passwordInpt.getText();
 
         if (isStringNull(username) || isStringNull(password)) {
             setWrongLogin(true);
-
         } else if (!isStringNull(username) && !isStringNull(password)) {
             new LoginBackEnd(username, password, this);
         }
-
     }
     //endregion
 
     //region This Checks if Input is Null
     private Boolean isStringNull(String str) {
-
         return str.equals("");
     }
     //endregion
@@ -81,6 +77,4 @@ public class LoginFrontEnd implements Initializable {
         wrongLogin.setVisible(show);
     }
     //endregion
-
-
 }

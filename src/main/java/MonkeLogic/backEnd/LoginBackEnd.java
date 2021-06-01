@@ -1,9 +1,10 @@
 package MonkeLogic.backEnd;
 
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dbo.User;
 import MonkeLogic.frontEnd.LoginFrontEnd;
-import MonkeLogic.services.ReadFromDb;
+import MonkeLogic.databasemethods.ReadFromDB;
 
 public class LoginBackEnd {
 
@@ -15,10 +16,10 @@ public class LoginBackEnd {
     public LoginBackEnd(String usernameInput, String passwordInput, LoginFrontEnd loginFrontEnd2) {
         sceneManager = SceneManager.getInstance();
         loginFrontEnd = loginFrontEnd2;
-        activeUser = ReadFromDb.readFromDbToLoginIn(usernameInput, passwordInput);
+        activeUser = ReadFromDB.readFromDbToLoginIn(usernameInput, passwordInput);
 
         if (activeUser != null) {
-            SceneManager.setActiveUser(activeUser);
+            SessionManager.setActiveUser(activeUser);
             sceneManager.showAccountsUser();
         } else {
             loginAttempts++;
@@ -29,10 +30,6 @@ public class LoginBackEnd {
             } else {
                 loginFrontEnd.setWrongLogin(true);
             }
-
         }
-
-
     }
-
 }

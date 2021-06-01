@@ -65,23 +65,23 @@ public class FirstStartFrontEnd implements Initializable {
 
     //region This Verifies User Credentials
     @FXML
-    public void createAdminAccount(ActionEvent e) throws Exception {
+    public void createAdminAccount(ActionEvent e) {
         setAllErrorVisibilities();
         username = usernameInpt.getText();
         password = passwordInpt.getText();
 
         if (isStringToShort(username, 2)) {
-            setShortUsernameVisibility(isStringToShort(username, 2));
+            setShortUsernameVisibility(true);
 
         } else if (doesStringContainSpaces(username)) {
-            setInvalidUsernameVisibility(doesStringContainSpaces(username));
+            setInvalidUsernameVisibility(true);
 
         }
         if (isStringToShort(password, 6)) {
-            setShortPasswordVisibility(isStringToShort(password, 6));
+            setShortPasswordVisibility(true);
 
         } else if (doesStringContainSpaces(password)) {
-            setInvalidPasswordVisibility(doesStringContainSpaces(password));
+            setInvalidPasswordVisibility(true);
 
         }
         if (noErrors().equals(true)) {
@@ -132,7 +132,7 @@ public class FirstStartFrontEnd implements Initializable {
     }
 
     @FXML
-    public void setPasswordVisibility(ActionEvent e) throws Exception {
+    public void setPasswordVisibility(ActionEvent e) {
         //This Binds the TextField and PasswordField to the Checkbox
         //But Makes them Opposites so that only one is active at a time.
         passwordInptVisible.managedProperty().bind(showPassword.selectedProperty());

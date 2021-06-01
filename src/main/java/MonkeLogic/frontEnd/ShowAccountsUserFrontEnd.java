@@ -41,6 +41,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
     //region This happens when the instance is created
     private SceneManager sceneManager;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
@@ -48,10 +49,8 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     }
     //endregion
 
-
     //region Adds Accounts to TableView
     public void loadAccounts() {
-
         accountsTable.setEditable(true);
         websiteCol.setCellValueFactory(new PropertyValueFactory<>("website"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -59,15 +58,11 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
         accountsTable.setItems(accountObservableLists);
         accountsTable.setEditable(false);
-
     }
     //endregion
 
     @FXML
-    public void editChosenAccount(ActionEvent e) throws Exception {
-
+    public void editChosenAccount(ActionEvent e) {
         sceneManager.editAccountInfo();
-
     }
-
 }
