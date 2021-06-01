@@ -3,7 +3,6 @@ package MonkeLogic.dto;
 public class Account {
 
     private int userId;
-    private int AccountId;
     private String user;
     private String username;
     private String password;
@@ -14,9 +13,8 @@ public class Account {
 
     }
 
-    public Account(int userId, int accountId, String user, String username, String password, String website) {
+    public Account(int userId, String website, String user, String username, String password) {
         this.userId = userId;
-        this.AccountId = accountId;
         this.user = user;
         this.username = username;
         this.password = password;
@@ -47,20 +45,12 @@ public class Account {
         return userId;
     }
 
-    public int getAccountId() {
-        return AccountId;
-    }
-
     public String getUser() {
         return user;
     }
     //endregion
 
     //region Setters
-    public void setAccountId(int accountId) {
-        AccountId = accountId;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }

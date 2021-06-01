@@ -1,5 +1,6 @@
 package MonkeLogic.frontEnd;
 
+import MonkeLogic.backEnd.ShowAccountsUserBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.dto.Account;
 import javafx.collections.FXCollections;
@@ -7,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,18 +27,17 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     private TableColumn usernameCol;
     @FXML
     private TableColumn password;
+    @FXML
+    private Button goBack;
+    @FXML
+    private Button editAccount;
+    @FXML
+    private Button search;
+    @FXML
+    private Button createAccount;
 
-    private final ObservableList<Account> accountObservableLists = FXCollections.observableArrayList(
-            new Account(1, 1, "Abdi", "Abdi", "Jag1234", "Google"),
-            new Account(2, 2, "Andrej", "Andrej", "Orkar12", "Twitter"),
-            new Account(3, 3, "Jakob", "Jakob", "Inte123", "Google"),
-            new Account(4, 4, "Isa", "Isa", "Mer1234", "Twitter"),
-            new Account(5, 5, "Elias", "Elias", "Idag123", "Baguette"),
-            new Account(6, 6, "Penguin", "Penguin", "Vi12345", "Glömde"),
-            new Account(7, 7, "Java", "Java", "Tar1234", "Hur"),
-            new Account(8, 8, "Alexander", "Alexander", "Helg.12", "Formatteringen"),
-            new Account(9, 9, "Marcus", "Marcus", "Vi12345", "Fungerade"),
-            new Account(10, 10, "August", "August", "Ses.123", "Här"));
+    //TODO: Add List from active user
+    private final ObservableList<Account> accountObservableLists = FXCollections.observableArrayList();
     //endregion
 
     //region This happens when the instance is created
@@ -65,4 +66,21 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     public void editChosenAccount(ActionEvent e) {
         sceneManager.editAccountInfo();
     }
+
+    @FXML
+    public void logout(ActionEvent e) {
+        new ShowAccountsUserBackEnd();
+    }
+
+    @FXML
+    public void createAccount(ActionEvent e) {
+        sceneManager.createAccount();
+    }
+
+    @FXML
+    public void search() {
+
+    }
+
+
 }

@@ -23,6 +23,10 @@ public class SessionManager {
         return activeUser;
     }
 
+    public static String getActiveUserClearanceLevel() {
+        return activeUser.getClearanceLevel();
+    }
+
     public static void setActiveUser(User activeUser) {
         SessionManager.activeUser = activeUser;
     }

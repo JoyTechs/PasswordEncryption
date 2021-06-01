@@ -1,6 +1,7 @@
 package MonkeLogic.frontEnd;
 
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.databasemethods.ReadFromDB;
 import MonkeLogic.dto.Account;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,18 +30,10 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     @FXML
     private TableColumn password;
 
-    private static final ObservableList<Account> accountObservableLists = FXCollections.observableArrayList(
-            new Account(1, 1, "Abdi", "Abdi", "Jag1234", "Google"),
-            new Account(2, 2, "Andrej", "Andrej", "Orkar12", "Twitter"),
-            new Account(3, 3, "Jakob", "Jakob", "Inte123", "Google"),
-            new Account(4, 4, "Isa", "Isa", "Mer1234", "Twitter"),
-            new Account(5, 5, "Elias", "Elias", "Idag123", "Baguette"),
-            new Account(6, 6, "Penguin", "Penguin", "Vi12345", "Glömde"),
-            new Account(7, 7, "Java", "Java", "Tar1234", "Hur"),
-            new Account(8, 8, "Alexander", "Alexander", "Helg.12", "Formatteringen"),
-            new Account(9, 9, "Marcus", "Marcus", "Vi12345", "Fungerade"),
-            new Account(10, 10, "August", "August", "Ses.123", "Här"));
-    //endregion
+    private static ObservableList<Account> accountObservableLists;
+
+
+    // endregion
 
     //region This happens on init
     private SceneManager sceneManager;
@@ -53,6 +46,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     //endregion
 
     public void loadAccounts() {
+
         accountsTable.setEditable(true);
         websiteCol.setCellValueFactory(new PropertyValueFactory<>("website"));
         userCol.setCellValueFactory(new PropertyValueFactory<>("user"));
@@ -60,6 +54,10 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
         password.setCellValueFactory(new PropertyValueFactory<>("password"));
         accountsTable.setItems(accountObservableLists);
         accountsTable.setEditable(false);
+    }
+
+    public void setAccountObservableLists() {
+        accountObservableLists = FXCollections.observableArrayList(ReadFromDB.getAccountsAdmin());
     }
 
     @FXML

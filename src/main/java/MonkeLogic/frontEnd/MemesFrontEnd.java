@@ -2,7 +2,6 @@ package MonkeLogic.frontEnd;
 
 import MonkeLogic.controllers.SceneManager;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.media.MediaView;
 
 import java.io.File;
@@ -15,8 +14,6 @@ public class MemesFrontEnd {
 
     @FXML
     private MediaView mediaView;
-    @FXML
-    private Label label;
 
 
     private final SceneManager sceneManager;
