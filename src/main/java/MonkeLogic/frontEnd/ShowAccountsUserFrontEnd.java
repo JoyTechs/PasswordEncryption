@@ -2,6 +2,7 @@ package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.ShowAccountsUserBackEnd;
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.databasemethods.ReadFromDB;
 import MonkeLogic.dto.Account;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +38,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     private Button createAccount;
 
     //TODO: Add List from active user
-    private final ObservableList<Account> accountObservableLists = FXCollections.observableArrayList();
+    private static ObservableList<Account> accountObservableLists;
     //endregion
 
     //region This happens when the instance is created
@@ -52,6 +53,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
     //region Adds Accounts to TableView
     public void loadAccounts() {
+        setAccountObservableLists();
         accountsTable.setEditable(true);
         websiteCol.setCellValueFactory(new PropertyValueFactory<>("website"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -59,6 +61,10 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
         accountsTable.setItems(accountObservableLists);
         accountsTable.setEditable(false);
+    }
+
+    public void setAccountObservableLists() {
+        accountObservableLists = FXCollections.observableArrayList(ReadFromDB.getAccountsUser());
     }
     //endregion
 

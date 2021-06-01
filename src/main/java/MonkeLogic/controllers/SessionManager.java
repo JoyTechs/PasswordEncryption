@@ -7,7 +7,6 @@ public class SessionManager {
     private static User activeUser;
     private static SessionManager instance;
 
-    //TODO: Add to StartUp
     public static SessionManager getInstance() {
         if (instance == null) {
             instance = new SessionManager();

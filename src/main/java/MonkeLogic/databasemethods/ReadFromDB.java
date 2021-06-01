@@ -74,6 +74,38 @@ public class ReadFromDB {
         Account tempAccount = null;
         ArrayList<Account> tempList = new ArrayList<>();
         try {
+            String query = "SELECT * FROM ACCOUNT";
+            statement = c.prepareStatement(query);
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+
+                tempAccount = new Account(
+                        resultSet.getInt("ID"),
+                        resultSet.getInt("USERID"),
+                        resultSet.getString("WEBSITE"),
+                        resultSet.getString("EMPLOYEE"),
+                        resultSet.getString("USERNAME"),
+                        resultSet.getString("PASSWORD"));
+                tempList.add(tempAccount);
+
+            }
+            statement.close();
+            resultSet.close();
+            c.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return tempList;
+    }
+
+    public static ArrayList<Account> getAccountsUser() {
+
+        c = DBConnection.connect();
+        Account tempAccount = null;
+        ArrayList<Account> tempList = new ArrayList<>();
+        try {
             String query = "SELECT * FROM ACCOUNT WHERE ID = ?";
             statement = c.prepareStatement(query);
             statement.setString(1, String.valueOf(user.getUserID()));
@@ -84,8 +116,9 @@ public class ReadFromDB {
 
                 tempAccount = new Account(
                         resultSet.getInt("ID"),
+                        resultSet.getInt("USERID"),
                         resultSet.getString("WEBSITE"),
-                        user.getUsername(),
+                        resultSet.getString("EMPLOYEE"),
                         resultSet.getString("USERNAME"),
                         resultSet.getString("PASSWORD"));
                 tempList.add(tempAccount);

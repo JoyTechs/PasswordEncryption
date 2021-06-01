@@ -46,10 +46,10 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     //endregion
 
     public void loadAccounts() {
-
+        setAccountObservableLists();
         accountsTable.setEditable(true);
         websiteCol.setCellValueFactory(new PropertyValueFactory<>("website"));
-        userCol.setCellValueFactory(new PropertyValueFactory<>("user"));
+        userCol.setCellValueFactory(new PropertyValueFactory<>("employee"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         password.setCellValueFactory(new PropertyValueFactory<>("password"));
         accountsTable.setItems(accountObservableLists);

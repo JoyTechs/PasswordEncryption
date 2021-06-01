@@ -32,7 +32,7 @@ public class User {
     }
     //endregion
 
-    //region Setters
+    //region Getters
     public int getUserID() {
         return userID;
     }
