@@ -1,6 +1,7 @@
 package MonkeLogic.controllers;
 
-import MonkeLogic.dbo.User;
+
+import MonkeLogic.dto.User;
 
 public class SessionManager {
     private static User activeUser;
