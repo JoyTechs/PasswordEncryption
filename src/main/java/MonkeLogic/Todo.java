@@ -1,7 +1,3 @@
-package MonkeLogic;
-
-public class Todo {
     //TODO: Add Salt and SecretKey to DB
-    //TODO:
-
-}
+    //TODO: Fixa så att alla scenerna kan byta till nästa scen.
+    //TODO: Fixa så att EditAccount får med den valda raden att edita.

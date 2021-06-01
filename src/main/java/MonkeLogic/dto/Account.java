@@ -23,26 +23,16 @@ public class Account {
         this.website = website;
     }
 
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public Account( String website, String username, String password) {
         this.website = website;
         this.username = username;
         this.password = password;
     }
 
+
+    //region Getters
     public String getUsername() {
         return username;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getPassword() {
@@ -61,6 +51,12 @@ public class Account {
         return AccountId;
     }
 
+    public String getUser() {
+        return user;
+    }
+    //endregion
+
+    //region Setters
     public void setAccountId(int accountId) {
         AccountId = accountId;
     }
@@ -76,6 +72,15 @@ public class Account {
     public void setWebsite(String website) {
         this.website = website;
     }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+    //endregion
 
 
 }
