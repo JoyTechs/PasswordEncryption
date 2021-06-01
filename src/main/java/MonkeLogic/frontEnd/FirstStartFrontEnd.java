@@ -1,5 +1,6 @@
 package MonkeLogic.frontEnd;
 
+import MonkeLogic.backEnd.FirstStartBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,6 +39,7 @@ public class FirstStartFrontEnd implements Initializable {
 
     private String username;
     private String password;
+    //private FirstStartBackEnd backend = FirstStartBackEnd.getInstance();
 
     //endregion
 
@@ -85,8 +87,9 @@ public class FirstStartFrontEnd implements Initializable {
 
         }
         if (noErrors().equals(true)) {
-            sceneManager.memes();
-            //new FirstStartBackEnd(username, password);
+            //sceneManager.showAccountsAdmin();
+            //TODO: Revert this change
+            FirstStartBackEnd.addAdmin(username, password);
         }
 
     }

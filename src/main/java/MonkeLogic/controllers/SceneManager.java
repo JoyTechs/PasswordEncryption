@@ -138,7 +138,7 @@ public class SceneManager {
     private void editAccountInfoScene() {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/EditAccountInfoAdmin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/EditAccountInfo.fxml"));
             scene.setRoot(loader.load());
             primaryStage.setScene(scene);
             primaryStage.show();

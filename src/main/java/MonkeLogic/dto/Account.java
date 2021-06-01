@@ -2,9 +2,9 @@ package MonkeLogic.dto;
 
 public class Account {
 
+    private int id;
     private int userId;
-    private int AccountId;
-    private String user;
+    private String employee;
     private String username;
     private String password;
     private String website;
@@ -14,16 +14,16 @@ public class Account {
 
     }
 
-    public Account(int userId, int accountId, String user, String username, String password, String website) {
+    public Account(int id, int userId, String website, String employee, String username, String password) {
+        this.id = id;
         this.userId = userId;
-        this.AccountId = accountId;
-        this.user = user;
+        this.employee = employee;
         this.username = username;
         this.password = password;
         this.website = website;
     }
 
-    public Account( String website, String username, String password) {
+    public Account(String website, String username, String password) {
         this.website = website;
         this.username = username;
         this.password = password;
@@ -33,6 +33,10 @@ public class Account {
     //region Getters
     public String getUsername() {
         return username;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getPassword() {
@@ -47,22 +51,18 @@ public class Account {
         return userId;
     }
 
-    public int getAccountId() {
-        return AccountId;
-    }
-
-    public String getUser() {
-        return user;
+    public String getEmployee() {
+        return employee;
     }
     //endregion
 
     //region Setters
-    public void setAccountId(int accountId) {
-        AccountId = accountId;
-    }
-
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setPassword(String password) {
@@ -77,8 +77,8 @@ public class Account {
         this.userId = userId;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setEmployee(String employee) {
+        this.employee = employee;
     }
     //endregion
 
