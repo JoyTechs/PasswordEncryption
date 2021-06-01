@@ -1,30 +1,26 @@
 package MonkeLogic.databasemethods;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DBInsert {
 
-    public static void InsertData() {
-        Connection c = null;
-        Statement stmt = null;
+    private static Connection c = null;
+    private static Statement statement = null;
+
+    public static void InitialStart() {
+
+        c = DBConnection.connect();
 
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:MonkeLogic.db");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-
-            stmt = c.createStatement();
+            statement = c.createStatement();
             String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL) " +
-                    "VALUES ('Admin', 'FirstStart', 'ADMIN' );";
-            stmt.executeUpdate(sql);
+                    "VALUES ('Admin', 'FirstStart', 'ADMIN')";
+            statement.executeUpdate(sql);
 
-            stmt.close();
+            statement.close();
             c.commit();
             c.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }

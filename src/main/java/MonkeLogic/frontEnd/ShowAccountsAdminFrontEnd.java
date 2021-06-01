@@ -53,22 +53,17 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     //endregion
 
     public void loadAccounts() {
-
         accountsTable.setEditable(true);
         websiteCol.setCellValueFactory(new PropertyValueFactory<>("website"));
         userCol.setCellValueFactory(new PropertyValueFactory<>("user"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         password.setCellValueFactory(new PropertyValueFactory<>("password"));
-
         accountsTable.setItems(accountObservableLists);
         accountsTable.setEditable(false);
-
     }
 
     @FXML
-    public void editChosenAccount(ActionEvent e) throws Exception {
-
+    public void editChosenAccount(ActionEvent e) {
         sceneManager.editAccountInfo();
-
     }
 }

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-public class DbConnection {
+public class DBConnection {
 
     private static Connection c = null;
 
@@ -78,6 +78,4 @@ public class DbConnection {
         }
         System.out.println("Table created successfully");
     }
-
-
 }

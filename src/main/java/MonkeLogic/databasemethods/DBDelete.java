@@ -1,21 +1,18 @@
 package MonkeLogic.databasemethods;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class DBDelete {
+    private static Connection c = null;
+
     public static void Delete() {
-        Connection c = null;
+        c = DBConnection.connect();
         Statement stmt = null;
 
+        //Todo: Edit the sql query so we can input what we want.
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-
             stmt = c.createStatement();
             String sql = "DELETE from USERS where ID=2;";
             stmt.executeUpdate(sql);
@@ -24,15 +21,9 @@ public class DBDelete {
             ResultSet rs = stmt.executeQuery("SELECT * FROM USERS;");
 
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String firstname = rs.getString("firstname");
-                String lastname = rs.getString("lastname");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
 
-                System.out.println("ID = " + id);
-                System.out.println("FIRSTNAME = " + firstname);
-                System.out.println("LASTNAME = " + lastname);
                 System.out.println("USERNAME = " + username);
                 System.out.println("PASSWORD = " + password);
                 System.out.println();

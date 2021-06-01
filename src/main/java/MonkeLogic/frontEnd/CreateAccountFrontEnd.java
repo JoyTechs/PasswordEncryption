@@ -2,6 +2,7 @@ package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.CreateAccountBackEnd;
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.dbo.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -43,6 +44,7 @@ public class CreateAccountFrontEnd {
     private String website;
     private String username;
     private String password;
+    private static final CreateAccountBackEnd createAccountBackEnd = CreateAccountBackEnd.getInstance();
 
     //region Sets SceneManager on Init
     private SceneManager sceneManager;
@@ -53,7 +55,7 @@ public class CreateAccountFrontEnd {
     //endregion
 
     @FXML
-    public void createAccount(ActionEvent e) throws Exception {
+    public void createAccount(ActionEvent e) {
         setAllErrorVisibilities();
         website = websiteInpt.getText();
         username = usernameInpt.getText();
@@ -63,29 +65,28 @@ public class CreateAccountFrontEnd {
         // "setShortUsernameVisibility(isStringToShort(username, 2));"
         // parts to just "true".
         if (isStringToShort(username, 2)) {
-            setShortUsernameVisibility(isStringToShort(username, 2));
+            setShortUsernameVisibility(true);
         } else if (doesStringContainSpaces(username)) {
-            setInvalidUsernameVisibility(doesStringContainSpaces(username));
+            setInvalidUsernameVisibility(true);
         }
         if (isStringToShort(password, 6)) {
-            setShortPasswordVisibility(isStringToShort(password, 6));
+            setShortPasswordVisibility(true);
         } else if (doesStringContainSpaces(password)) {
-            setInvalidPasswordVisibility(doesStringContainSpaces(password));
+            setInvalidPasswordVisibility(true);
         }
         if (noErrors().equals(true)) {
-            new CreateAccountBackEnd();
+            createAccountBackEnd.saveAccInfo(new Account(website, username, password));
         }
     }
 
     @FXML
-    public void goBack(ActionEvent e) throws Exception {
+    public void goBack(ActionEvent e) {
         sceneManager.showAccountsAdmin();
     }
 
 
     //region These Checks if Inputs are Correct
     private Boolean doesStringContainSpaces(String str) {
-
         return str.contains(" ");
     }
 
@@ -119,11 +120,14 @@ public class CreateAccountFrontEnd {
     }
 
     public Boolean noErrors() {
-        return !usernameToShort.isVisible() && !passwordToShort.isVisible() && !invalidCharacterUsername.isVisible() && !invalidCharacterPassword.isVisible();
+        return !usernameToShort.isVisible()
+                && !passwordToShort.isVisible()
+                && !invalidCharacterUsername.isVisible()
+                && !invalidCharacterPassword.isVisible();
     }
 
     @FXML
-    public void setPasswordVisibility(ActionEvent e) throws Exception {
+    public void setPasswordVisibility(ActionEvent e) {
         //This Binds the TextField and PasswordField to the Checkbox
         //But Makes them Opposites so that only one is active at a time.
         passwordInptTextField.managedProperty().bind(showPassword.selectedProperty());

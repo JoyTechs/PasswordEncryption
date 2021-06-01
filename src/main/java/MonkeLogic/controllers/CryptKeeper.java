@@ -1,7 +1,7 @@
 package MonkeLogic.controllers;
 
-import MonkeLogic.services.AdvancedDecrypter;
-import MonkeLogic.services.AdvancedEncrypter;
+import MonkeLogic.encryption.AdvancedDecrypter;
+import MonkeLogic.encryption.AdvancedEncrypter;
 
 import java.util.ArrayList;
 import java.util.List;

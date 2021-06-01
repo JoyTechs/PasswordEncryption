@@ -1,47 +1,40 @@
 package MonkeLogic.databasemethods;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DBSelect {
 
+    private static Connection c = null;
+    private static ResultSet resultSet = null;
+    private static Statement statement = null;
+
     public static void Select() {
 
-        Connection c = null;
-        Statement stmt = null;
+        c = DBConnection.connect();
+
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:MonkeLogic.db");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
+            statement = c.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM USERS;");
 
-            stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM USERS;");
-
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String firstname = rs.getString("name");
-                String lastname = rs.getString("lastname");
-                String username = rs.getString("address");
-                String password = rs.getString("salary");
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String clearancelevel = resultSet.getString("clearancelevel");
 
                 System.out.println("ID = " + id);
-                System.out.println("FIRSTNAME = " + firstname);
-                System.out.println("LASTNAME = " + lastname);
                 System.out.println("USERNAME = " + username);
                 System.out.println("PASSWORD = " + password);
+                System.out.println("CLEARANCELEVEL = " + clearancelevel);
                 System.out.println();
             }
-            rs.close();
-            stmt.close();
+            resultSet.close();
+            statement.close();
             c.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
         System.out.println("Operation done successfully");
     }
-
 }

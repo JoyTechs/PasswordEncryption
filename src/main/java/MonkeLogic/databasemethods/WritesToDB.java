@@ -1,4 +1,4 @@
-package MonkeLogic.services;
+package MonkeLogic.databasemethods;
 
 public class WritesToDB
 {
@@ -10,5 +10,4 @@ public class WritesToDB
         this.secretKey = secretKey;
         this.salt = salt;
     }
-
 }

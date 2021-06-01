@@ -1,6 +1,6 @@
 package MonkeLogic;
 
-import MonkeLogic.services.Encrypter;
+import MonkeLogic.encryption.Encrypter;
 
 public class Test
 {
