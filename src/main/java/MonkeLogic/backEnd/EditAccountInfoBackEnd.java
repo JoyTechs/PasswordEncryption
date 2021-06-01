@@ -1,6 +1,6 @@
 package MonkeLogic.backEnd;
 
-import MonkeLogic.dbo.Account;
+import MonkeLogic.dto.Account;
 
 public class EditAccountInfoBackEnd {
 

@@ -1,4 +1,4 @@
-package MonkeLogic.dbo;
+package MonkeLogic.dto;
 
 public class Account {
 
