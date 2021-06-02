@@ -78,7 +78,6 @@ public class ReadFromDB {
             statement = c.prepareStatement(query);
 
             resultSet = statement.executeQuery();
-            int count = 0;
             while (resultSet.next()) {
 
                 tempAccount = new Account(
@@ -111,7 +110,6 @@ public class ReadFromDB {
             statement.setString(1, String.valueOf(user.getUserID()));
 
             resultSet = statement.executeQuery();
-            int count = 0;
             while (resultSet.next()) {
 
                 tempAccount = new Account(
@@ -157,7 +155,7 @@ public class ReadFromDB {
             resultSet.close();
             c.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return false;
     }

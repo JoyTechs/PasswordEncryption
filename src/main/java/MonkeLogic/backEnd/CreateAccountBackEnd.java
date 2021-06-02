@@ -15,10 +15,8 @@ public class CreateAccountBackEnd {
     public static CreateAccountBackEnd getInstance() {
         if (createAccountBackEnd == null) {
             createAccountBackEnd = new CreateAccountBackEnd();
-
         }
         return createAccountBackEnd;
-
     }
 
     private CreateAccountBackEnd() {
