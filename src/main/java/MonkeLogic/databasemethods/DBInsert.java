@@ -17,6 +17,14 @@ public class DBInsert {
                     "VALUES ('Admin', 'FirstStart', 'ADMIN')";
             statement.executeUpdate(sql);
 
+            statement = c.createStatement();
+            String sql1 = "INSERT INTO LIST_OF_SECURITY_QUESTIONS (QUESTION) " +
+                    "VALUES  ('What can change the nature of a man?'), " +
+                            "('What is in the box?'), " +
+                            "('Who ya gonna call?'), " +
+                            "('I used to be an adventurer like you until I took an ___ to the knee.')";
+            statement.executeUpdate(sql1);
+
             statement.close();
             c.commit();
             c.close();
