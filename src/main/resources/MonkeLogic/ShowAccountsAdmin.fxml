@@ -13,13 +13,13 @@
             <TableColumn fx:id="password" editable="false" prefWidth="150.0" text="Password"/>
          </columns>
       </TableView>
+      <Button layoutX="16.0" layoutY="35.0" mnemonicParsing="false" text="Create User"/>
       <TextField layoutX="385.0" layoutY="35.0"/>
 
-      <Button layoutX="540.0" layoutY="35.0" mnemonicParsing="false" text="Search"/>
-      <Button layoutX="502.0" layoutY="360.0" mnemonicParsing="false" onAction="#editChosenAccount"
-              text="Edit Account"/>
-      <Button layoutX="14.0" layoutY="360.0" mnemonicParsing="false" text="Back"/>
-      <Button layoutX="385.0" layoutY="360.0" mnemonicParsing="false" text="Create Account"/>
-      <Button layoutX="16.0" layoutY="35.0" mnemonicParsing="false" text="Create User"/>
+      <Button layoutX="540.0" layoutY="35.0" mnemonicParsing="false" text="Search" onAction="#search"/>
+      <Button layoutX="14.0" layoutY="360.0" mnemonicParsing="false" text="Back" onAction="#logout"/>
+      <Button layoutX="385.0" layoutY="360.0" mnemonicParsing="false" text="Create Account" onAction="#createUser"/>
+      <Button layoutX="502.0" layoutY="360.0" mnemonicParsing="false" text="Edit Account"
+              onAction="#editChosenAccount"/>
    </children>
 </AnchorPane>

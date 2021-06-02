@@ -1,20 +1,19 @@
 package MonkeLogic.frontEnd;
 
-import MonkeLogic.backEnd.ShowAccountsUserBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.databasemethods.ReadFromDB;
 import MonkeLogic.dto.Account;
+import MonkeLogic.methods.Logout;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ShowAccountsUserFrontEnd implements Initializable {
@@ -33,12 +32,16 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     @FXML
     private Button editAccount;
     @FXML
-    private Button search;
+    private TextField searchInpt;
+    @FXML
+    private Button searchBtn;
     @FXML
     private Button createAccount;
 
     //TODO: Add List from active user
     private static ObservableList<Account> accountObservableLists;
+    private static ArrayList<Account> allAccounts;
+    private static ArrayList<Account> searchResults;
     //endregion
 
     //region This happens when the instance is created
@@ -53,7 +56,23 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
     //region Adds Accounts to TableView
     public void loadAccounts() {
-        setAccountObservableLists();
+        accountsTable.setPlaceholder(new Label("No Accounts Found"));
+
+        setAccountObservableLists(setAllAccountsList());
+
+    }
+
+    public ArrayList<Account> setAllAccountsList() {
+        allAccounts = ReadFromDB.getAccountsUser();
+        return allAccounts;
+    }
+
+    public void setSearchResults() {
+        setAccountObservableLists(searchResults);
+    }
+
+    public void setAccountObservableLists(ArrayList<Account> activeList) {
+        accountObservableLists = FXCollections.observableArrayList(activeList);
         accountsTable.setEditable(true);
         websiteCol.setCellValueFactory(new PropertyValueFactory<>("website"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -61,10 +80,6 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
         accountsTable.setItems(accountObservableLists);
         accountsTable.setEditable(false);
-    }
-
-    public void setAccountObservableLists() {
-        accountObservableLists = FXCollections.observableArrayList(ReadFromDB.getAccountsUser());
     }
     //endregion
 
@@ -75,7 +90,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
     @FXML
     public void logout(ActionEvent e) {
-        new ShowAccountsUserBackEnd();
+        Logout.logoutUser();
     }
 
     @FXML
@@ -84,8 +99,33 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     }
 
     @FXML
-    public void search() {
+    public void search(ActionEvent e) {
 
+        ArrayList<Account> temp = new ArrayList<>();
+
+        if (!searchInpt.getText().equals("") || !searchInpt.getText().contains(" ")) {
+            for (Account account : allAccounts) {
+                if (account.getWebsite().equals(searchInpt.getText())) {
+                    temp.add(account);
+                    System.out.println("added " + account);
+                }
+            }
+            if (temp.size() <= 0) {
+                System.out.println("No Search Results");
+                NoSearchResults();
+            } else {
+                searchResults = temp;
+                setSearchResults();
+            }
+
+        }
+
+
+    }
+
+    private void NoSearchResults() {
+        accountsTable.setPlaceholder(new Label("No Search Results"));
+        accountsTable.setItems(null);
     }
 
 

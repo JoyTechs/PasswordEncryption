@@ -6,9 +6,13 @@ import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class CreateAccountFrontEnd {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CreateAccountFrontEnd implements Initializable {
 
     @FXML
     private Label websiteLabel;
@@ -26,6 +30,10 @@ public class CreateAccountFrontEnd {
     private Label passwordToShort;
     @FXML
     private Label invalidCharacterPassword;
+    @FXML
+    private Label websiteToShort;
+    @FXML
+    private Label invalidCharacterWebsite;
     @FXML
     private Label showPasswordLabel;
     @FXML
@@ -50,8 +58,9 @@ public class CreateAccountFrontEnd {
     //region Sets SceneManager on Init
     private SceneManager sceneManager;
 
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        sceneManager = SceneManager.getInstance();
     }
     //endregion
 
@@ -62,9 +71,12 @@ public class CreateAccountFrontEnd {
         username = usernameInpt.getText();
         password = passwordInpt.getText();
 
-        //Todo: check if there's any difference changing the
-        // "setShortUsernameVisibility(isStringToShort(username, 2));"
-        // parts to just "true".
+
+        if (isStringToShort(website, 2)) {
+            setShortUsernameVisibility(true);
+        } else if (doesStringContainSpaces(website)) {
+            setInvalidUsernameVisibility(true);
+        }
         if (isStringToShort(username, 2)) {
             setShortUsernameVisibility(true);
         } else if (doesStringContainSpaces(username)) {
@@ -101,12 +113,20 @@ public class CreateAccountFrontEnd {
     //endregion
 
     //region Shows/Hides Elements on Application
+    public void setShortWebsiteVisibility(Boolean show) {
+        websiteToShort.setVisible(show);
+    }
+
     public void setShortUsernameVisibility(Boolean show) {
         usernameToShort.setVisible(show);
     }
 
     public void setShortPasswordVisibility(Boolean show) {
         passwordToShort.setVisible(show);
+    }
+
+    public void setInvalidWebsiteVisibility(Boolean show) {
+        invalidCharacterWebsite.setVisible(show);
     }
 
     public void setInvalidUsernameVisibility(Boolean show) {
@@ -118,15 +138,19 @@ public class CreateAccountFrontEnd {
     }
 
     public void setAllErrorVisibilities() {
+        setShortWebsiteVisibility(false);
         setShortUsernameVisibility(false);
         setShortPasswordVisibility(false);
+        setInvalidWebsiteVisibility(false);
         setInvalidUsernameVisibility(false);
         setInvalidPasswordVisibility(false);
     }
 
     public Boolean noErrors() {
-        return !usernameToShort.isVisible()
+        return !websiteToShort.isVisible()
+                && !usernameToShort.isVisible()
                 && !passwordToShort.isVisible()
+                && !invalidCharacterWebsite.isVisible()
                 && !invalidCharacterUsername.isVisible()
                 && !invalidCharacterPassword.isVisible();
     }
