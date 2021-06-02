@@ -14,6 +14,11 @@ public class User {
         this.clearanceLevel = clearanceLevel;
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     //region Setters
     public void setUserID(int userID) {
         this.userID = userID;

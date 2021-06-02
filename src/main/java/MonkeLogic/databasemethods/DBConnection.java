@@ -41,18 +41,19 @@ public class DBConnection {
             stmt = c.createStatement();
             String sql2 = "CREATE TABLE IF NOT EXISTS ACCOUNT " +
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
-                    " USERID            INTEGER    NOT NULL," +
-                    " EMPLOYEE          TEXT    NOT NULL," +
-                    " WEBSITE           TEXT    NOT NULL, " +
-                    " USERNAME          TEXT    NOT NULL, " +
-                    " PASSWORD          TEXT    NOT NULL)";
+                    " USERID            INTEGER     NOT NULL," +
+                    " EMPLOYEE          TEXT        NOT NULL," +
+                    " WEBSITE           TEXT        NOT NULL, " +
+                    " USERNAME          TEXT        NOT NULL, " +
+                    " PASSWORD          TEXT        NOT NULL)";
             stmt.executeUpdate(sql2);
 
             stmt = c.createStatement();
             String sql3 = "CREATE TABLE IF NOT EXISTS SECURITY_QUESTIONS " +
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
-                    " QUESTION         TEXT     NOT NULL, " +
-                    " ANSWER           TEXT     NOT NULL," +
+                    " USERID           INTEGER        NOT NULL," +
+                    " QUESTION         TEXT           NOT NULL, " +
+                    " ANSWER           TEXT           NOT NULL," +
                     "FOREIGN KEY(ID) REFERENCES USERS(ID))";
             stmt.executeUpdate(sql3);
 
@@ -70,6 +71,14 @@ public class DBConnection {
                     " SALT        INTEGER     NOT NULL," +
                     "FOREIGN KEY(ID) REFERENCES USERS(ID))";
             stmt.executeUpdate(sql5);
+
+            //TODO: Avgöra om USERID behövs här
+            stmt = c.createStatement();
+            String sql6 = "CREATE TABLE IF NOT EXISTS LIST_OF_SECURITY_QUESTIONS " +
+                    "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
+//                    " USERID            INTEGER         NOT NULL," +
+                    " QUESTION          TEXT            NOT NULL)";
+            stmt.executeUpdate(sql6);
 
             stmt.close();
             c.close();
