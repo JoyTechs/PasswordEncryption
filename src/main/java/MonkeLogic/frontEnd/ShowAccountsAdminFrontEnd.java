@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class ShowAccountsAdminFrontEnd implements Initializable {
 
-
+    //TODO: Kolla FXML och varför det inte anropas
     //region TableView Variables
     @FXML
     private TableView accountsTable;
@@ -58,9 +58,9 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     }
     //endregion
 
+    //region Methods
     public void loadAccounts() {
         accountsTable.setPlaceholder(new Label("No Accounts Found"));
-
         setAccountObservableLists(setAllAccountsList());
 
     }
@@ -78,6 +78,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
         accountObservableLists = FXCollections.observableArrayList(activeList);
         accountsTable.setEditable(true);
         websiteCol.setCellValueFactory(new PropertyValueFactory<>("website"));
+        userCol.setCellValueFactory(new PropertyValueFactory<>("employee"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         password.setCellValueFactory(new PropertyValueFactory<>("password"));
 
@@ -85,6 +86,13 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
         accountsTable.setEditable(false);
     }
 
+    private void NoSearchResults() {
+        accountsTable.setPlaceholder(new Label("No Search Results"));
+        accountsTable.setItems(null);
+    }
+    //endregion
+
+    //region FXML Methods
     @FXML
     public void search(ActionEvent e) {
 
@@ -107,12 +115,6 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
 
         }
 
-
-    }
-
-    private void NoSearchResults() {
-        accountsTable.setPlaceholder(new Label("No Search Results"));
-        accountsTable.setItems(null);
     }
 
     @FXML
@@ -135,6 +137,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
         ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
         sceneManager.editAccountInfo();
     }
+    //endregion
 
 
 }

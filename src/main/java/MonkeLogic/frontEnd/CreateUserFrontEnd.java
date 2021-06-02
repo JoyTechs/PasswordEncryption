@@ -4,9 +4,13 @@ import MonkeLogic.backEnd.CreateUserBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class CreateUserFrontEnd {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CreateUserFrontEnd implements Initializable {
 
     //region Variables
     @FXML
@@ -19,7 +23,7 @@ public class CreateUserFrontEnd {
     private Label showPasswordLabel;
     @FXML
     private TextField usernameInpt;
-    @FXML
+    @FXML //TODO: Check FXML Connection
     private PasswordField passwordInpt;
     @FXML
     private TextField passwordInptVisible;
@@ -35,12 +39,16 @@ public class CreateUserFrontEnd {
     private Boolean isPasswordNull;
     //endregion
 
-    private final SceneManager sceneManager;
+    //region Sets SceneManager on Init
+    private SceneManager sceneManager;
 
-    public CreateUserFrontEnd() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
     }
+    //endregion
 
+    //region FXML Methods
     @FXML
     public void createUser(ActionEvent e) throws Exception {
         username = usernameInpt.getText();
@@ -64,9 +72,7 @@ public class CreateUserFrontEnd {
         sceneManager.showAccountsAdmin();
     }
 
-    private Boolean isStringNull(String str) {
-        return str.equals("");
-    }
+
 
     @FXML
     public void setPasswordVisibility(ActionEvent e) {
@@ -80,6 +86,12 @@ public class CreateUserFrontEnd {
         //This Binds the Text in the TextField and PasswordField to each other
         //So that they will always contain the same text.
         passwordInptVisible.textProperty().bindBidirectional(passwordInpt.textProperty());
+    }
+    //endregion
+
+    //Checks if String is null and returns a Boolean.
+    private Boolean isStringNull(String str) {
+        return str.equals("");
     }
 
 }

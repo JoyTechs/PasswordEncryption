@@ -10,18 +10,22 @@ public class DBUpdate {
 
     private static Connection c = null;
     private static PreparedStatement statement = null;
-    private static DBUpdate dbUpdate;
+
+    //Todo: add To StartUp
+    //region Singleton
+    private static DBUpdate instance;
 
     public static DBUpdate getInstance() {
-        if (dbUpdate == null) {
-            dbUpdate = new DBUpdate();
+        if (instance == null) {
+            instance = new DBUpdate();
         }
-        return dbUpdate;
+        return instance;
     }
 
     private DBUpdate() {
 
     }
+    //endregion
 
     public static void Update(User user) {
 
@@ -47,4 +51,6 @@ public class DBUpdate {
         }
         System.out.println("Operation done successfully");
     }
+
+    //TODO: Add Update for Account.
 }

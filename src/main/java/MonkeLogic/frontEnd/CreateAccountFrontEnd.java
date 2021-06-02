@@ -14,6 +14,9 @@ import java.util.ResourceBundle;
 
 public class CreateAccountFrontEnd implements Initializable {
 
+    //region Variables
+
+    //region FXML Variables
     @FXML
     private Label websiteLabel;
     @FXML
@@ -48,12 +51,13 @@ public class CreateAccountFrontEnd implements Initializable {
     private TextField passwordInptTextField;
     @FXML
     private CheckBox showPassword;
-
+    //endregion
 
     private String website;
     private String username;
     private String password;
     private static final CreateAccountBackEnd createAccountBackEnd = CreateAccountBackEnd.getInstance();
+    //endregion
 
     //region Sets SceneManager on Init
     private SceneManager sceneManager;
@@ -64,6 +68,7 @@ public class CreateAccountFrontEnd implements Initializable {
     }
     //endregion
 
+    //region FXML Methods
     @FXML
     public void createAccount(ActionEvent e) {
         setAllErrorVisibilities();
@@ -100,7 +105,7 @@ public class CreateAccountFrontEnd implements Initializable {
             sceneManager.showAccountsUser();
         }
     }
-
+    //endregion
 
     //region These Checks if Inputs are Correct
     private Boolean doesStringContainSpaces(String str) {

@@ -13,10 +13,9 @@ import java.util.Base64;
 public class AdvancedEncrypter
 {
     //This Encrypts the Input String According to the Key and Salt
-    public static String encrypt(String strToEncrypt, String oldSecretKey, String oldSalt)
-    {
+    public static String encrypt(String strToEncrypt, String oldSecretKey, String oldSalt) {
         try {
-            byte[] iv = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             IvParameterSpec ivSpec = new IvParameterSpec(iv);
 
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");

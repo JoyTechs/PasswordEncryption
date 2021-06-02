@@ -1,17 +1,32 @@
 package MonkeLogic.backEnd;
 
 import MonkeLogic.controllers.SceneManager;
-import MonkeLogic.dto.User;
 import MonkeLogic.controllers.SessionManager;
-import MonkeLogic.frontEnd.LoginFrontEnd;
 import MonkeLogic.databasemethods.ReadFromDB;
+import MonkeLogic.dto.User;
+import MonkeLogic.frontEnd.LoginFrontEnd;
 
 public class LoginBackEnd {
 
-    private final SceneManager sceneManager;
+    private SceneManager sceneManager;
     private static int loginAttempts;
     private static LoginFrontEnd loginFrontEnd;
     private static User activeUser;
+
+    //region Singleton
+    private static LoginBackEnd instance;
+
+    public static LoginBackEnd getInstance() {
+        if (instance == null) {
+            instance = new LoginBackEnd();
+        }
+        return instance;
+    }
+
+    private LoginBackEnd() {
+
+    }
+    //endregion
 
     public LoginBackEnd(String usernameInput, String passwordInput, LoginFrontEnd loginFrontEnd2) {
         sceneManager = SceneManager.getInstance();

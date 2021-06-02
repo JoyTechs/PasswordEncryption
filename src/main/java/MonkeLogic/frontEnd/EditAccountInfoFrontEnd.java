@@ -15,10 +15,14 @@ import java.util.ResourceBundle;
 public class EditAccountInfoFrontEnd implements Initializable {
 
 
+    //region Variables
+
+    //region FXML Variables
     @FXML
     private Label websiteLabel;
     @FXML
     private TextField websiteInpt;
+    //TODO: Fix The Missing FXML connections
     @FXML
     private Label websiteToShort;
     @FXML
@@ -49,11 +53,14 @@ public class EditAccountInfoFrontEnd implements Initializable {
     private TextField passwordInptTextField;
     @FXML
     private CheckBox showPassword;
+    //endregion
 
     private static Account account;
     private String website;
     private String username;
     private String password;
+
+    //endregion
 
     //region Sets Variables on Init
     private SceneManager sceneManager;
@@ -64,6 +71,7 @@ public class EditAccountInfoFrontEnd implements Initializable {
     }
     //endregion
 
+    //region FXML Methods
     @FXML
     public void editAccount(ActionEvent e) {
         setAllErrorVisibilities();
@@ -100,6 +108,21 @@ public class EditAccountInfoFrontEnd implements Initializable {
             sceneManager.showAccountsUser();
         }
     }
+
+    @FXML
+    public void setPasswordVisibility(ActionEvent e) {
+        //This Binds the TextField and PasswordField to the Checkbox
+        //But Makes them Opposites so that only one is active at a time.
+        passwordInptTextField.managedProperty().bind(showPassword.selectedProperty());
+        passwordInptTextField.visibleProperty().bind(showPassword.selectedProperty());
+        passwordInpt.managedProperty().bind(showPassword.selectedProperty().not());
+        passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
+
+        //This Binds the Text in the TextField and PasswordField to each other
+        //So that they will always contain the same text.
+        passwordInptTextField.textProperty().bindBidirectional(passwordInpt.textProperty());
+    }
+    //endregion
 
     //region These Checks if Inputs are Correct
     private Boolean doesStringContainSpaces(String str) {
@@ -154,18 +177,7 @@ public class EditAccountInfoFrontEnd implements Initializable {
                 && !invalidCharacterPassword.isVisible();
     }
 
-    @FXML
-    public void setPasswordVisibility(ActionEvent e) {
-        //This Binds the TextField and PasswordField to the Checkbox
-        //But Makes them Opposites so that only one is active at a time.
-        passwordInptTextField.managedProperty().bind(showPassword.selectedProperty());
-        passwordInptTextField.visibleProperty().bind(showPassword.selectedProperty());
-        passwordInpt.managedProperty().bind(showPassword.selectedProperty().not());
-        passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
 
-        //This Binds the Text in the TextField and PasswordField to each other
-        //So that they will always contain the same text.
-        passwordInptTextField.textProperty().bindBidirectional(passwordInpt.textProperty());
-    }
     //endregion
+
 }

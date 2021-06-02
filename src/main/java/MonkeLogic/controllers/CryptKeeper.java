@@ -9,12 +9,13 @@ import java.util.Random;
 
 public class CryptKeeper {
     //region Lists Containing the Keys and Salts for Crypto
-    private static CryptKeeper cryptKeeper;
     private static final List<String> secretKeys = new ArrayList<>();
     private static final List<String> salts = new ArrayList<>();
     //endregion
 
-    //region
+    //Todo: add To StartUp
+    //region Singleton
+    private static CryptKeeper cryptKeeper;
 
     private CryptKeeper() {
         init();
@@ -26,12 +27,10 @@ public class CryptKeeper {
         }
         return cryptKeeper;
     }
-
-
     //endregion
 
     //region This Adds Keys and Salts to the above Lists
-    public static void init() {
+    private static void init() {
         secretKeys.add("9gLHTonoaDF");
         secretKeys.add("BdhF58CX2bS");
         secretKeys.add("5gJrIC0DrcK");

@@ -2,11 +2,14 @@ package MonkeLogic.dto;
 
 public class User {
 
+    //region Variables
     private int userID;
     private String username;
     private String password;
     private String clearanceLevel;
+    //endregion
 
+    //region Constructors
     public User(int userID, String username, String password, String clearanceLevel) {
         this.userID = userID;
         this.username = username;
@@ -18,22 +21,16 @@ public class User {
         this.username = username;
         this.password = password;
     }
+    //endregion
 
+    //TODO: Check Which Setters & Getters are Necessary.
     //region Setters
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setClearanceLevel(String clearanceLevel) {
-        this.clearanceLevel = clearanceLevel;
     }
     //endregion
 
@@ -54,4 +51,5 @@ public class User {
         return clearanceLevel;
     }
     //endregion Getters
+
 }

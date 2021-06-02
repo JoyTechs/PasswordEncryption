@@ -7,6 +7,21 @@ import java.sql.Statement;
 public class DBDelete {
     private static Connection c = null;
 
+    //Todo: add To StartUp
+    //region Singleton
+    private static DBDelete instance;
+
+    public static DBDelete getInstance() {
+        if (instance == null) {
+            instance = new DBDelete();
+        }
+        return instance;
+    }
+
+    private DBDelete() {
+    }
+    //endregion
+
     public static void Delete() {
         c = DBConnection.connect();
         Statement stmt = null;

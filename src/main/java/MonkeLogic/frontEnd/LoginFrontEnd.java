@@ -43,14 +43,7 @@ public class LoginFrontEnd implements Initializable {
 
     private String username;
     private String password;
-    //endregion
-
-    //region This Sets the Scene Manager
     private SceneManager sceneManager;
-
-    public LoginFrontEnd() {
-        sceneManager = SceneManager.getInstance();
-    }
     //endregion
 
     //region This Verifies User Credentials
@@ -78,6 +71,7 @@ public class LoginFrontEnd implements Initializable {
         wrongLogin.setVisible(show);
     }
 
+    //TODO: Check Why it's Never Used
     @FXML
     public void setPasswordVisibility(ActionEvent e) {
         //This Binds the TextField and PasswordField to the Checkbox

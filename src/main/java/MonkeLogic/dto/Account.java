@@ -2,14 +2,16 @@ package MonkeLogic.dto;
 
 public class Account {
 
+    //region Variables
     private int id;
     private int userId;
     private String employee;
     private String username;
     private String password;
     private String website;
+    //endregion
 
-
+    //region Constructors
     public Account() {
 
     }
@@ -28,8 +30,9 @@ public class Account {
         this.username = username;
         this.password = password;
     }
+    //endregion
 
-
+    //TODO: Check which Getters & Setters are necessary.
     //region Getters
     public String getUsername() {
         return username;
@@ -81,6 +84,5 @@ public class Account {
         this.employee = employee;
     }
     //endregion
-
 
 }
