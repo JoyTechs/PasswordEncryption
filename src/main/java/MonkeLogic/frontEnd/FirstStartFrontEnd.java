@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FirstStartFrontEnd implements Initializable {
+
     //region Variables
     @FXML
     private Label usernameLabel;

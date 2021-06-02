@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 public class MonkeLogic extends Application
 {
 
-
     public static void main(String[] args) {
         StartUp startUp = new StartUp();
         launch(args);

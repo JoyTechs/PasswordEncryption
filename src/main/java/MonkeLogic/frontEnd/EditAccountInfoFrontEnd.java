@@ -20,6 +20,10 @@ public class EditAccountInfoFrontEnd implements Initializable {
     @FXML
     private TextField websiteInpt;
     @FXML
+    private Label websiteToShort;
+    @FXML
+    private Label invalidCharacterWebsite;
+    @FXML
     private Label usernameLabel;
     @FXML
     private Label usernameToShort;
@@ -53,7 +57,6 @@ public class EditAccountInfoFrontEnd implements Initializable {
 
     //region Sets Variables on Init
     private SceneManager sceneManager;
-    private final EditAccountInfoBackEnd editAccountInfoBackEnd = new EditAccountInfoBackEnd();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,6 +71,11 @@ public class EditAccountInfoFrontEnd implements Initializable {
         username = usernameInpt.getText();
         password = passwordInpt.getText();
 
+        if (isStringToShort(website, 2)) {
+            setShortUsernameVisibility(true);
+        } else if (doesStringContainSpaces(website)) {
+            setInvalidUsernameVisibility(true);
+        }
         if (isStringToShort(username, 2)) {
             setShortUsernameVisibility(true);
         } else if (doesStringContainSpaces(username)) {
@@ -80,7 +88,7 @@ public class EditAccountInfoFrontEnd implements Initializable {
         }
         if (noErrors().equals(true)) {
             //Todo: implement Saving the updated account details.
-            editAccountInfoBackEnd.editAccount(website, username, password, account);
+            EditAccountInfoBackEnd.editAccount(website, username, password);
         }
     }
 
@@ -104,12 +112,20 @@ public class EditAccountInfoFrontEnd implements Initializable {
     //endregion
 
     //region Shows/Hides Elements on Application
+    public void setShortWebsiteVisibility(Boolean show) {
+        websiteToShort.setVisible(show);
+    }
+
     public void setShortUsernameVisibility(Boolean show) {
         usernameToShort.setVisible(show);
     }
 
     public void setShortPasswordVisibility(Boolean show) {
         passwordToShort.setVisible(show);
+    }
+
+    public void setInvalidWebsiteVisibility(Boolean show) {
+        invalidCharacterWebsite.setVisible(show);
     }
 
     public void setInvalidUsernameVisibility(Boolean show) {
@@ -121,6 +137,8 @@ public class EditAccountInfoFrontEnd implements Initializable {
     }
 
     public void setAllErrorVisibilities() {
+        setShortWebsiteVisibility(false);
+        setInvalidWebsiteVisibility(false);
         setShortUsernameVisibility(false);
         setInvalidUsernameVisibility(false);
         setShortPasswordVisibility(false);
@@ -128,8 +146,10 @@ public class EditAccountInfoFrontEnd implements Initializable {
     }
 
     public Boolean noErrors() {
-        return !usernameToShort.isVisible()
+        return !websiteToShort.isVisible()
+                && !usernameToShort.isVisible()
                 && !passwordToShort.isVisible()
+                && !invalidCharacterWebsite.isVisible()
                 && !invalidCharacterUsername.isVisible()
                 && !invalidCharacterPassword.isVisible();
     }

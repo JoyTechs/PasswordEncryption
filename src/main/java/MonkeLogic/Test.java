@@ -8,8 +8,8 @@ public class Test
     {
         final String secretKey = "Baguette";
 
-        String originalString = "Shit";
-        String encryptedString = Encrypter.encrypt(originalString, secretKey) ;
+        String originalString = "Newton";
+        String encryptedString = Encrypter.encrypt(originalString, secretKey);
         String decryptedString = Encrypter.decrypt(encryptedString, secretKey) ;
 
         System.out.println(originalString);

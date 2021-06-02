@@ -5,10 +5,7 @@ import MonkeLogic.controllers.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -32,13 +29,17 @@ public class LoginFrontEnd implements Initializable {
     @FXML
     private PasswordField passwordInpt;
     @FXML
+    private TextField passwordInptVisible;
+    @FXML
+    private CheckBox showPassword;
+    @FXML
     private Label userNameLabel;
     @FXML
     private Label passwordLabel;
     @FXML
     private Label wrongLogin;
     @FXML
-    private Text text1;
+    private Text welcomeTxt;
 
     private String username;
     private String password;
@@ -75,6 +76,20 @@ public class LoginFrontEnd implements Initializable {
     //region Shows/Hides Text on Application
     public void setWrongLogin(Boolean show) {
         wrongLogin.setVisible(show);
+    }
+
+    @FXML
+    public void setPasswordVisibility(ActionEvent e) {
+        //This Binds the TextField and PasswordField to the Checkbox
+        //But Makes them Opposites so that only one is active at a time.
+        passwordInptVisible.managedProperty().bind(showPassword.selectedProperty());
+        passwordInptVisible.visibleProperty().bind(showPassword.selectedProperty());
+        passwordInpt.managedProperty().bind(showPassword.selectedProperty().not());
+        passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
+
+        //This Binds the Text in the TextField and PasswordField to each other
+        //So that they will always contain the same text.
+        passwordInptVisible.textProperty().bindBidirectional(passwordInpt.textProperty());
     }
     //endregion
 }
