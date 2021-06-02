@@ -5,6 +5,9 @@ import MonkeLogic.dto.User;
 
 public class SessionManager {
     private static User activeUser;
+
+    //Todo: add To StartUp
+    //region Singleton
     private static SessionManager instance;
 
     public static SessionManager getInstance() {
@@ -17,6 +20,7 @@ public class SessionManager {
 
     private SessionManager() {
     }
+    //endregion
 
     public static User getActiveUser() {
         return activeUser;

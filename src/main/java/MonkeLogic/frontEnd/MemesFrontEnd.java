@@ -12,13 +12,14 @@ import java.util.Random;
 
 public class MemesFrontEnd {
 
+    //region Variables
     @FXML
     private MediaView mediaView;
-
-
     private final SceneManager sceneManager;
     private static final List<String> files = new ArrayList<>();
+    //endregion
 
+    //region Memes
     public MemesFrontEnd() {
         sceneManager = SceneManager.getInstance();
         File directoryPath = new File("src\\main\\java\\MonkeLogic\\mp4");
@@ -40,4 +41,5 @@ public class MemesFrontEnd {
 
         return mediaFile;
     }
+    //endregion
 }

@@ -9,6 +9,7 @@ public class SecurityQuestion {
     private String answer;
     //endregion
 
+    //TODO: Check Which Setters & Getters are Necessary.
     //region Getters
     public int getUserID() {
         return userID;
@@ -28,7 +29,6 @@ public class SecurityQuestion {
     //endregion
 
     //region Setters
-
     public void setUserID(int userID) {
         this.userID = userID;
     }

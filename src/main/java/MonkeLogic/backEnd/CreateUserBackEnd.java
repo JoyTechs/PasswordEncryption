@@ -1,9 +1,11 @@
 package MonkeLogic.backEnd;
 
-
-//TODO: Bestämma om vi ska ha kvar denna
 public class CreateUserBackEnd {
+
+    //TODO: add Singleton, Use DBInsert and add to StartUp
+
     public CreateUserBackEnd(String username, String password) {
+
 
     }
 }

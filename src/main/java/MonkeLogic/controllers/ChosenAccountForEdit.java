@@ -4,8 +4,11 @@ import MonkeLogic.dto.Account;
 
 public class ChosenAccountForEdit {
 
-    private static ChosenAccountForEdit instance;
+
     private static Account chosenAccount;
+    //region Singleton
+    //TODO: Add to StartUp
+    private static ChosenAccountForEdit instance;
 
     public static ChosenAccountForEdit getInstance() {
         if (instance == null) {
@@ -16,6 +19,7 @@ public class ChosenAccountForEdit {
 
     private ChosenAccountForEdit() {
     }
+    //endregion
 
     public static void setChosenAccount(Account chosenAccount) {
         ChosenAccountForEdit.chosenAccount = chosenAccount;

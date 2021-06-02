@@ -1,11 +1,19 @@
 package MonkeLogic.dto;
 
 public class EncryptedString {
+
+    //TODO: Use This for Encryption/Decryption
     //region Variables
     private String encryptedString;
     private int secretKey;
     private int salt;
     //endregion
+
+    public EncryptedString(String encryptedString, int secretKey, int salt) {
+        this.encryptedString = encryptedString;
+        this.secretKey = secretKey;
+        this.salt = salt;
+    }
 
     //region Setters
     public void setEncryptedString(String encryptedString) {

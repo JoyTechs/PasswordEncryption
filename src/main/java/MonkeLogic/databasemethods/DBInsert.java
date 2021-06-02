@@ -9,6 +9,21 @@ public class DBInsert {
     private static Connection c = null;
     private static Statement statement = null;
 
+    //Todo: add To StartUp
+    //region Singleton
+    private static DBInsert instance;
+
+    public static DBInsert getInstance() {
+        if (instance == null) {
+            instance = new DBInsert();
+        }
+        return instance;
+    }
+
+    private DBInsert() {
+    }
+    //endregion
+
     public static void InitialStart() {
 
         c = DBConnection.connect();
@@ -36,4 +51,6 @@ public class DBInsert {
         }
         System.out.println("Records created successfully");
     }
+
+    //Todo: add methods for adding new Users and Accounts
 }

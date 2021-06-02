@@ -40,8 +40,7 @@ public class FirstStartFrontEnd implements Initializable {
 
     private String username;
     private String password;
-    //private FirstStartBackEnd backend = FirstStartBackEnd.getInstance();
-
+    private SceneManager sceneManager;
     //endregion
 
     //region This happens when the instance is created
@@ -55,14 +54,6 @@ public class FirstStartFrontEnd implements Initializable {
         invalidUsernameCharacter.setVisible(false);
         invalidPasswordCharacter.setVisible(false);
 
-    }
-    //endregion
-
-    //region This Sets the Scene Manager
-    private SceneManager sceneManager;
-
-    public FirstStartFrontEnd() {
-        sceneManager = SceneManager.getInstance();
     }
     //endregion
 
@@ -88,8 +79,6 @@ public class FirstStartFrontEnd implements Initializable {
 
         }
         if (noErrors().equals(true)) {
-            //sceneManager.showAccountsAdmin();
-            //TODO: Revert this change
             FirstStartBackEnd.addAdmin(username, password);
         }
 

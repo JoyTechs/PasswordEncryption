@@ -1,7 +1,5 @@
 package MonkeLogic;
 
-import MonkeLogic.encryption.Encrypter;
-
 public class Test
 {
     public static void main(String[] args)

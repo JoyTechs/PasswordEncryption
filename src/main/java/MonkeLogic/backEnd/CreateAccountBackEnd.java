@@ -10,6 +10,8 @@ import java.sql.Statement;
 public class CreateAccountBackEnd {
 
     private static Connection c = null;
+
+    //region Creates a Singleton
     private static CreateAccountBackEnd createAccountBackEnd;
 
     public static CreateAccountBackEnd getInstance() {
@@ -21,6 +23,7 @@ public class CreateAccountBackEnd {
 
     private CreateAccountBackEnd() {
     }
+    //endregion
 
     public void saveAccInfo(Account account) {
         c = DBConnection.connect();
@@ -39,7 +42,6 @@ public class CreateAccountBackEnd {
             c.close();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Records created successfully");
     }
@@ -60,7 +62,6 @@ public class CreateAccountBackEnd {
             c.close();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Security question linked to account");
     }

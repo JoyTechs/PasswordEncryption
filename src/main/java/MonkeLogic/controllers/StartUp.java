@@ -5,6 +5,17 @@ import MonkeLogic.databasemethods.DBConnection;
 import MonkeLogic.databasemethods.ReadFromDB;
 
 public class StartUp {
+
+    //Todo: Fix StartUp
+    private static StartUp instance;
+
+    public static StartUp getInstance() {
+        if (instance == null) {
+            instance = new StartUp();
+        }
+        return instance;
+    }
+
     public StartUp() {
         DBConnection.CreateTable();
         System.out.println("DBConnection.CreateTable has Started");

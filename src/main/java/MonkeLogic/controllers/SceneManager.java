@@ -25,6 +25,7 @@ public class SceneManager {
     private Stage primaryStage;
     //endregion
 
+    //Todo: add To StartUp
     //region Creates A Singleton SceneManager
     public static SceneManager getInstance() {
         if (instance == null) {
@@ -32,7 +33,6 @@ public class SceneManager {
         }
         return instance;
     }
-
     private SceneManager() {
     }
 
@@ -174,6 +174,7 @@ public class SceneManager {
     private void memesScene() {
 
         try {
+            //TODO: Fix what happens after video is done
             MemesFrontEnd memesFrontEnd = new MemesFrontEnd();
             File meme = memesFrontEnd.getMemed();
             Media media = new Media(meme.toURI().toURL().toString());

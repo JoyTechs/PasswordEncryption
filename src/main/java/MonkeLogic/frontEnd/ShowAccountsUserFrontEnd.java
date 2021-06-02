@@ -57,9 +57,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     //region Adds Accounts to TableView
     public void loadAccounts() {
         accountsTable.setPlaceholder(new Label("No Accounts Found"));
-
         setAccountObservableLists(setAllAccountsList());
-
     }
 
     public ArrayList<Account> setAllAccountsList() {
@@ -69,6 +67,11 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
     public void setSearchResults() {
         setAccountObservableLists(searchResults);
+    }
+
+    private void NoSearchResults() {
+        accountsTable.setPlaceholder(new Label("No Search Results"));
+        accountsTable.setItems(null);
     }
 
     public void setAccountObservableLists(ArrayList<Account> activeList) {
@@ -83,6 +86,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     }
     //endregion
 
+    //region FXML Methods
     @FXML
     public void editChosenAccount(ActionEvent e) {
         sceneManager.editAccountInfo();
@@ -122,11 +126,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
 
     }
-
-    private void NoSearchResults() {
-        accountsTable.setPlaceholder(new Label("No Search Results"));
-        accountsTable.setItems(null);
-    }
+    //endregion
 
 
 }

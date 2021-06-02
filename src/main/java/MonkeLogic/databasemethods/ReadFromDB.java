@@ -13,22 +13,27 @@ import java.util.ArrayList;
 
 public class ReadFromDB {
 
-    private static ReadFromDB readFromDb;
+
     private static Connection c = null;
     private static PreparedStatement statement = null;
     private static ResultSet resultSet = null;
     private static User user = SessionManager.getActiveUser();
+
+    //TODO: Add To StartUp
+    //region Singleton
+    private static ReadFromDB instance;
 
     private ReadFromDB() {
 
     }
 
     public static ReadFromDB getInstance() {
-        if (readFromDb == null) {
-            readFromDb = new ReadFromDB();
+        if (instance == null) {
+            instance = new ReadFromDB();
         }
-        return readFromDb;
+        return instance;
     }
+    //endregion
 
     public static User readFromDbToLoginIn(String username, String password) {
 
@@ -67,7 +72,7 @@ public class ReadFromDB {
         return null;
     }
 
-
+    //TODO: Check ShowAccounts User To see if it calls on this method.
     public static ArrayList<Account> getAccountsAdmin() {
 
         c = DBConnection.connect();

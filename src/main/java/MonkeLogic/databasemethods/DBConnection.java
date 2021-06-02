@@ -10,6 +10,7 @@ public class DBConnection {
 
     public static Connection connect() {
 
+        //TODO: kolla om databasen finns redan annars så ska den skapas.
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:MonkeLogic.db");
@@ -53,8 +54,7 @@ public class DBConnection {
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
                     " USERID           INTEGER        NOT NULL," +
                     " QUESTION         TEXT           NOT NULL, " +
-                    " ANSWER           TEXT           NOT NULL," +
-                    "FOREIGN KEY(ID) REFERENCES USERS(ID))";
+                    " ANSWER           TEXT           NOT NULL,";
             stmt.executeUpdate(sql3);
 
             stmt = c.createStatement();
