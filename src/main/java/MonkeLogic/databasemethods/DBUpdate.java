@@ -1,47 +1,42 @@
 package MonkeLogic.databasemethods;
 
+import MonkeLogic.dto.User;
+
 import java.sql.*;
 
 public class DBUpdate {
 
     private static Connection c = null;
-    private static Statement statement = null;
-    private static ResultSet resultSet = null;
+    private static PreparedStatement statement = null;
+    private static DBUpdate dbUpdate;
 
-    public static void Update() {
+    public static DBUpdate getInstance() {
+        if (dbUpdate == null) {
+            dbUpdate = new DBUpdate();
+        }
+        return dbUpdate;
+    }
+
+    private DBUpdate() {
+
+    }
+
+    public static void Update(User user) {
 
         c = DBConnection.connect();
 
         try {
-            statement = c.createStatement();
-            String sql = "UPDATE USERS set USERNAME = 'Abdibasid' where ID=1;";
-            statement.executeUpdate(sql);
+            c.setAutoCommit(false);
 
-            statement = c.createStatement();
-            String sql1 = "UPDATE USERS set PASSWORD = '1' where ID=1;";
-            statement.executeUpdate(sql1);
+            String query = "UPDATE USERS SET USERNAME = ? , PASSWORD = ?  WHERE ID =1";
+            statement = c.prepareStatement(query);
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
 
-            statement = c.createStatement();
-            String sql2 = "UPDATE USERS set CLEARANCELEVEL = 'Admin' where ID=1;";
-            statement.executeUpdate(sql2);
+            statement.executeUpdate();
+
 
             c.commit();
-
-            resultSet = statement.executeQuery("SELECT * FROM USERS;");
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String username = resultSet.getString("username");
-                int password = resultSet.getInt("password");
-                String clearancelevel = resultSet.getString("clearancelevel");
-
-                System.out.println("ID = " + id);
-                System.out.println("USERNAME = " + username);
-                System.out.println("PASSWORD = " + password);
-                System.out.println("CLEARANCELEVEL = " + clearancelevel);
-                System.out.println();
-            }
-            resultSet.close();
             statement.close();
             c.close();
         } catch (SQLException e) {

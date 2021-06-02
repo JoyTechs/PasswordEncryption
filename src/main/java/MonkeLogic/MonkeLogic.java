@@ -34,6 +34,5 @@ public class MonkeLogic extends Application
         } else {
             sceneManager.login();
         }
-
     }
 }

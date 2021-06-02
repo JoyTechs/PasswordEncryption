@@ -2,6 +2,7 @@ package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.CreateUserBackEnd;
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.dto.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
