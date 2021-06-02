@@ -25,5 +25,4 @@ public class ChosenAccountForEdit {
         return chosenAccount;
     }
 
-
 }

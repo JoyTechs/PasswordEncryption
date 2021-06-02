@@ -25,6 +25,7 @@ public class EditAccountInfoBackEnd {
         account.setUsername(username);
         account.setPassword(password);
         ChosenAccountForEdit.setChosenAccount(account);
+
         //Todo: implement save function for this
 
     }

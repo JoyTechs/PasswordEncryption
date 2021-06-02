@@ -6,9 +6,13 @@ import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class CreateAccountFrontEnd {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CreateAccountFrontEnd implements Initializable {
 
     @FXML
     private Label websiteLabel;
@@ -54,8 +58,9 @@ public class CreateAccountFrontEnd {
     //region Sets SceneManager on Init
     private SceneManager sceneManager;
 
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        sceneManager = SceneManager.getInstance();
     }
     //endregion
 

@@ -131,7 +131,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     }
 
     @FXML
-    public void editChosenAccount(ActionEvent e) {
+    public void editChosenAccount(ActionEvent e) throws Exception {
         ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
         sceneManager.editAccountInfo();
     }
