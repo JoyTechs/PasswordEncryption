@@ -9,22 +9,22 @@
     <Label fx:id="websiteLabel" layoutX="180.0" layoutY="123.0" text="Website: "/>
 
     <TextField fx:id="usernameInpt" layoutX="240.0" layoutY="120.0"/>
-    <Label fx:id="websiteToShort" layoutX="258.0" layoutY="145.0" text="Website is to short."
-           textFill="red" visible="false"/>
+    <Label fx:id="websiteToShort" layoutX="258.0" layoutY="145.0" text="Website is to short." textFill="red"
+           visible="false"/>
     <Label fx:id="invalidCharacterWebsite" layoutX="200.0" layoutY="145.0"
            text="Website is not allowed to contain spaces." textFill="red" visible="false"/>
     <Label fx:id="usernameLabel" layoutX="180.0" layoutY="178.0" text="Username: "/>
     <TextField fx:id="websiteInpt" layoutX="240.0" layoutY="175.0"/>
-    <Label fx:id="usernameToShort" layoutX="258.0" layoutY="200.0" text="Username is to short."
-           textFill="red" visible="false"/>
+    <Label fx:id="usernameToShort" layoutX="258.0" layoutY="200.0" text="Username is to short." textFill="red"
+           visible="false"/>
     <Label fx:id="invalidCharacterUsername" layoutX="200.0" layoutY="200.0"
            text="Username is not allowed to contain spaces." textFill="red" visible="false"/>
     <Label fx:id="passwordLabel" layoutX="180.0" layoutY="233.0" text="Password: "/>
 
     <PasswordField fx:id="passwordInpt" layoutX="240.0" layoutY="230.0"/>
-    <TextField fx:id="passwordInptTextField" disable="true" layoutX="240.0" layoutY="230.0"/>
-    <Label fx:id="passwordToShort" layoutX="260.0" layoutY="257.0" text="Password is to short."
-           textFill="red" visible="false"/>
+    <TextField fx:id="passwordInptTextField" layoutX="240.0" layoutY="230.0"/>
+    <Label fx:id="passwordToShort" layoutX="260.0" layoutY="257.0" text="Password is to short." textFill="red"
+           visible="false"/>
     <Label fx:id="invalidCharacterPassword" layoutX="201.0" layoutY="257.0"
            text="Password is not allowed to contain Spaces." textFill="red" visible="false"/>
     <CheckBox fx:id="showPassword" layoutX="393.0" layoutY="233.0" onAction="#setPasswordVisibility"/>

@@ -18,11 +18,12 @@
 
     <Label fx:id="passwordLabel" layoutX="150.0" layoutY="204.0" text="Password: "/>
     <PasswordField fx:id="passwordInpt" layoutX="217.0" layoutY="200.0"/>
-    <TextField fx:id="passwordInptVisible" disable="true" layoutX="217.0" layoutY="200.0"/>
-    <CheckBox fx:id="showPassword" layoutX="378.0" layoutY="204.0" mnemonicParsing="false" text="Show Password"/>
+    <TextField fx:id="passwordInptVisible" layoutX="217.0" layoutY="200.0"/>
+    <CheckBox fx:id="showPassword" layoutX="378.0" layoutY="204.0" mnemonicParsing="false" text="Show Password"
+              onAction="#setPasswordVisibility"/>
 
-    <Label fx:id="wrongLogin" layoutX="204.0" layoutY="225.0" text="   Wrong Username or Password!" textFill="#f70101"
-           visible="false"/>
+    <Label fx:id="wrongLogin" layoutX="204.0" layoutY="225.0" text="   Wrong Username or Password!"
+           textFill="#f70101" visible="false"/>
 
     <Button fx:id="login" layoutX="268.0" layoutY="252.0" onAction="#loginAttempt" text="Login"/>
 

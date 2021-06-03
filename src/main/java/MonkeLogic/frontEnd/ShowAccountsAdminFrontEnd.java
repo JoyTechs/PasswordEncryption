@@ -66,7 +66,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     }
 
     public ArrayList<Account> setAllAccountsList() {
-        allAccounts = ReadFromDB.getAccountsUser();
+        allAccounts = ReadFromDB.getAccountsAdmin();
         return allAccounts;
     }
 
@@ -138,6 +138,5 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
         sceneManager.editAccountInfo();
     }
     //endregion
-
 
 }

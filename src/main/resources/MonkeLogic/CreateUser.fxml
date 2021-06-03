@@ -11,7 +11,7 @@
     <Label fx:id="passwordLabel" layoutX="140.0" layoutY="213.0" text="Password"/>
 
     <PasswordField fx:id="passwordField1" layoutX="225.0" layoutY="209.0"/>
-    <TextField fx:id="passwordInptVisible" disable="true" layoutX="225" layoutY="209"/>
+    <TextField fx:id="passwordInptVisible" layoutX="225" layoutY="209"/>
     <Label fx:id="showPasswordLabel" layoutX="411.0" layoutY="213.0" text="Show Password"/>
 
     <CheckBox fx:id="showPassword" layoutX="387.0" layoutY="213.0" onAction="#setPasswordVisibility"/>
