@@ -4,7 +4,7 @@ public class CreateUserBackEnd {
 
     //TODO: add Singleton, Use DBInsert and add to StartUp
 
-    public CreateUserBackEnd(String username, String password) {
+    public CreateUserBackEnd(String username, String password, String clearanceLevelString) {
 
 
     }

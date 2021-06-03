@@ -23,7 +23,7 @@ public class CreateUserFrontEnd implements Initializable {
     private Label showPasswordLabel;
     @FXML
     private TextField usernameInpt;
-    @FXML //TODO: Check FXML Connection
+    @FXML
     private PasswordField passwordInpt;
     @FXML
     private TextField passwordInptVisible;
@@ -31,10 +31,13 @@ public class CreateUserFrontEnd implements Initializable {
     private Label userNameLabel;
     @FXML
     private Label passwordLabel;
+    @FXML
+    private CheckBox clearanceLevelCheckBox;
 
 
     private String username;
     private String password;
+    private String clearanceLevelString = "User";
     private Boolean isUsernameNull;
     private Boolean isPasswordNull;
     //endregion
@@ -44,7 +47,15 @@ public class CreateUserFrontEnd implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         sceneManager = SceneManager.getInstance();
+        //This Binds the TextField and PasswordField to the Checkbox
+        //But Makes them Opposites so that only one is active at a time.
+        passwordInptVisible.managedProperty().bind(showPassword.selectedProperty());
+        passwordInpt.managedProperty().bind(showPassword.selectedProperty().not());
+        //This Binds the Text in the TextField and PasswordField to each other
+        //So that they will always contain the same text.
+        passwordInptVisible.textProperty().bindBidirectional(passwordInpt.textProperty());
     }
     //endregion
 
@@ -63,7 +74,7 @@ public class CreateUserFrontEnd implements Initializable {
             }
             sceneManager.createAccount();
         } else if (!isStringNull(username) && !isStringNull(password)) {
-            new CreateUserBackEnd(username, password);
+            new CreateUserBackEnd(username, password, clearanceLevelString);
         }
     }
 
@@ -73,19 +84,23 @@ public class CreateUserFrontEnd implements Initializable {
     }
 
 
-
     @FXML
     public void setPasswordVisibility(ActionEvent e) {
-        //This Binds the TextField and PasswordField to the Checkbox
-        //But Makes them Opposites so that only one is active at a time.
-        passwordInptVisible.managedProperty().bind(showPassword.selectedProperty());
+
         passwordInptVisible.visibleProperty().bind(showPassword.selectedProperty());
-        passwordInpt.managedProperty().bind(showPassword.selectedProperty().not());
+
         passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
 
-        //This Binds the Text in the TextField and PasswordField to each other
-        //So that they will always contain the same text.
-        passwordInptVisible.textProperty().bindBidirectional(passwordInpt.textProperty());
+
+    }
+
+    @FXML
+    public void setClearanceLevelCheckBox() {
+        if (clearanceLevelCheckBox.equals(true)) {
+            clearanceLevelString = "Admin";
+        } else {
+            clearanceLevelString = "User";
+        }
     }
     //endregion
 
