@@ -29,7 +29,7 @@ public class DBUpdate {
 
     public static void Update(User user) {
 
-        c = DBConnection.connect();
+        c = DBConnection.getC();
 
         try {
             c.setAutoCommit(false);
@@ -44,10 +44,8 @@ public class DBUpdate {
 
             c.commit();
             statement.close();
-            c.close();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Operation done successfully");
     }

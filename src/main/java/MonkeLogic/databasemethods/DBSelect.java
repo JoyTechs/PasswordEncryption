@@ -27,7 +27,7 @@ public class DBSelect {
 
     public static void Select() {
 
-        c = DBConnection.connect();
+        c = DBConnection.getC();
 
         try {
             statement = c.createStatement();
@@ -47,13 +47,10 @@ public class DBSelect {
             }
             resultSet.close();
             statement.close();
-            c.close();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Operation done successfully");
     }
-
     //TODO: Add more Select Options.
 }

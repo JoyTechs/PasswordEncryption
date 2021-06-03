@@ -3,27 +3,32 @@ package MonkeLogic.controllers;
 
 import MonkeLogic.databasemethods.*;
 import MonkeLogic.methods.Logout;
+import MonkeLogic.databasemethods.CreateTable;
+import MonkeLogic.databasemethods.DBConnection;
+import MonkeLogic.databasemethods.ReadFromDB;
+
+import java.sql.SQLException;
 
 public class StartUp {
 
     //Todo: Fix StartUp
     private static StartUp instance;
 
-    public static StartUp getInstance() {
+    public static StartUp getInstance() throws SQLException, ClassNotFoundException {
         if (instance == null) {
             instance = new StartUp();
         }
         return instance;
     }
 
-    public StartUp() {
-        DBConnection.connect();
-        DBConnection.CreateTable();
+    public StartUp() throws SQLException, ClassNotFoundException {
+        DBConnection.getInstance();
+        ReadFromDB.getInstance();
+        CreateTable.getInstance();
         DBInsert.getInstance();
         DBUpdate.getInstance();
         DBSelect.getInstance();
         DBDelete.getInstance();
-        ReadFromDB.getInstance();
         System.out.println("ReadFromDB.getInstance has Started");
         SceneManager.getInstance();
         //TODO: ta bort // från denna raden CreateUserBackEnd.getInstance();

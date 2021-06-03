@@ -2,6 +2,8 @@ package MonkeLogic.databasemethods;
 
 import MonkeLogic.dto.SecurityQuestion;
 
+import MonkeLogic.dto.User;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,9 +29,10 @@ public class DBInsert {
 
     public static void InitialStart() {
 
-        c = DBConnection.connect();
+        c = DBConnection.getC();
 
         try {
+            c.setAutoCommit(false);
             statement = c.createStatement();
             String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL) " +
                     "VALUES ('Admin', 'FirstStart', 'ADMIN')";
@@ -37,7 +40,6 @@ public class DBInsert {
 
             statement.close();
             c.commit();
-            c.close();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
@@ -57,13 +59,30 @@ public class DBInsert {
 
             statement.close();
             c.commit();
-            c.close();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Records created successfully");
-
     }
 
+    public static void CreateNewUser(User user) throws SQLException {
+        c = DBConnection.getC();
+        Statement stmt = null;
+
+        try {
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL) " +
+                    "VALUES ('" + user.getUsername() + "', '"
+                    + user.getPassword() + "', '"
+                    + user.getClearanceLevel() + "');";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.commit();
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        System.out.println("Records created successfully");
+    }
 }

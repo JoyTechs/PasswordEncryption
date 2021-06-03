@@ -5,24 +5,24 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.ShowAccountsUserFrontEnd">
 
-   <children>
-      <TableView fx:id="accountsTable" layoutY="75.0" prefHeight="275.0" prefWidth="600.0">
-         <columns>
-            <TableColumn fx:id="websiteCol" editable="false" prefWidth="200.0" text="Website"/>
-            <TableColumn fx:id="usernameCol" editable="false" prefWidth="200.0" text="Username"/>
-            <TableColumn fx:id="password" editable="false" prefWidth="200.0" text="Password"/>
-         </columns>
-      </TableView>
-      <TextField fx:id="searchInpt" layoutX="385.0" layoutY="35.0"/>
+    <children>
+        <TableView fx:id="accountsTable" layoutY="75.0" prefHeight="275.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="websiteCol" editable="false" prefWidth="200.0" text="Website"/>
+                <TableColumn fx:id="usernameCol" editable="false" prefWidth="200.0" text="Username"/>
+                <TableColumn fx:id="password" editable="false" prefWidth="200.0" text="Password"/>
+            </columns>
+        </TableView>
+        <TextField fx:id="searchInpt" layoutX="385.0" layoutY="35.0"/>
 
 
-      <Button fx:id="searchBtn" layoutX="540.0" layoutY="35.0" mnemonicParsing="false" onAction="#search"
-              text="Search"/>
-      <Button fx:id="goBack" layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onAction="#logout" text="Logout"/>
-      <Button fx:id="createAccount" layoutX="385.0" layoutY="360.0" mnemonicParsing="false"
-              onAction="#createAccount" text="Create Account"/>
-      <Button fx:id="editAccount" layoutX="502.0" layoutY="360.0" mnemonicParsing="false"
-              onAction="#editChosenAccount" text="Edit Account"/>
-   </children>
+        <Button fx:id="searchBtn" layoutX="540.0" layoutY="35.0" mnemonicParsing="false" onAction="#search"
+                text="Search"/>
+        <Button fx:id="goBack" layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onAction="#logout" text="Logout"/>
+        <Button fx:id="createAccount" layoutX="385.0" layoutY="360.0" mnemonicParsing="false"
+                onAction="#createAccount" text="Create Account"/>
+        <Button fx:id="editAccount" layoutX="502.0" layoutY="360.0" mnemonicParsing="false"
+                onAction="#editChosenAccount" text="Edit Account"/>
+    </children>
 
 </AnchorPane>

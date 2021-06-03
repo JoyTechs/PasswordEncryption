@@ -1,5 +1,6 @@
 package MonkeLogic.backEnd;
 
+import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.databasemethods.DBConnection;
 import MonkeLogic.dto.Account;
 
@@ -26,10 +27,10 @@ public class CreateAccountBackEnd {
     //endregion
 
     public void saveAccInfo(Account account) {
-        c = DBConnection.connect();
+        c = DBConnection.getC();
         Statement stmt = null;
         try {
-
+            c.setAutoCommit(false);
             stmt = c.createStatement();
             String sql = "INSERT INTO ACCOUNT (WEBSITE, USERNAME, PASSWORD) " +
                     "VALUES ('" + account.getWebsite() + "', '"
@@ -39,11 +40,30 @@ public class CreateAccountBackEnd {
 
             stmt.close();
             c.commit();
-            c.close();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         System.out.println("Records created successfully");
     }
 
+    public void saveSecurityQuestion(SecurityQuestion securityQuestion) {
+        c = DBConnection.getC();
+        Statement stmt = null;
+        try {
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            //TODO: Fixa till detta
+            String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
+                    "VALUES ('" + securityQuestion.getUserID() + "', '"
+                    + securityQuestion.getQuestion() + "', '"
+                    + securityQuestion.getAnswer() + "');";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.commit();
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        System.out.println("Security question linked to account");
+    }
 }
