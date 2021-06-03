@@ -42,6 +42,18 @@ public class Account {
         return id;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getEmployee() {
+        return employee;
+    }
+
+    public Boolean getHasSecurityQuestion() {
+        return hasSecurityQuestion;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -66,6 +78,18 @@ public class Account {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setEmployee(String employee) {
+        this.employee = employee;
+    }
+
+    public void setHasSecurityQuestion(Boolean hasSecurityQuestion) {
+        this.hasSecurityQuestion = hasSecurityQuestion;
     }
     //endregion
 

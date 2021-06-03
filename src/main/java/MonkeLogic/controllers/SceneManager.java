@@ -12,6 +12,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -83,6 +84,16 @@ public class SceneManager {
     public void memes() {
         memesScene();
     }
+
+    public void setSecurityQuestion() {
+        setSecurityQuestionScene();
+    }
+
+    public void answerSecurityQuestion() {
+        answerSecurityQuestionScene();
+    }
+
+
     //endregion
 
     //region Methods That Changes the Scenes
@@ -170,10 +181,31 @@ public class SceneManager {
         }
     }
 
+    private void setSecurityQuestionScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/SetSecurityQuestion.fxml"));
+            scene.setRoot(loader.load());
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void answerSecurityQuestionScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/AnswerSecurityQuestion.fxml"));
+            scene.setRoot(loader.load());
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void memesScene() {
 
         try {
-            //TODO: Fix what happens after video is done
             MemesFrontEnd memesFrontEnd = new MemesFrontEnd();
             File meme = memesFrontEnd.getMemed();
             Media media = new Media(meme.toURI().toURL().toString());
@@ -181,7 +213,12 @@ public class SceneManager {
             MediaView mediaView = new MediaView(mediaPlayer);
             mediaView.fitWidthProperty().bind(primaryStage.widthProperty());
             mediaView.fitHeightProperty().bind(primaryStage.heightProperty());
-            mediaPlayer.setVolume(0.2);
+            mediaPlayer.setVolume(0.3);
+            mediaPlayer.setStopTime(Duration.seconds(30));
+            mediaPlayer.setOnEndOfMedia(() -> {
+                mediaView.setVisible(false);
+                answerSecurityQuestion();
+            });
             scene = new Scene(new AnchorPane(mediaView));
             primaryStage.setScene(scene);
             primaryStage.setFullScreen(true);
@@ -192,4 +229,6 @@ public class SceneManager {
         }
     }
     //endregion
+
+
 }

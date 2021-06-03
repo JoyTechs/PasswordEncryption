@@ -92,7 +92,7 @@ public class CreateUserFrontEnd implements Initializable {
 
     @FXML
     public void setClearanceLevelCheckBox() {
-        if (clearanceLevelCheckBox.equals(true)) {
+        if (clearanceLevelCheckBox.isSelected()) {
             clearanceLevelString = "Admin";
         } else {
             clearanceLevelString = "User";
