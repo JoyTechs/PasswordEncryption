@@ -13,7 +13,7 @@
     <TextField fx:id="usernameInpt" layoutX="226.0" layoutY="171.0"/>
 
     <PasswordField fx:id="passwordInpt" layoutX="225.0" layoutY="231.0"/>
-    <TextField fx:id="passwordInptVisible" disable="true" layoutX="225.0" layoutY="231.0"/>
+    <TextField fx:id="passwordInptVisible" layoutX="225.0" layoutY="231.0"/>
 
     <CheckBox fx:id="showPassword" layoutX="380.0" layoutY="235.0" onAction="#setPasswordVisibility"/>
 
