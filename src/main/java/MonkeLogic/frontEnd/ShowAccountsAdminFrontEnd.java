@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 
 public class ShowAccountsAdminFrontEnd implements Initializable {
 
-    //TODO: Kolla FXML och varför det inte anropas
     //region TableView Variables
     @FXML
     private TableView accountsTable;
@@ -41,6 +40,10 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     private Button searchBtn;
     @FXML
     private Button createAccount;
+    @FXML
+    private Button createUser;
+    @FXML
+    private Label editWarning;
 
     private static ObservableList<Account> accountObservableLists;
     private static ArrayList<Account> allAccounts;
@@ -54,6 +57,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
+        editWarning.setVisible(false);
         loadAccounts();
     }
     //endregion
@@ -134,8 +138,13 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
 
     @FXML
     public void editChosenAccount(ActionEvent e) throws Exception {
-        ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
-        sceneManager.editAccountInfo();
+        if (accountsTable.getSelectionModel().isEmpty()) {
+            editWarning.setVisible(true);
+        } else {
+            editWarning.setVisible(false);
+            ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
+            sceneManager.editAccountInfo();
+        }
     }
     //endregion
 
