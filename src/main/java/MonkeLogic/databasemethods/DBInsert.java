@@ -26,9 +26,10 @@ public class DBInsert {
 
     public static void InitialStart() {
 
-        c = DBConnection.connect();
+        c = DBConnection.getC();
 
         try {
+            c.setAutoCommit(false);
             statement = c.createStatement();
             String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL) " +
                     "VALUES ('Admin', 'FirstStart', 'ADMIN')";
@@ -45,9 +46,9 @@ public class DBInsert {
             statement.close();
             c.commit();
             c.close();
+            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Records created successfully");
     }

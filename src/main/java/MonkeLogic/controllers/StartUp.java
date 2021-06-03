@@ -4,19 +4,22 @@ package MonkeLogic.controllers;
 import MonkeLogic.databasemethods.DBConnection;
 import MonkeLogic.databasemethods.ReadFromDB;
 
+import java.sql.SQLException;
+
 public class StartUp {
 
     //Todo: Fix StartUp
     private static StartUp instance;
 
-    public static StartUp getInstance() {
+    public static StartUp getInstance() throws SQLException, ClassNotFoundException {
         if (instance == null) {
             instance = new StartUp();
         }
         return instance;
     }
 
-    public StartUp() {
+    public StartUp() throws SQLException, ClassNotFoundException {
+        DBConnection.getInstance();
         DBConnection.CreateTable();
         System.out.println("DBConnection.CreateTable has Started");
         ChosenAccountForEdit.getInstance();

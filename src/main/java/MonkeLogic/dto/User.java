@@ -21,6 +21,11 @@ public class User {
         this.username = username;
         this.password = password;
     }
+    public User(String username, String password, String clearanceLevel) {
+        this.username = username;
+        this.password = password;
+        this.clearanceLevel = clearanceLevel;
+    }
     //endregion
 
     //TODO: Check Which Setters & Getters are Necessary.

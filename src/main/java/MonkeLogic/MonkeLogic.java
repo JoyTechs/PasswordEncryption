@@ -8,10 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 public class MonkeLogic extends Application
 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         StartUp startUp = new StartUp();
         launch(args);
     }

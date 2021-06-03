@@ -2,34 +2,40 @@ package MonkeLogic.databasemethods;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBConnection {
 
     private static Connection c = null;
 
-    public static Connection connect() {
+    private static DBConnection instance;
 
-        //TODO: kolla om databasen finns redan annars så ska den skapas.
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:MonkeLogic.db");
-            System.out.println("Connected with database successfully");
-        } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+    public static DBConnection getInstance() throws SQLException, ClassNotFoundException {
+        if (instance == null) {
+            instance = new DBConnection();
+            c = DBConnections();
+        }
+        return instance;
+    }
+
+    public static Connection getC() {
+        return c;
+    }
+
+    public static Connection DBConnections() throws SQLException {
+        if(c == null){
+            String url = "jdbc:sqlite:MonkeLogic.db";
+            Connection c =  DriverManager.getConnection(url);
+            System.out.println("Connection to SQLite has been established.");
         }
         return c;
     }
 
     public static void CreateTable() {
-        Connection c = null;
+        c = DBConnection.getC();
         Statement stmt = null;
-
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:MonkeLogic.db");
-            System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS USERS " +
@@ -82,9 +88,9 @@ public class DBConnection {
 
             stmt.close();
             c.close();
-        } catch (Exception e) {
+            System.out.println("Connection to SQLite has been close");
+        } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Table created successfully");
     }

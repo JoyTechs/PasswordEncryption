@@ -27,10 +27,10 @@ public class CreateAccountBackEnd {
     //endregion
 
     public void saveAccInfo(Account account) {
-        c = DBConnection.connect();
+        c = DBConnection.getC();
         Statement stmt = null;
         try {
-
+            c.setAutoCommit(false);
             stmt = c.createStatement();
             String sql = "INSERT INTO ACCOUNT (WEBSITE, USERNAME, PASSWORD) " +
                     "VALUES ('" + account.getWebsite() + "', '"
@@ -41,6 +41,7 @@ public class CreateAccountBackEnd {
             stmt.close();
             c.commit();
             c.close();
+            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -48,21 +49,22 @@ public class CreateAccountBackEnd {
     }
 
     public void saveSecurityQuestion(SecurityQuestion securityQuestion) {
-        c = DBConnection.connect();
+        c = DBConnection.getC();
         Statement stmt = null;
         try {
-
+            c.setAutoCommit(false);
             stmt = c.createStatement();
             //TODO: Fixa till detta
-                String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
-                        "VALUES ('" + securityQuestion.getUserID() + "', '"
-                                + securityQuestion.getQuestion() + "', '"
-                                + securityQuestion.getAnswer() + "');";
-                    stmt.executeUpdate(sql);
+            String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
+                    "VALUES ('" + securityQuestion.getUserID() + "', '"
+                    + securityQuestion.getQuestion() + "', '"
+                    + securityQuestion.getAnswer() + "');";
+            stmt.executeUpdate(sql);
 
             stmt.close();
             c.commit();
             c.close();
+            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }

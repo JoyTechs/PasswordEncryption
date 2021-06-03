@@ -2,6 +2,7 @@ package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.CreateUserBackEnd;
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.dto.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,6 +45,7 @@ public class CreateUserFrontEnd implements Initializable {
 
     //region Sets SceneManager on Init
     private SceneManager sceneManager;
+    private static CreateUserBackEnd createUserBackEnd = CreateUserBackEnd.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,7 +76,7 @@ public class CreateUserFrontEnd implements Initializable {
             }
             sceneManager.createAccount();
         } else if (!isStringNull(username) && !isStringNull(password)) {
-            new CreateUserBackEnd(username, password, clearanceLevelString);
+            createUserBackEnd.CreateNewUser(new User(username, password, clearanceLevelString));
         }
     }
 

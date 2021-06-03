@@ -37,7 +37,7 @@ public class ReadFromDB {
 
     public static User readFromDbToLoginIn(String username, String password) {
 
-        c = DBConnection.connect();
+        c = DBConnection.getC();
 
         try {
             String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
@@ -66,8 +66,9 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
             c.close();
+            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return null;
     }
@@ -75,7 +76,7 @@ public class ReadFromDB {
     //TODO: Check ShowAccounts User To see if it calls on this method.
     public static ArrayList<Account> getAccountsAdmin() {
 
-        c = DBConnection.connect();
+        c = DBConnection.getC();
         Account tempAccount = null;
         ArrayList<Account> tempList = new ArrayList<>();
         try {
@@ -98,15 +99,16 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
             c.close();
+            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return tempList;
     }
 
     public static ArrayList<Account> getAccountsUser() {
 
-        c = DBConnection.connect();
+        c = DBConnection.getC();
         Account tempAccount = null;
         ArrayList<Account> tempList = new ArrayList<>();
         try {
@@ -130,14 +132,15 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
             c.close();
+            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return tempList;
     }
 
     public static Boolean firstStart() {
-        c = DBConnection.connect();
+        c = DBConnection.getC();
 
         try {
             String query = "SELECT * FROM USERS WHERE ID = 1 and USERNAME = ? and PASSWORD = ?";
@@ -159,8 +162,9 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
             c.close();
+            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return false;
     }

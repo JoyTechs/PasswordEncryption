@@ -2,6 +2,7 @@ package MonkeLogic.databasemethods;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBDelete {
@@ -23,11 +24,12 @@ public class DBDelete {
     //endregion
 
     public static void Delete() {
-        c = DBConnection.connect();
+        c = DBConnection.getC();
         Statement stmt = null;
 
         //Todo: Edit the sql query so we can input what we want.
         try {
+            c.setAutoCommit(false);
             stmt = c.createStatement();
             String sql = "DELETE from USERS where ID=2;";
             stmt.executeUpdate(sql);
@@ -46,9 +48,9 @@ public class DBDelete {
             rs.close();
             stmt.close();
             c.close();
-        } catch (Exception e) {
+            System.out.println("Connection to SQLite has been close");
+        } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Operation done successfully");
     }
