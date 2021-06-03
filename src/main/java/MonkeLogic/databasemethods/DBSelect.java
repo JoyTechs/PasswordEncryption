@@ -48,8 +48,6 @@ public class DBSelect {
             }
             resultSet.close();
             statement.close();
-            c.close();
-            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }

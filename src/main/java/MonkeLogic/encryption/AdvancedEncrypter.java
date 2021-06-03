@@ -10,8 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 
-public class AdvancedEncrypter
-{
+public class AdvancedEncrypter {
     //This Encrypts the Input String According to the Key and Salt
     public static String encrypt(String strToEncrypt, String oldSecretKey, String oldSalt) {
         try {
@@ -26,8 +25,7 @@ public class AdvancedEncrypter
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
             return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes(StandardCharsets.UTF_8)));
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Error while encrypting: " + e);
         }
         return null;

@@ -35,9 +35,9 @@ public class LoginBackEnd {
 
         if (activeUser != null) {
             SessionManager.setActiveUser(activeUser);
-            if(activeUser.getClearanceLevel().equals("Admin")){
+            if (activeUser.getClearanceLevel().equals("Admin")) {
                 sceneManager.showAccountsAdmin();
-            }else {
+            } else {
                 sceneManager.showAccountsUser();
             }
         } else {

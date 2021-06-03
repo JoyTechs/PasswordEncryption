@@ -10,8 +10,7 @@ import javafx.stage.Stage;
 
 import java.sql.SQLException;
 
-public class MonkeLogic extends Application
-{
+public class MonkeLogic extends Application {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         StartUp startUp = new StartUp();

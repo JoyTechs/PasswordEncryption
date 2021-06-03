@@ -44,11 +44,8 @@ public class DBUpdate {
 
             c.commit();
             statement.close();
-
-            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Operation done successfully");
     }

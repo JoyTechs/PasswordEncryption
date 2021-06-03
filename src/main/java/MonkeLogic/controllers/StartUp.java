@@ -1,6 +1,7 @@
 package MonkeLogic.controllers;
 
 
+import MonkeLogic.databasemethods.CreateTable;
 import MonkeLogic.databasemethods.DBConnection;
 import MonkeLogic.databasemethods.ReadFromDB;
 
@@ -20,7 +21,8 @@ public class StartUp {
 
     public StartUp() throws SQLException, ClassNotFoundException {
         DBConnection.getInstance();
-        DBConnection.CreateTable();
+        ReadFromDB.getInstance();
+        CreateTable.getInstance();
         System.out.println("DBConnection.CreateTable has Started");
         ChosenAccountForEdit.getInstance();
         System.out.println("ChosenAccountForEdit.getInstance has Started");
@@ -28,7 +30,6 @@ public class StartUp {
         System.out.println("SessionManager.getInstance has Started");
         CryptKeeper.getInstance();
         System.out.println("CryptKeeper.getInstance has Started");
-        ReadFromDB.getInstance();
         System.out.println("ReadFromDB.getInstance has Started");
     }
 }

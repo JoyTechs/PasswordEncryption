@@ -1,5 +1,7 @@
 package MonkeLogic.databasemethods;
 
+import MonkeLogic.dto.User;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,8 +47,27 @@ public class DBInsert {
 
             statement.close();
             c.commit();
-            c.close();
-            System.out.println("Connection to SQLite has been close");
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        System.out.println("Records created successfully");
+    }
+
+    public static void CreateNewUser(User user) throws SQLException {
+        c = DBConnection.getC();
+        Statement stmt = null;
+
+        try {
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL) " +
+                    "VALUES ('" + user.getUsername() + "', '"
+                    + user.getPassword() + "', '"
+                    + user.getClearanceLevel() + "');";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.commit();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }

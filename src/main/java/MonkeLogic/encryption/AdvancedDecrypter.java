@@ -9,8 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 
-public class AdvancedDecrypter
-{
+public class AdvancedDecrypter {
     //This Decrypts the input string according to the Key and Salt
     public static String decrypt(String strToDecrypt, String oldSecretKey, String oldSalt) {
         try {

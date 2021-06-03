@@ -65,8 +65,6 @@ public class ReadFromDB {
             }
             statement.close();
             resultSet.close();
-            c.close();
-            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
@@ -98,8 +96,6 @@ public class ReadFromDB {
             }
             statement.close();
             resultSet.close();
-            c.close();
-            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
@@ -131,8 +127,6 @@ public class ReadFromDB {
             }
             statement.close();
             resultSet.close();
-            c.close();
-            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
@@ -161,8 +155,6 @@ public class ReadFromDB {
             }
             statement.close();
             resultSet.close();
-            c.close();
-            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.out.println(e.toString());
         }

@@ -70,7 +70,7 @@ public class EditAccountInfoFrontEnd implements Initializable {
         sceneManager = SceneManager.getInstance();
     }
 
-    private void setTextFields(){
+    private void setTextFields() {
 
     }
     //endregion

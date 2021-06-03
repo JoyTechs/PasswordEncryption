@@ -1,5 +1,6 @@
 package MonkeLogic.backEnd;
 
+import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.databasemethods.DBConnection;
 import MonkeLogic.dto.Account;
 import MonkeLogic.dto.SecurityQuestion;
@@ -40,8 +41,6 @@ public class CreateAccountBackEnd {
 
             stmt.close();
             c.commit();
-            c.close();
-            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -63,8 +62,6 @@ public class CreateAccountBackEnd {
 
             stmt.close();
             c.commit();
-            c.close();
-            System.out.println("Connection to SQLite has been close");
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }

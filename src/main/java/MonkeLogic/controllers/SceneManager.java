@@ -33,6 +33,7 @@ public class SceneManager {
         }
         return instance;
     }
+
     private SceneManager() {
     }
 
