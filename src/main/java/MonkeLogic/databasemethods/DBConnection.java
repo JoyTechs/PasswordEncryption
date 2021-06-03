@@ -54,7 +54,7 @@ public class DBConnection {
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
                     " USERID           INTEGER        NOT NULL," +
                     " QUESTION         TEXT           NOT NULL, " +
-                    " ANSWER           TEXT           NOT NULL,";
+                    " ANSWER           TEXT           NOT NULL)";
             stmt.executeUpdate(sql3);
 
             stmt = c.createStatement();
