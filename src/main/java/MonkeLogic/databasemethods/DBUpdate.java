@@ -11,7 +11,7 @@ public class DBUpdate {
     private static Connection c = null;
     private static PreparedStatement statement = null;
 
-    //Todo: add To StartUp
+
     //region Singleton
     private static DBUpdate instance;
 

@@ -25,7 +25,6 @@ public class SceneManager {
     private Stage primaryStage;
     //endregion
 
-    //Todo: add To StartUp
     //region Creates A Singleton SceneManager
     public static SceneManager getInstance() {
         if (instance == null) {

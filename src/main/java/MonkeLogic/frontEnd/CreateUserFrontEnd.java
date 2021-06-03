@@ -86,12 +86,8 @@ public class CreateUserFrontEnd implements Initializable {
 
     @FXML
     public void setPasswordVisibility(ActionEvent e) {
-
         passwordInptVisible.visibleProperty().bind(showPassword.selectedProperty());
-
         passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
-
-
     }
 
     @FXML

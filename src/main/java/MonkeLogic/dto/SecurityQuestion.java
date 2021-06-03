@@ -3,11 +3,17 @@ package MonkeLogic.dto;
 public class SecurityQuestion {
 
     //region Variables
-    private int userID;
-    private int questionNr;
-    private String question;
-    private String answer;
+    private final int userID;
+    private final int questionNr;
+    private final String answer;
     //endregion
+
+
+    public SecurityQuestion(int userID, int questionNr, String answer) {
+        this.userID = userID;
+        this.questionNr = questionNr;
+        this.answer = answer;
+    }
 
     //TODO: Check Which Setters & Getters are Necessary.
     //region Getters
@@ -19,31 +25,9 @@ public class SecurityQuestion {
         return questionNr;
     }
 
-    public String getQuestion() {
-        return question;
-    }
-
     public String getAnswer() {
         return answer;
     }
     //endregion
 
-    //region Setters
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public void setQuestionNr(int questionNr) {
-        this.questionNr = questionNr;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    //endregion
 }

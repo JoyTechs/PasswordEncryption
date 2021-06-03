@@ -38,7 +38,6 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     @FXML
     private Button createAccount;
 
-    //TODO: Add List from active user
     private static ObservableList<Account> accountObservableLists;
     private static ArrayList<Account> allAccounts;
     private static ArrayList<Account> searchResults;

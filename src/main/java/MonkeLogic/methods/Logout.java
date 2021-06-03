@@ -2,7 +2,6 @@ package MonkeLogic.methods;
 
 public class Logout {
 
-    //TODO: Add To StartUp
     //region Singleton
     private static Logout instance;
 
@@ -19,6 +18,6 @@ public class Logout {
 
     //TODO: Finish Class
     public static void logoutUser() {
-
+        //TODO: Set everything in StartUp to Null, then Call StartUp again.
     }
 }
