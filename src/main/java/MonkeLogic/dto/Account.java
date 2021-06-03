@@ -9,6 +9,7 @@ public class Account {
     private String username;
     private String password;
     private String website;
+    private Boolean hasSecurityQuestion;
     //endregion
 
     //region Constructors
@@ -32,7 +33,6 @@ public class Account {
     }
     //endregion
 
-    //TODO: Check which Getters & Setters are necessary.
     //region Getters
     public String getUsername() {
         return username;
@@ -48,14 +48,6 @@ public class Account {
 
     public String getWebsite() {
         return website;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public String getEmployee() {
-        return employee;
     }
     //endregion
 
@@ -74,14 +66,6 @@ public class Account {
 
     public void setWebsite(String website) {
         this.website = website;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public void setEmployee(String employee) {
-        this.employee = employee;
     }
     //endregion
 

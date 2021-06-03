@@ -23,7 +23,6 @@ public class User {
     }
     //endregion
 
-    //TODO: Check Which Setters & Getters are Necessary.
     //region Setters
     public void setUsername(String username) {
         this.username = username;

@@ -7,7 +7,6 @@ import java.sql.Statement;
 public class DBDelete {
     private static Connection c = null;
 
-    //Todo: add To StartUp
     //region Singleton
     private static DBDelete instance;
 

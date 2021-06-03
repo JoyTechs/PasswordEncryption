@@ -7,7 +7,6 @@ public class ChosenAccountForEdit {
 
     private static Account chosenAccount;
     //region Singleton
-    //TODO: Add to StartUp
     private static ChosenAccountForEdit instance;
 
     public static ChosenAccountForEdit getInstance() {

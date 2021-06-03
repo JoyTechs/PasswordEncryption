@@ -34,6 +34,7 @@ public class LoginBackEnd {
         activeUser = ReadFromDB.readFromDbToLoginIn(usernameInput, passwordInput);
 
         if (activeUser != null) {
+            loginAttempts = 0;
             SessionManager.setActiveUser(activeUser);
             if(activeUser.getClearanceLevel().equals("Admin")){
                 sceneManager.showAccountsAdmin();

@@ -61,10 +61,16 @@ public class CreateAccountFrontEnd implements Initializable {
 
     //region Sets SceneManager on Init
     private SceneManager sceneManager;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
+        //This Binds the TextField and PasswordField to the Checkbox
+        //But Makes them Opposites so that only one is active at a time.
+        passwordInptTextField.managedProperty().bind(showPassword.selectedProperty());
+        passwordInpt.managedProperty().bind(showPassword.selectedProperty().not());
+        //This Binds the Text in the TextField and PasswordField to each other
+        //So that they will always contain the same text.
+        passwordInptTextField.textProperty().bindBidirectional(passwordInpt.textProperty());
     }
     //endregion
 
@@ -162,16 +168,9 @@ public class CreateAccountFrontEnd implements Initializable {
 
     @FXML
     public void setPasswordVisibility(ActionEvent e) {
-        //This Binds the TextField and PasswordField to the Checkbox
-        //But Makes them Opposites so that only one is active at a time.
-        passwordInptTextField.managedProperty().bind(showPassword.selectedProperty());
         passwordInptTextField.visibleProperty().bind(showPassword.selectedProperty());
-        passwordInpt.managedProperty().bind(showPassword.selectedProperty().not());
         passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
 
-        //This Binds the Text in the TextField and PasswordField to each other
-        //So that they will always contain the same text.
-        passwordInptTextField.textProperty().bindBidirectional(passwordInpt.textProperty());
     }
     //endregion
 

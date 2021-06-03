@@ -11,7 +11,6 @@ public class DBSelect {
     private static ResultSet resultSet = null;
     private static Statement statement = null;
 
-    //Todo: add To StartUp
     //region Singleton
     private static DBSelect instance;
 

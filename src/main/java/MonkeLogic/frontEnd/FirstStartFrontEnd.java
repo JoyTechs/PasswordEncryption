@@ -47,8 +47,13 @@ public class FirstStartFrontEnd implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
-        passwordInptVisible.setManaged(false);
-        passwordInptVisible.setVisible(false);
+        //This Binds the TextField and PasswordField to the Checkbox
+        //But Makes them Opposites so that only one is active at a time.
+        passwordInptVisible.managedProperty().bind(showPassword.selectedProperty());
+        passwordInpt.managedProperty().bind(showPassword.selectedProperty().not());
+        //This Binds the Text in the TextField and PasswordField to each other
+        //So that they will always contain the same text.
+        passwordInptVisible.textProperty().bindBidirectional(passwordInpt.textProperty());
         shortUsername.setVisible(false);
         shortPassword.setVisible(false);
         invalidUsernameCharacter.setVisible(false);
@@ -126,16 +131,12 @@ public class FirstStartFrontEnd implements Initializable {
 
     @FXML
     public void setPasswordVisibility(ActionEvent e) {
-        //This Binds the TextField and PasswordField to the Checkbox
-        //But Makes them Opposites so that only one is active at a time.
-        passwordInptVisible.managedProperty().bind(showPassword.selectedProperty());
+
         passwordInptVisible.visibleProperty().bind(showPassword.selectedProperty());
-        passwordInpt.managedProperty().bind(showPassword.selectedProperty().not());
+
         passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
 
-        //This Binds the Text in the TextField and PasswordField to each other
-        //So that they will always contain the same text.
-        passwordInptVisible.textProperty().bindBidirectional(passwordInpt.textProperty());
+
     }
     //endregion
 }

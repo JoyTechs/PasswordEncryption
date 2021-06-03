@@ -19,7 +19,6 @@ public class ReadFromDB {
     private static ResultSet resultSet = null;
     private static User user = SessionManager.getActiveUser();
 
-    //TODO: Add To StartUp
     //region Singleton
     private static ReadFromDB instance;
 
@@ -72,7 +71,6 @@ public class ReadFromDB {
         return null;
     }
 
-    //TODO: Check ShowAccounts User To see if it calls on this method.
     public static ArrayList<Account> getAccountsAdmin() {
 
         c = DBConnection.connect();

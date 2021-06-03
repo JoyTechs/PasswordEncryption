@@ -13,7 +13,6 @@ public class CryptKeeper {
     private static final List<String> salts = new ArrayList<>();
     //endregion
 
-    //Todo: add To StartUp
     //region Singleton
     private static CryptKeeper cryptKeeper;
 
