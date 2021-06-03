@@ -35,7 +35,11 @@ public class LoginBackEnd {
 
         if (activeUser != null) {
             SessionManager.setActiveUser(activeUser);
-            sceneManager.showAccountsUser();
+            if(activeUser.getClearanceLevel().equals("Admin")){
+                sceneManager.showAccountsAdmin();
+            }else {
+                sceneManager.showAccountsUser();
+            }
         } else {
             loginAttempts++;
             System.out.println(loginAttempts);

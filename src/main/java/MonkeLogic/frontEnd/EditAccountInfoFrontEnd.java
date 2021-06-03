@@ -69,6 +69,10 @@ public class EditAccountInfoFrontEnd implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
     }
+
+    private void setTextFields(){
+
+    }
     //endregion
 
     //region FXML Methods
