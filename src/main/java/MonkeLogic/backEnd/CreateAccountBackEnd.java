@@ -2,6 +2,7 @@ package MonkeLogic.backEnd;
 
 import MonkeLogic.databasemethods.DBConnection;
 import MonkeLogic.dto.Account;
+import MonkeLogic.dto.SecurityQuestion;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -46,16 +47,18 @@ public class CreateAccountBackEnd {
         System.out.println("Records created successfully");
     }
 
-    public void saveSecurityQuestion() {
+    public void saveSecurityQuestion(SecurityQuestion securityQuestion) {
         c = DBConnection.connect();
         Statement stmt = null;
         try {
 
             stmt = c.createStatement();
             //TODO: Fixa till detta
-            //    String sql = "INSERT INTO SECURITY_QUESTIONS (USERID??, QUESTION, ANSWER) " +
-            //            "VALUES ('" + Se
-            //        stmt.executeUpdate(sql);
+                String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
+                        "VALUES ('" + securityQuestion.getUserID() + "', '"
+                                + securityQuestion.getQuestion() + "', '"
+                                + securityQuestion.getAnswer() + "');";
+                    stmt.executeUpdate(sql);
 
             stmt.close();
             c.commit();
