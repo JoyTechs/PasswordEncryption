@@ -2,10 +2,11 @@ package MonkeLogic.databasemethods;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CreateTable {
-    private static final Connection c = null;
+    private static Connection c = null;
 
     private static CreateTable instance;
 
@@ -20,15 +21,15 @@ public class CreateTable {
         CreateTable();
     }
 
+    public static void setInstance(){
+        instance = null;
+    }
+
     public static void CreateTable() {
-        Connection c = null;
+        c = DBConnection.getC();
         Statement stmt = null;
 
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:MonkeLogic.db");
-            System.out.println("Opened database successfully");
-
             stmt = c.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS USERS " +
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL ," +
@@ -72,10 +73,8 @@ public class CreateTable {
             stmt.executeUpdate(sql5);
 
             stmt.close();
-            c.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Table created successfully");
     }

@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -77,7 +78,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     public void setSearchResults() {
         setAccountObservableLists(searchResults);
     }
-//TODO: kolla om det här fuickar upp skiten
+
     public void setAccountObservableLists(ArrayList<Account> activeList) {
         accountObservableLists = FXCollections.observableArrayList(activeList);
         accountsTable.setEditable(true);
@@ -122,7 +123,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     }
 
     @FXML
-    public void logout(ActionEvent e) {
+    public void logout(ActionEvent e) throws SQLException, ClassNotFoundException {
         Logout.logoutUser();
     }
 

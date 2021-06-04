@@ -18,6 +18,9 @@ public class DBConnection {
         }
         return instance;
     }
+    public static void setInstance(){
+        instance = null;
+    }
 
     public static Connection getC() {
         return c;

@@ -1,5 +1,7 @@
 package MonkeLogic.databasemethods;
 
+import MonkeLogic.controllers.SessionManager;
+import MonkeLogic.dto.Account;
 import MonkeLogic.dto.SecurityQuestion;
 import MonkeLogic.dto.User;
 
@@ -24,8 +26,13 @@ public class DBInsert {
 
     private DBInsert() {
     }
+    public static void setInstance(){
+        instance = null;
+    }
+
     //endregion
 
+    //Todo: Check if the initialstart is used or not.
     public static void InitialStart() {
 
         c = DBConnection.getC();
@@ -41,7 +48,6 @@ public class DBInsert {
             c.commit();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
         System.out.println("Records created successfully");
     }
@@ -83,5 +89,48 @@ public class DBInsert {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         System.out.println("Records created successfully");
+    }
+
+    public static void saveAccInfo(Account account) {
+        c = DBConnection.getC();
+        Statement stmt = null;
+        try {
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            String sql = "INSERT INTO ACCOUNT (USERID, EMPLOYEE, WEBSITE, USERNAME, PASSWORD) " +
+                    "VALUES ('" + SessionManager.getActiveUser().getUserID() + "', '"
+                    + SessionManager.getActiveUser().getUsername() + "', '"
+                    + account.getWebsite() + "', '"
+                    + account.getUsername() + "', '"
+                    + account.getPassword() + "');";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.commit();
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        System.out.println("Records created successfully");
+    }
+
+    public static void saveSecurityQuestion(SecurityQuestion securityQuestion) {
+        c = DBConnection.getC();
+        Statement stmt = null;
+        try {
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            //TODO: Fixa till detta
+            String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
+                    "VALUES ('" + securityQuestion.getUserID() + "', '"
+                    + securityQuestion.getQuestionNr() + "', '"
+                    + securityQuestion.getAnswer() + "');";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.commit();
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        System.out.println("Security question linked to account");
     }
 }
