@@ -1,5 +1,7 @@
 package MonkeLogic.controllers;
 
+import MonkeLogic.databasemethods.DBInsert;
+import MonkeLogic.dto.EncryptedString;
 import MonkeLogic.encryption.AdvancedDecrypter;
 import MonkeLogic.encryption.AdvancedEncrypter;
 
@@ -40,7 +42,7 @@ public class CryptKeeper {
     //endregion
 
     //region This Paragraph randomizes Key and Salt for the Encryption
-    public static String enCrypt(String strToEncrypt) {
+    public static String initEncrypt(String strToEncrypt) {
         Random rng = new Random();
         int keyMax = secretKeys.size();
         int saltsMax = salts.size();
@@ -51,6 +53,7 @@ public class CryptKeeper {
         String secretKey = secretKeys.get(rngKey);
         String salt = salts.get(rngSalt);
 
+        DBInsert.initEncrypt(new EncryptedString(rngKey, rngSalt));
         return AdvancedEncrypter.encrypt(strToEncrypt, secretKey, salt);
     }
     //endregion
@@ -64,5 +67,8 @@ public class CryptKeeper {
 
     }
     //endregion
+
+    public static String enCrypt (){
+    }
 
 }
