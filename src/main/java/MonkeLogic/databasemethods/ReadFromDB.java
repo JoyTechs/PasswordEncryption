@@ -1,5 +1,6 @@
 package MonkeLogic.databasemethods;
 
+import MonkeLogic.controllers.CryptKeeper;
 import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.Account;
 import MonkeLogic.dto.User;
