@@ -20,8 +20,8 @@ public class StartUp {
 
     public StartUp() throws SQLException, ClassNotFoundException {
         DBConnection.getInstance();
-        ReadFromDB.getInstance();
         CreateTable.getInstance();
+        ReadFromDB.getInstance();
         DBInsert.getInstance();
         DBUpdate.getInstance();
         DBSelect.getInstance();

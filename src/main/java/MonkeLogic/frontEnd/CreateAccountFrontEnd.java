@@ -61,6 +61,7 @@ public class CreateAccountFrontEnd implements Initializable {
 
     //region Sets SceneManager on Init
     private SceneManager sceneManager;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();

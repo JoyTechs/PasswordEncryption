@@ -1,6 +1,5 @@
 package MonkeLogic.databasemethods;
 
-
 import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.Account;
 import MonkeLogic.dto.User;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 
 public class ReadFromDB {
 
-
     private static Connection c = null;
     private static PreparedStatement statement = null;
     private static ResultSet resultSet = null;
@@ -23,7 +21,6 @@ public class ReadFromDB {
     private static ReadFromDB instance;
 
     private ReadFromDB() {
-
     }
 
     public static ReadFromDB getInstance() {
@@ -31,6 +28,9 @@ public class ReadFromDB {
             instance = new ReadFromDB();
         }
         return instance;
+    }
+    public static void setInstance(){
+        instance = null;
     }
     //endregion
 
@@ -65,12 +65,11 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return null;
     }
 
-    //TODO: kolla om det är här problemet ligger.
     public static ArrayList<Account> getAccountsAdmin() {
 
         c = DBConnection.getC();
@@ -96,7 +95,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return tempList;
     }
@@ -127,7 +126,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return tempList;
     }
@@ -155,7 +154,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return false;
     }

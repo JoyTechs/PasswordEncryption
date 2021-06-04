@@ -195,6 +195,7 @@ public class SceneManager {
 
     private void answerSecurityQuestionScene() {
         try {
+            System.out.println("Hej");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/AnswerSecurityQuestion.fxml"));
             scene.setRoot(loader.load());
             primaryStage.setScene(scene);

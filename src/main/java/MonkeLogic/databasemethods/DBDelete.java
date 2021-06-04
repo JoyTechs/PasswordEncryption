@@ -20,6 +20,9 @@ public class DBDelete {
 
     private DBDelete() {
     }
+    public static void setInstance(){
+        instance = null;
+    }
     //endregion
 
     public static void Delete() {
