@@ -34,7 +34,7 @@ public class DBInsert {
 
     //Todo: Check if the initialstart is used or not.
     //Todo: Chech so it only inserts one time and not everytime the program is used
-    public static void InitialStart() {
+    public static void initialStart() {
 
         c = DBConnection.getC();
 
@@ -55,7 +55,7 @@ public class DBInsert {
 
     //Todo: add methods for adding new Users, Security Questions and Accounts
 
-    public static void AddSecurityQuestion(SecurityQuestion securityQuestion) {
+    public static void addSecurityQuestion(SecurityQuestion securityQuestion) {
 
         try {
             statement = c.createStatement();
@@ -71,7 +71,7 @@ public class DBInsert {
         System.out.println("Records created successfully");
     }
 
-    public static void CreateNewUser(User user) throws SQLException {
+    public static void createNewUser(User user) throws SQLException {
         c = DBConnection.getC();
         Statement stmt = null;
         try {
