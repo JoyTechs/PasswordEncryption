@@ -29,7 +29,8 @@ public class ReadFromDB {
         }
         return instance;
     }
-    public static void setInstance(){
+
+    public static void setInstance() {
         instance = null;
     }
     //endregion
@@ -69,6 +70,7 @@ public class ReadFromDB {
         }
         return null;
     }
+
     public static User validationOfUsername(String username) {
 
         c = DBConnection.getC();
@@ -88,6 +90,42 @@ public class ReadFromDB {
                     System.out.println("That username already exist! ");
                     user = new User(resultSet.getString("USERNAME"));
                     return user;
+                }
+            }
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return null;
+    }
+
+    public static User lockForAdmin(User user) {
+
+        c = DBConnection.getC();
+
+        try {
+            String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
+            statement = c.prepareStatement(query);
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+                count = count + 1;
+                System.out.println(count);
+
+                if (count == 1) {
+                    System.out.println("Username and password is correct");
+                    user = new User(Integer.parseInt(
+                            resultSet.getString("ID")),
+                            resultSet.getString("USERNAME"),
+                            resultSet.getString("PASSWORD"),
+                            resultSet.getString("CLEARANCELEVEL"));
+                    return user;
+                } else {
+                    System.out.println("Username and password is incorrect");
                 }
             }
             statement.close();

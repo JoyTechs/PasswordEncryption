@@ -27,7 +27,7 @@ public class CreateUserBackEnd {
         if (user.getUsername().equals(newUser.getUsername())){
             System.out.println("Please try again! ");
         } else {
-            DBInsert.CreateNewUser(user);
+            DBInsert.createNewUser(user);
         }
     }
 }

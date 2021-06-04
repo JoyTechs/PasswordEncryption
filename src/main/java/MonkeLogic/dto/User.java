@@ -10,6 +10,10 @@ public class User {
     //endregion
 
     //region Constructors
+
+    public User() {
+    }
+
     public User(int userID, String username, String password, String clearanceLevel) {
         this.userID = userID;
         this.username = username;
