@@ -33,6 +33,7 @@ public class DBInsert {
     //endregion
 
     //Todo: Check if the initialstart is used or not.
+    //Todo: Chech so it only inserts one time and not everytime the program is used
     public static void InitialStart() {
 
         c = DBConnection.getC();
@@ -41,7 +42,7 @@ public class DBInsert {
             c.setAutoCommit(false);
             statement = c.createStatement();
             String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL, HASSECURITYQUESTION) " +
-                    "VALUES ('Admin', 'FirstStart', 'ADMIN', '" + true + "')";
+                    "VALUES ('Admin', 'FirstStart', 'Admin', '" + true + "')";
             statement.executeUpdate(sql);
 
             statement.close();
@@ -73,7 +74,6 @@ public class DBInsert {
     public static void CreateNewUser(User user) throws SQLException {
         c = DBConnection.getC();
         Statement stmt = null;
-
         try {
             c.setAutoCommit(false);
             stmt = c.createStatement();

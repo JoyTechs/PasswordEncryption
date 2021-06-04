@@ -34,7 +34,7 @@ public class ReadFromDB {
     }
     //endregion
 
-    public static User readFromDbToLoginIn(String username, String password) {
+    public static User readFromDBToLogin(String username, String password) {
 
         c = DBConnection.getC();
 
@@ -60,6 +60,34 @@ public class ReadFromDB {
                     return user;
                 } else {
                     System.out.println("Username and password is incorrect");
+                }
+            }
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return null;
+    }
+    public static User readFromDB(String username) {
+
+        c = DBConnection.getC();
+
+        try {
+            String query = "SELECT * FROM USERS WHERE USERNAME = ?";
+            statement = c.prepareStatement(query);
+            statement.setString(1, username);
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+                count = count + 1;
+                System.out.println(count);
+
+                if (count == 1) {
+                    System.out.println("That username already exist! ");
+                    user = new User(resultSet.getString("USERNAME"));
+                    return user;
                 }
             }
             statement.close();

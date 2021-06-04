@@ -27,6 +27,10 @@ public class User {
         this.password = password;
         this.clearanceLevel = clearanceLevel;
     }
+
+    public User(String username) {
+        this.username = username;
+    }
     //endregion
 
     //region Setters
