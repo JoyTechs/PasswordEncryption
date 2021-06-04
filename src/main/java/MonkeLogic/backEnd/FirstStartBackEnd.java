@@ -29,7 +29,7 @@ public class FirstStartBackEnd {
     public static void addAdmin(String username, String password) {
         sceneManager = SceneManager.getInstance();
         DBUpdate.Update(new User(username, password));
-        User activeUser = ReadFromDB.readFromDbToLoginIn(username, password);
+        User activeUser = ReadFromDB.readFromDBToLogin(username, password);
         if (activeUser != null) {
             SessionManager.setActiveUser(activeUser);
             sceneManager.showAccountsAdmin();
