@@ -76,7 +76,7 @@ public class CreateUserFrontEnd implements Initializable {
             }
             sceneManager.createAccount();
         } else if (!isStringNull(username) && !isStringNull(password)) {
-            createUserBackEnd.CreateNewUser(new User(username, password, clearanceLevelString));
+            createUserBackEnd.createNewUser(new User(username, password, clearanceLevelString));
         }
     }
 

@@ -69,7 +69,7 @@ public class ReadFromDB {
         }
         return null;
     }
-    public static User readFromDB(String username) {
+    public static User validationOfUsername(String username) {
 
         c = DBConnection.getC();
 
