@@ -3,6 +3,7 @@ package MonkeLogic.backEnd;
 import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.databasemethods.DBConnection;
 import MonkeLogic.dto.Account;
+import MonkeLogic.dto.SecurityQuestion;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -32,8 +33,10 @@ public class CreateAccountBackEnd {
         try {
             c.setAutoCommit(false);
             stmt = c.createStatement();
-            String sql = "INSERT INTO ACCOUNT (WEBSITE, USERNAME, PASSWORD) " +
-                    "VALUES ('" + account.getWebsite() + "', '"
+            String sql = "INSERT INTO ACCOUNT (USERID,EMPLOYEE,WEBSITE, USERNAME, PASSWORD) " +
+                    "VALUES ('" + SessionManager.getActiveUser().getUserID() + "', '"
+                    + SessionManager.getActiveUser().getUsername() + "', '"
+                    + account.getWebsite() + "', '"
                     + account.getUsername() + "', '"
                     + account.getPassword() + "');";
             stmt.executeUpdate(sql);
@@ -55,7 +58,7 @@ public class CreateAccountBackEnd {
             //TODO: Fixa till detta
             String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
                     "VALUES ('" + securityQuestion.getUserID() + "', '"
-                    + securityQuestion.getQuestion() + "', '"
+                    + securityQuestion.getQuestionNr() + "', '"
                     + securityQuestion.getAnswer() + "');";
             stmt.executeUpdate(sql);
 
