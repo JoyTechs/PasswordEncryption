@@ -7,6 +7,7 @@ public class User {
     private String username;
     private String password;
     private String clearanceLevel;
+    private Boolean hasSecurityQuestion;
     //endregion
 
     //region Constructors
@@ -27,6 +28,15 @@ public class User {
         this.password = password;
         this.clearanceLevel = clearanceLevel;
     }
+
+    public User(int userID, String username, String password, String clearanceLevel, Boolean hasSecurityQuestion) {
+        this.userID = userID;
+        this.username = username;
+        this.password = password;
+        this.clearanceLevel = clearanceLevel;
+        this.hasSecurityQuestion = hasSecurityQuestion;
+    }
+
     //endregion
 
     //region Setters

@@ -45,7 +45,7 @@ public class CreateUserFrontEnd implements Initializable {
 
     //region Sets SceneManager on Init
     private SceneManager sceneManager;
-    private static CreateUserBackEnd createUserBackEnd = CreateUserBackEnd.getInstance();
+    private static final CreateUserBackEnd createUserBackEnd = CreateUserBackEnd.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,7 +74,7 @@ public class CreateUserFrontEnd implements Initializable {
             if (isStringNull(password)) {
                 isPasswordNull = true;
             }
-            sceneManager.createAccount();
+
         } else if (!isStringNull(username) && !isStringNull(password)) {
             createUserBackEnd.CreateNewUser(new User(username, password, clearanceLevelString));
         }

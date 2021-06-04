@@ -164,21 +164,22 @@ public class ReadFromDB {
         c = DBConnection.getC();
 
         try {
-            String query = "SELECT * FROM SECURITY_QUESTIONS WHERE USERID = ?, QUESTION = ?, ANSWER = ?";
+            String query = "SELECT * FROM SECURITY_QUESTIONS WHERE USERID = ? and QUESTION = ? and ANSWER = ?";
             statement = c.prepareStatement(query);
-            statement.setString(1, String.valueOf(securityQuestion.getUserID()));
-            statement.setString(2, String.valueOf(securityQuestion.getQuestionNr()));
+            statement.setInt(1, securityQuestion.getUserID());
+            statement.setInt(2, securityQuestion.getQuestionNr());
             statement.setString(3, securityQuestion.getAnswer());
 
             resultSet = statement.executeQuery();
             int count = 0;
             while (resultSet.next()) {
                 count = count + 1;
+                if (count == 1) {
+                    return true;
+                } else {
+                }
             }
-            if (count == 1) {
-                return true;
-            } else {
-            }
+
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
@@ -187,7 +188,7 @@ public class ReadFromDB {
         return false;
     }
 
-    public static String getUserIDfromUsername(String username) {
+    public static int getUserIDFromUsername(String username) {
 
         c = DBConnection.getC();
 
@@ -203,8 +204,12 @@ public class ReadFromDB {
                 System.out.println(count);
 
                 if (count == 1) {
-                    System.out.println("Username and password is correct");
-                    String userID = resultSet.getString("ID");
+                    int userID = resultSet.getInt("ID");
+                    SessionManager.setActiveUser(new User(resultSet.getInt("ID"),
+                            resultSet.getString("USERNAME"),
+                            resultSet.getString("PASSWORD"),
+                            resultSet.getString("CLEARANCELEVEL"),
+                            resultSet.getBoolean("HASSECURITYQUESTION")));
                     return userID;
                 } else {
                     System.out.println("Username and password is incorrect");
@@ -215,6 +220,6 @@ public class ReadFromDB {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return null;
+        return -1;
     }
 }

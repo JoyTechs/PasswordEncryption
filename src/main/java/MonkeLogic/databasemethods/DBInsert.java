@@ -59,7 +59,9 @@ public class DBInsert {
         try {
             statement = c.createStatement();
             String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
-                    "VALUES ('" + securityQuestion.getUserID() + "', '" + securityQuestion.getQuestionNr() + "', '" + securityQuestion.getAnswer() + "')";
+                    "VALUES ('" + securityQuestion.getUserID() + "', '"
+                    + securityQuestion.getQuestionNr() + "', '"
+                    + securityQuestion.getAnswer() + "')";
             statement.executeUpdate(sql);
 
             statement.close();
