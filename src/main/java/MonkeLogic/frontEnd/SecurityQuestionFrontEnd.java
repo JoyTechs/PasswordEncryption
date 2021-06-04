@@ -23,7 +23,10 @@ public class SecurityQuestionFrontEnd implements Initializable {
     @FXML
     private Button submitAnswer;
 
-    private final ObservableList<String> securityQuestions = FXCollections.observableArrayList("Where were you born?", "What was your first car?", "Where did you go to Middle School?");
+    private final ObservableList<String> securityQuestions = FXCollections.observableArrayList(
+            "Where were you born?",
+            "What was your first car?",
+            "Where did you go to Middle School?");
 
     private SceneManager sceneManager;
 
@@ -42,7 +45,8 @@ public class SecurityQuestionFrontEnd implements Initializable {
         if (securityQuestionsListView.getSelectionModel().isEmpty()) {
             //show warning
         } else {
-            SecurityQuestionBackEnd.setUsersSecurityQuestion(securityAnswer.getText(), securityQuestionsListView.getSelectionModel().getSelectedIndex());
+            SecurityQuestionBackEnd.setUsersSecurityQuestion(securityAnswer.getText(),
+                    securityQuestionsListView.getSelectionModel().getSelectedIndex());
         }
     }
 
