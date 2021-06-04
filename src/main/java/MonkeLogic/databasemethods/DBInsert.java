@@ -1,7 +1,6 @@
 package MonkeLogic.databasemethods;
 
 import MonkeLogic.dto.SecurityQuestion;
-
 import MonkeLogic.dto.User;
 
 import java.sql.Connection;
@@ -34,8 +33,8 @@ public class DBInsert {
         try {
             c.setAutoCommit(false);
             statement = c.createStatement();
-            String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL) " +
-                    "VALUES ('Admin', 'FirstStart', 'ADMIN')";
+            String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL, HASSECURITYQUESTION) " +
+                    "VALUES ('Admin', 'FirstStart', 'ADMIN', '" + true + "')";
             statement.executeUpdate(sql);
 
             statement.close();

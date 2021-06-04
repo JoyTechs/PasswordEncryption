@@ -65,11 +65,12 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return null;
     }
 
+    //TODO: kolla om det är här problemet ligger.
     public static ArrayList<Account> getAccountsAdmin() {
 
         c = DBConnection.getC();
@@ -95,7 +96,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return tempList;
     }
@@ -126,7 +127,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return tempList;
     }
@@ -154,7 +155,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return false;
     }
