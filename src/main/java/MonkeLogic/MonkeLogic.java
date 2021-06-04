@@ -1,5 +1,5 @@
 package MonkeLogic;
-
+//TODO Fixa så att Website är åt rätt håll
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.controllers.StartUp;
 import MonkeLogic.databasemethods.ReadFromDB;

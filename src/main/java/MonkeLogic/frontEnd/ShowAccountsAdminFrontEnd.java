@@ -77,7 +77,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     public void setSearchResults() {
         setAccountObservableLists(searchResults);
     }
-
+//TODO: kolla om det här fuickar upp skiten
     public void setAccountObservableLists(ArrayList<Account> activeList) {
         accountObservableLists = FXCollections.observableArrayList(activeList);
         accountsTable.setEditable(true);

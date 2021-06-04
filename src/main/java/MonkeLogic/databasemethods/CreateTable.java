@@ -1,11 +1,11 @@
 package MonkeLogic.databasemethods;
 
 import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class CreateTable {
-    private static Connection c = null;
+    private static final Connection c = null;
 
     private static CreateTable instance;
 
@@ -17,19 +17,25 @@ public class CreateTable {
     }
 
     private CreateTable() {
+        CreateTable();
     }
 
     public static void CreateTable() {
-        c = DBConnection.getC();
+        Connection c = null;
         Statement stmt = null;
+
         try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:MonkeLogic.db");
+            System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS USERS " +
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL ," +
                     " USERNAME             TEXT         NOT NULL , " +
                     " PASSWORD             TEXT         NOT NULL ," +
-                    " CLEARANCELEVEL       TEXT         NOT NULL )";
+                    " CLEARANCELEVEL       TEXT         NOT NULL ," +
+                    " HASSECURITYQUESTION  BOOLEAN      NOT NULL )";
             stmt.executeUpdate(sql);
 
             stmt = c.createStatement();
@@ -46,36 +52,30 @@ public class CreateTable {
             String sql3 = "CREATE TABLE IF NOT EXISTS SECURITY_QUESTIONS " +
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
                     " USERID           INTEGER        NOT NULL," +
-                    " QUESTION         TEXT           NOT NULL, " +
+                    " QUESTION         INTEGER        NOT NULL, " +
                     " ANSWER           TEXT           NOT NULL)";
             stmt.executeUpdate(sql3);
 
             stmt = c.createStatement();
             String sql4 = "CREATE TABLE IF NOT EXISTS SECURITY_KEYS " +
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
-                    " KEY           INTEGER     NOT NULL," +
-                    "FOREIGN KEY(ID) REFERENCES USERS(ID))";
+                    " USERID        INTEGER     NOT NULL, " +
+                    " KEY           INTEGER     NOT NULL)";
             stmt.executeUpdate(sql4);
 
             stmt = c.createStatement();
-            String sql5 = "CREATE TABLE IF NOT EXISTS LEAGUE_OF_LEGENDS " +
+            String sql5 = "CREATE TABLE IF NOT EXISTS SALTS " +
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
+                    " USERID      INTEGER     NOT NULL, " +
                     " SECRETKEY   INTEGER     NOT NULL, " +
-                    " SALT        INTEGER     NOT NULL," +
-                    "FOREIGN KEY(ID) REFERENCES USERS(ID))";
+                    " SALT        INTEGER     NOT NULL)";
             stmt.executeUpdate(sql5);
 
-            //TODO: Avgöra om USERID behövs här
-            stmt = c.createStatement();
-            String sql6 = "CREATE TABLE IF NOT EXISTS LIST_OF_SECURITY_QUESTIONS " +
-                    "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
-//                    " USERID            INTEGER         NOT NULL," +
-                    " QUESTION          TEXT            NOT NULL)";
-            stmt.executeUpdate(sql6);
-
             stmt.close();
-        } catch (SQLException e) {
+            c.close();
+        } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
         System.out.println("Table created successfully");
     }

@@ -3,9 +3,6 @@ package MonkeLogic.controllers;
 
 import MonkeLogic.databasemethods.*;
 import MonkeLogic.methods.Logout;
-import MonkeLogic.databasemethods.CreateTable;
-import MonkeLogic.databasemethods.DBConnection;
-import MonkeLogic.databasemethods.ReadFromDB;
 
 import java.sql.SQLException;
 
@@ -29,6 +26,7 @@ public class StartUp {
         DBUpdate.getInstance();
         DBSelect.getInstance();
         DBDelete.getInstance();
+        DBInsert.InitialStart();
         System.out.println("ReadFromDB.getInstance has Started");
         SceneManager.getInstance();
         //TODO: ta bort // från denna raden CreateUserBackEnd.getInstance();
