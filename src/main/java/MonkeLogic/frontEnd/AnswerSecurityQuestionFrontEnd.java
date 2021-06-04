@@ -1,6 +1,9 @@
 package MonkeLogic.frontEnd;
 
+import MonkeLogic.backEnd.AnswerSecurityQuestionBackEnd;
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.databasemethods.ReadFromDB;
+import MonkeLogic.dto.SecurityQuestion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +27,10 @@ public class AnswerSecurityQuestionFrontEnd implements Initializable {
     @FXML
     private Button submitAnswer;
 
+    private String username;
+    private int question;
+    private String answer;
+
     private final ObservableList<String> securityQuestions = FXCollections.observableArrayList("Where were you born?", "What was your first car?", "Where did you go to Middle School?");
 
     //region Sets SceneManager on Init
@@ -42,6 +49,11 @@ public class AnswerSecurityQuestionFrontEnd implements Initializable {
 
     @FXML
     public void submitAnswer(ActionEvent e) throws Exception {
+
+        username = usernameInpt.getText();
+        question = usersQuestion.getSelectionModel().getSelectedIndex();
+        answer = usersAnswer.getText();
+        AnswerSecurityQuestionBackEnd.checkAnswer(new SecurityQuestion(Integer.parseInt(ReadFromDB.getUserIDfromUsername(username)), question, answer));
 
     }
 }

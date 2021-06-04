@@ -15,7 +15,6 @@ public class SecurityQuestion {
         this.answer = answer;
     }
 
-    //TODO: Check Which Setters & Getters are Necessary.
     //region Getters
     public int getUserID() {
         return userID;

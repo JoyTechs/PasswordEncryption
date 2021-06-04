@@ -10,7 +10,8 @@
         <TextField fx:id="usernameInpt" layoutX="186.0" layoutY="224.0" prefHeight="25.0" prefWidth="227.0"/>
         <Label layoutX="144.0" layoutY="267.0" text="Answer:"/>
         <TextField fx:id="usersAnswer" layoutX="186.0" layoutY="263.0" prefHeight="25.0" prefWidth="227.0"/>
-        <Button fx:id="submitAnswer" layoutX="413.0" layoutY="315.0" mnemonicParsing="false" text="Submit"/>
+        <Button fx:id="submitAnswer" layoutX="413.0" layoutY="315.0" mnemonicParsing="false" text="Submit"
+                onAction="#submitAnswer"/>
     </children>
 
 
