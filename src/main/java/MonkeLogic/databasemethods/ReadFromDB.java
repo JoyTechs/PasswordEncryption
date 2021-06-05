@@ -2,7 +2,9 @@ package MonkeLogic.databasemethods;
 
 import MonkeLogic.controllers.CryptKeeper;
 import MonkeLogic.controllers.SessionManager;
-import MonkeLogic.dto.*;
+import MonkeLogic.dto.Account;
+import MonkeLogic.dto.SecurityQuestion;
+import MonkeLogic.dto.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,7 +45,7 @@ public class ReadFromDB {
             String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
             statement = c.prepareStatement(query);
             statement.setString(1, username);
-            statement.setString(2, CryptKeeper.deCrypt(password));
+            statement.setString(2, CryptKeeper.enCrypt(password));
 
             resultSet = statement.executeQuery();
             int count = 0;
@@ -109,7 +111,7 @@ public class ReadFromDB {
             String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
             statement = c.prepareStatement(query);
             statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
+            statement.setString(2, CryptKeeper.enCrypt(user.getPassword()));
 
             resultSet = statement.executeQuery();
             int count = 0;
@@ -205,7 +207,7 @@ public class ReadFromDB {
             String query = "SELECT * FROM USERS WHERE ID = 1 and USERNAME = ? and PASSWORD = ?";
             statement = c.prepareStatement(query);
             statement.setString(1, "Admin");
-            statement.setString(2, "FirstStart");
+            statement.setString(2, CryptKeeper.enCrypt("FirstStart"));
 
             resultSet = statement.executeQuery();
             int count = 0;
@@ -234,7 +236,7 @@ public class ReadFromDB {
             statement = c.prepareStatement(query);
             statement.setInt(1, securityQuestion.getUserID());
             statement.setInt(2, securityQuestion.getQuestionNr());
-            statement.setString(3, securityQuestion.getAnswer());
+            statement.setString(3, CryptKeeper.enCrypt(securityQuestion.getAnswer()));
 
             resultSet = statement.executeQuery();
             int count = 0;
@@ -288,66 +290,6 @@ public class ReadFromDB {
             System.out.println(e);
         }
         return -1;
-    }
-
-    public static int getLastAddedUserID() {
-
-        c = DBConnection.getC();
-
-        try {
-            String query = "SELECT * FROM USERS WHERE USERNAME = ? LIMIT 0,1";
-            statement = c.prepareStatement(query);
-            statement.setString(1, UserEncryption.getInstance().getNewUser().getUsername());
-
-            resultSet = statement.executeQuery();
-            int count = 0;
-            while (resultSet.next()) {
-                count = count + 1;
-                System.out.println(count);
-
-                if (count == 1) {
-                    int userID = resultSet.getInt("ID");
-                    return userID;
-                } else {
-                    System.out.println("Username and password is incorrect");
-                }
-            }
-            statement.close();
-            resultSet.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return -1;
-    }
-
-    public static SaltAndKey getSaltsAndKeys(int userID) {
-
-        c = DBConnection.getC();
-
-        try {
-            String query = "SELECT * FROM SALTS WHERE USERID = ? LIMIT 0,1";
-            statement = c.prepareStatement(query);
-            statement.setString(1, String.valueOf(userID));
-
-            resultSet = statement.executeQuery();
-            int count = 0;
-            while (resultSet.next()) {
-                count = count + 1;
-                System.out.println(count);
-
-                if (count == 1) {
-
-                    return new SaltAndKey(resultSet.getInt("SALT"), resultSet.getInt("SECRETKEY"));
-                } else {
-                    System.out.println("Username and password is incorrect");
-                }
-            }
-            statement.close();
-            resultSet.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return null;
     }
 
 }
