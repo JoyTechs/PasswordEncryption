@@ -1,5 +1,6 @@
 package MonkeLogic.databasemethods;
 
+import MonkeLogic.controllers.CryptKeeper;
 import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.Account;
 import MonkeLogic.dto.SecurityQuestion;
@@ -44,7 +45,7 @@ public class ReadFromDB {
             String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
             statement = c.prepareStatement(query);
             statement.setString(1, username);
-            statement.setString(2, password);
+            statement.setString(2, CryptKeeper.enCrypt(password));
 
             resultSet = statement.executeQuery();
             int count = 0;
@@ -57,8 +58,10 @@ public class ReadFromDB {
                     user = new User(Integer.parseInt(
                             resultSet.getString("ID")),
                             resultSet.getString("USERNAME"),
-                            resultSet.getString("PASSWORD"),
-                            resultSet.getString("CLEARANCELEVEL"));
+                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD")),
+                            resultSet.getString("CLEARANCELEVEL"),
+                            resultSet.getBoolean("HASSECURITYQUESTION"));
+                    System.out.println(user);
                     return user;
                 } else {
                     System.out.println("Username and password is incorrect");
@@ -108,7 +111,7 @@ public class ReadFromDB {
             String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
             statement = c.prepareStatement(query);
             statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
+            statement.setString(2, CryptKeeper.enCrypt(user.getPassword()));
 
             resultSet = statement.executeQuery();
             int count = 0;
@@ -121,7 +124,7 @@ public class ReadFromDB {
                     user = new User(Integer.parseInt(
                             resultSet.getString("ID")),
                             resultSet.getString("USERNAME"),
-                            resultSet.getString("PASSWORD"),
+                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD")),
                             resultSet.getString("CLEARANCELEVEL"));
                     return user;
                 } else {
@@ -154,7 +157,7 @@ public class ReadFromDB {
                         resultSet.getString("WEBSITE"),
                         resultSet.getString("EMPLOYEE"),
                         resultSet.getString("USERNAME"),
-                        resultSet.getString("PASSWORD"));
+                        CryptKeeper.deCrypt(resultSet.getString("PASSWORD")));
                 tempList.add(tempAccount);
 
             }
@@ -185,7 +188,7 @@ public class ReadFromDB {
                         resultSet.getString("WEBSITE"),
                         resultSet.getString("EMPLOYEE"),
                         resultSet.getString("USERNAME"),
-                        resultSet.getString("PASSWORD"));
+                        CryptKeeper.deCrypt(resultSet.getString("PASSWORD")));
                 tempList.add(tempAccount);
 
             }
@@ -204,7 +207,7 @@ public class ReadFromDB {
             String query = "SELECT * FROM USERS WHERE ID = 1 and USERNAME = ? and PASSWORD = ?";
             statement = c.prepareStatement(query);
             statement.setString(1, "Admin");
-            statement.setString(2, "FirstStart");
+            statement.setString(2, CryptKeeper.enCrypt("FirstStart"));
 
             resultSet = statement.executeQuery();
             int count = 0;
@@ -233,7 +236,7 @@ public class ReadFromDB {
             statement = c.prepareStatement(query);
             statement.setInt(1, securityQuestion.getUserID());
             statement.setInt(2, securityQuestion.getQuestionNr());
-            statement.setString(3, securityQuestion.getAnswer());
+            statement.setString(3, CryptKeeper.enCrypt(securityQuestion.getAnswer()));
 
             resultSet = statement.executeQuery();
             int count = 0;
@@ -270,9 +273,10 @@ public class ReadFromDB {
 
                 if (count == 1) {
                     int userID = resultSet.getInt("ID");
-                    SessionManager.setActiveUser(new User(resultSet.getInt("ID"),
+                    SessionManager.setActiveUser(new User(
+                            userID,
                             resultSet.getString("USERNAME"),
-                            resultSet.getString("PASSWORD"),
+                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD")),
                             resultSet.getString("CLEARANCELEVEL"),
                             resultSet.getBoolean("HASSECURITYQUESTION")));
                     return userID;
@@ -287,4 +291,5 @@ public class ReadFromDB {
         }
         return -1;
     }
+
 }

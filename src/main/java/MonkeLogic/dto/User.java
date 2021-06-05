@@ -42,6 +42,13 @@ public class User {
         this.hasSecurityQuestion = hasSecurityQuestion;
     }
 
+    public User(String username, String password, String clearanceLevel, Boolean hasSecurityQuestion) {
+        this.username = username;
+        this.password = password;
+        this.clearanceLevel = clearanceLevel;
+        this.hasSecurityQuestion = hasSecurityQuestion;
+    }
+
     public User(String username) {
         this.username = username;
     }
@@ -59,6 +66,11 @@ public class User {
     public void setHasSecurityQuestion(Boolean hasSecurityQuestion) {
         this.hasSecurityQuestion = hasSecurityQuestion;
     }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
     //endregion
 
     //region Getters

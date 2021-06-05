@@ -2,7 +2,7 @@ package MonkeLogic.controllers;
 
 
 import MonkeLogic.databasemethods.*;
-import MonkeLogic.dto.User;
+import MonkeLogic.dto.UserEncryption;
 import MonkeLogic.methods.Logout;
 
 import java.sql.SQLException;
@@ -20,6 +20,8 @@ public class StartUp {
     }
 
     public StartUp() throws SQLException, ClassNotFoundException {
+        CryptKeeper.getInstance();
+        UserEncryption.getInstance();
         DBConnection.getInstance();
         CreateTable.getInstance();
         ReadFromDB.getInstance();
@@ -27,7 +29,7 @@ public class StartUp {
         DBUpdate.getInstance();
         DBSelect.getInstance();
         DBDelete.getInstance();
-
+        /*
         User user = new User();
         user = ReadFromDB.lookForAdmin(user);
         if (user == null){
@@ -36,6 +38,8 @@ public class StartUp {
             DBInsert.initialStart();
         }
 
+         */
+        //DBInsert.initialStart();
         System.out.println("ReadFromDB.getInstance has Started");
         SceneManager.getInstance();
         //TODO: ta bort // från denna raden CreateUserBackEnd.getInstance();
@@ -45,8 +49,8 @@ public class StartUp {
         System.out.println("ChosenAccountForEdit.getInstance has Started");
         SessionManager.getInstance();
         System.out.println("SessionManager.getInstance has Started");
-        CryptKeeper.getInstance();
         System.out.println("CryptKeeper.getInstance has Started");
+        UserEncryption.getInstance();
 
     }
 }
