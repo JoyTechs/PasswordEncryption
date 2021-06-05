@@ -112,7 +112,7 @@ public class EditAccountInfoFrontEnd implements Initializable {
         }
         if (noErrors().equals(true)) {
             //Todo: implement Saving the updated account details.
-            EditAccountInfoBackEnd.editAccount(website, username, password);
+            EditAccountInfoBackEnd.editAccount(new Account(website, username, password));
         }
     }
 
@@ -186,5 +186,4 @@ public class EditAccountInfoFrontEnd implements Initializable {
                 && !invalidCharacterPassword.isVisible();
     }
     //endregion
-
 }

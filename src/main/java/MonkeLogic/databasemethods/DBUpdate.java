@@ -1,5 +1,6 @@
 package MonkeLogic.databasemethods;
 
+import MonkeLogic.controllers.ChosenAccountForEdit;
 import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.User;
 
@@ -31,7 +32,7 @@ public class DBUpdate {
     }
     //endregion
 
-    public static void Update(User user) {
+    public static void updateUser(User user) {
 
         c = DBConnection.getC();
 
@@ -42,6 +43,30 @@ public class DBUpdate {
             statement = c.prepareStatement(query);
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
+
+            statement.executeUpdate();
+
+            c.commit();
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        System.out.println("Operation done successfully");
+    }
+
+    public static void updateAccount(String website, String username, String password) {
+
+        c = DBConnection.getC();
+
+        try {
+            c.setAutoCommit(false);
+
+            String query = "UPDATE ACCOUNT SET WEBSITE = ? , USERNAME = ?, PASSWORD = ? WHERE ID = ?";
+            statement = c.prepareStatement(query);
+            statement.setString(1, website);
+            statement.setString(2, username);
+            statement.setString(3, password);
+            statement.setInt(4, ChosenAccountForEdit.getChosenAccount().getUserId());
 
             statement.executeUpdate();
 

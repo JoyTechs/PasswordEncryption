@@ -68,7 +68,8 @@ public class CryptKeeper {
     }
     //endregion
 
-    public static String enCrypt() {
+    public static String enCrypt (){
+        return null;
     }
 
 }

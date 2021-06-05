@@ -1,6 +1,8 @@
 package MonkeLogic.backEnd;
 
 import MonkeLogic.controllers.ChosenAccountForEdit;
+import MonkeLogic.controllers.CryptKeeper;
+import MonkeLogic.databasemethods.DBUpdate;
 import MonkeLogic.dto.Account;
 
 public class EditAccountInfoBackEnd {
@@ -19,13 +21,13 @@ public class EditAccountInfoBackEnd {
     }
     //endregion
 
-    public static void editAccount(String website, String username, String password) {
+    public static void editAccount(Account account) {
+        DBUpdate.updateAccount(account.getWebsite(),account.getUsername(),account.getPassword());
+        account = ChosenAccountForEdit.getChosenAccount();
 
-        Account account = ChosenAccountForEdit.getChosenAccount();
-
-        account.setWebsite(website);
-        account.setUsername(username);
-        account.setPassword(password);
+        account.setWebsite(account.getWebsite());
+        account.setUsername(account.getUsername());
+        account.setPassword(account.getPassword());
         ChosenAccountForEdit.setChosenAccount(account);
 
         //Todo: implement save function for this
