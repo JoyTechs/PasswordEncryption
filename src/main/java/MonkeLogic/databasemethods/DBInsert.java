@@ -5,7 +5,6 @@ import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.Account;
 import MonkeLogic.dto.SecurityQuestion;
 import MonkeLogic.dto.User;
-import MonkeLogic.dto.UserEncryption;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -43,14 +42,12 @@ public class DBInsert {
             c.setAutoCommit(false);
             statement = c.createStatement();
             String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL, HASSECURITYQUESTION) " +
-                    "VALUES ('Admin', '" + CryptKeeper.initEncrypt("FirstStart") + "', 'Admin', '" + true + "')";
+                    "VALUES ('Admin', '" + CryptKeeper.enCrypt("FirstStart") + "', 'Admin', '" + true + "')";
             statement.executeUpdate(sql);
 
             statement.close();
             c.commit();
-            UserEncryption.getInstance().setNewUser(new User("Admin", "FirstStart", "Admin", true));
-            UserEncryption.getInstance().getNewUser().setUserID(1);
-            DBInitEncrypt();
+
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -67,14 +64,11 @@ public class DBInsert {
             String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
                     "VALUES ('" + securityQuestion.getUserID() + "'," +
                     " '" + securityQuestion.getQuestionNr() + "', " +
-                    "'" + CryptKeeper.enCrypt(securityQuestion.getAnswer(), securityQuestion.getUserID()) + "')";
+                    "'" + CryptKeeper.enCrypt(securityQuestion.getAnswer()) + "')";
             statement.executeUpdate(sql);
 
             statement.close();
             c.commit();
-            UserEncryption.getInstance().setNewUser(null);
-            UserEncryption.getInstance().getNewUser().setUserID(securityQuestion.getUserID());
-
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -90,15 +84,14 @@ public class DBInsert {
             stmt = c.createStatement();
             String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL, HASSECURITYQUESTION) " +
                     "VALUES ('" + user.getUsername() + "', '"
-                    + CryptKeeper.initEncrypt(user.getPassword()) + "', '"
+                    + CryptKeeper.enCrypt(user.getPassword()) + "', '"
                     + user.getClearanceLevel() + "', '"
                     + user.getHasSecurityQuestion() + "');";
             stmt.executeUpdate(sql);
 
             stmt.close();
             c.commit();
-            UserEncryption.getInstance().setNewUser(user);
-            UserEncryption.getInstance().getNewUser().setUserID(ReadFromDB.getLastAddedUserID());
+
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -117,7 +110,7 @@ public class DBInsert {
                     + SessionManager.getActiveUser().getUsername() + "', '"
                     + account.getWebsite() + "', '"
                     + account.getUsername() + "', '"
-                    + CryptKeeper.enCrypt(account.getPassword(), SessionManager.getActiveUser().getUserID()) + "');";
+                    + CryptKeeper.enCrypt(account.getPassword()) + "');";
             System.out.println(sql);
             stmt.executeUpdate(sql);
 
@@ -140,36 +133,16 @@ public class DBInsert {
             String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
                     "VALUES ('" + securityQuestion.getUserID() + "', '"
                     + securityQuestion.getQuestionNr() + "', '"
-                    + CryptKeeper.enCrypt(securityQuestion.getAnswer(), securityQuestion.getUserID()) + "');";
+                    + CryptKeeper.enCrypt(securityQuestion.getAnswer()) + "');";
             System.out.println(sql);
             stmt.executeUpdate(sql);
 
             stmt.close();
             c.commit();
-            UserEncryption.getInstance().setNewUser(SessionManager.getActiveUser());
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         System.out.println("Security question linked to account");
     }
 
-    public static void DBInitEncrypt() {
-        c = DBConnection.getC();
-        Statement stmt = null;
-        try {
-            statement = c.createStatement();
-            String sql = "INSERT INTO SALTS (USERID, SECRETKEY, SALT) " +
-                    "VALUES ('" + UserEncryption.getInstance().getNewUser().getUserID() + "'," +
-                    " '" + UserEncryption.getInstance().getSecretKey() + "', " +
-                    "'" + UserEncryption.getInstance().getSalt() + "')";
-            statement.executeUpdate(sql);
-
-            statement.close();
-            c.commit();
-
-        } catch (SQLException e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
-        System.out.println("Encryption values assigned to user");
-    }
 }

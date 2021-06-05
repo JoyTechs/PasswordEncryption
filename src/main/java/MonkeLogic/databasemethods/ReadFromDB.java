@@ -43,7 +43,7 @@ public class ReadFromDB {
             String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
             statement = c.prepareStatement(query);
             statement.setString(1, username);
-            statement.setString(2, CryptKeeper.deCrypt(password, ReadFromDB.getUserIDFromUsername(username)));
+            statement.setString(2, CryptKeeper.deCrypt(password));
 
             resultSet = statement.executeQuery();
             int count = 0;
@@ -56,7 +56,7 @@ public class ReadFromDB {
                     user = new User(Integer.parseInt(
                             resultSet.getString("ID")),
                             resultSet.getString("USERNAME"),
-                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD"), resultSet.getInt("ID")),
+                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD")),
                             resultSet.getString("CLEARANCELEVEL"),
                             resultSet.getBoolean("HASSECURITYQUESTION"));
                     System.out.println(user);
@@ -122,7 +122,7 @@ public class ReadFromDB {
                     user = new User(Integer.parseInt(
                             resultSet.getString("ID")),
                             resultSet.getString("USERNAME"),
-                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD"), resultSet.getInt("ID")),
+                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD")),
                             resultSet.getString("CLEARANCELEVEL"));
                     return user;
                 } else {
@@ -155,7 +155,7 @@ public class ReadFromDB {
                         resultSet.getString("WEBSITE"),
                         resultSet.getString("EMPLOYEE"),
                         resultSet.getString("USERNAME"),
-                        CryptKeeper.deCrypt(resultSet.getString("PASSWORD"), resultSet.getInt("ID")));
+                        CryptKeeper.deCrypt(resultSet.getString("PASSWORD")));
                 tempList.add(tempAccount);
 
             }
@@ -186,7 +186,7 @@ public class ReadFromDB {
                         resultSet.getString("WEBSITE"),
                         resultSet.getString("EMPLOYEE"),
                         resultSet.getString("USERNAME"),
-                        CryptKeeper.deCrypt(resultSet.getString("PASSWORD"), resultSet.getInt("ID")));
+                        CryptKeeper.deCrypt(resultSet.getString("PASSWORD")));
                 tempList.add(tempAccount);
 
             }
@@ -274,7 +274,7 @@ public class ReadFromDB {
                     SessionManager.setActiveUser(new User(
                             userID,
                             resultSet.getString("USERNAME"),
-                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD"), userID),
+                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD")),
                             resultSet.getString("CLEARANCELEVEL"),
                             resultSet.getBoolean("HASSECURITYQUESTION")));
                     return userID;
