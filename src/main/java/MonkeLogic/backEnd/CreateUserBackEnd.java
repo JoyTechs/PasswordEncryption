@@ -24,8 +24,8 @@ public class CreateUserBackEnd {
     }
 
     public void createNewUser(User user) throws SQLException {
-        User newUser = ReadFromDB.validationOfUsername(user.getUsername());
-        if (user.getUsername().equals(newUser.getUsername())){
+
+        if (ReadFromDB.validationOfUsername(user.getUsername())) {
             System.out.println("Please try again! ");
         } else {
             DBInsert.createNewUser(user);

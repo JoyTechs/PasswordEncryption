@@ -72,7 +72,7 @@ public class ReadFromDB {
         return null;
     }
 
-    public static User validationOfUsername(String username) {
+    public static Boolean validationOfUsername(String username) {
 
         c = DBConnection.getC();
 
@@ -88,9 +88,8 @@ public class ReadFromDB {
                 System.out.println(count);
 
                 if (count == 1) {
-                    System.out.println("That username already exist! ");
-                    user = new User(resultSet.getString("USERNAME"));
-                    return user;
+                    System.out.println("That username already exists! ");
+                    return true;
                 }
             }
             statement.close();
@@ -98,10 +97,10 @@ public class ReadFromDB {
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
-        return null;
+        return false;
     }
 
-    public static User lockForAdmin(User user) {
+    public static User lookForAdmin(User user) {
 
         c = DBConnection.getC();
 

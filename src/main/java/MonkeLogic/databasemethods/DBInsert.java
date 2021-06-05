@@ -81,10 +81,11 @@ public class DBInsert {
         try {
             c.setAutoCommit(false);
             stmt = c.createStatement();
-            String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL) " +
-                    "VALUES ('" + CryptKeeper.initEncrypt(user.getUsername()) + "', '"
+            String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL, HASSECURITYQUESTION) " +
+                    "VALUES ('" + user.getUsername() + "', '"
                     + CryptKeeper.initEncrypt(user.getPassword()) + "', '"
-                    + user.getClearanceLevel() + "');";
+                    + user.getClearanceLevel() + "', '"
+                    + user.getHasSecurityQuestion() + "');";
             stmt.executeUpdate(sql);
 
             stmt.close();

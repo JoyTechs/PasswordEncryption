@@ -29,7 +29,7 @@ public class StartUp {
         DBDelete.getInstance();
 
         User user = new User();
-        user = ReadFromDB.lockForAdmin(user);
+        user = ReadFromDB.lookForAdmin(user);
         if (user == null){
             System.out.println("Not First Start");
         } else {
