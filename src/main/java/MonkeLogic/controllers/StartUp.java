@@ -2,6 +2,7 @@ package MonkeLogic.controllers;
 
 
 import MonkeLogic.databasemethods.*;
+import MonkeLogic.dto.User;
 import MonkeLogic.methods.Logout;
 
 import java.sql.SQLException;
@@ -26,7 +27,15 @@ public class StartUp {
         DBUpdate.getInstance();
         DBSelect.getInstance();
         DBDelete.getInstance();
-        DBInsert.InitialStart();
+
+        User user = new User();
+        user = ReadFromDB.lockForAdmin(user);
+        if (user == null) {
+            System.out.println("Not First Start");
+        } else {
+            DBInsert.initialStart();
+        }
+
         System.out.println("ReadFromDB.getInstance has Started");
         SceneManager.getInstance();
         //TODO: ta bort // från denna raden CreateUserBackEnd.getInstance();

@@ -1,5 +1,7 @@
 package MonkeLogic.dto;
 
+import MonkeLogic.controllers.SessionManager;
+
 public class EncryptedString {
 
     //TODO: Use This for Encryption/Decryption
@@ -13,6 +15,16 @@ public class EncryptedString {
         this.encryptedString = encryptedString;
         this.secretKey = secretKey;
         this.salt = salt;
+    }
+
+    public EncryptedString(int secretKey, int salt) {
+        this.secretKey = secretKey;
+        this.salt = salt;
+    }
+
+    //TODO: Se över denna
+    public EncryptedString() {
+        SessionManager.getActiveUser().getUserID();
     }
 
     //region Setters

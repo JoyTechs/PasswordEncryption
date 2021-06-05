@@ -30,6 +30,6 @@ public class Logout {
         DBUpdate.getInstance();
         DBSelect.getInstance();
         DBDelete.getInstance();
-        DBInsert.InitialStart();
+        DBInsert.initialStart();
     }
 }

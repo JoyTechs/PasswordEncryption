@@ -11,6 +11,10 @@ public class User {
     //endregion
 
     //region Constructors
+
+    public User() {
+    }
+
     public User(int userID, String username, String password, String clearanceLevel) {
         this.userID = userID;
         this.username = username;
@@ -37,6 +41,10 @@ public class User {
         this.hasSecurityQuestion = hasSecurityQuestion;
     }
 
+
+    public User(String username) {
+        this.username = username;
+    }
     //endregion
 
     //region Setters

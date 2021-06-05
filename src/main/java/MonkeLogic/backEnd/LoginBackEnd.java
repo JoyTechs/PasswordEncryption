@@ -31,7 +31,7 @@ public class LoginBackEnd {
     public LoginBackEnd(String usernameInput, String passwordInput, LoginFrontEnd loginFrontEnd2) {
         sceneManager = SceneManager.getInstance();
         loginFrontEnd = loginFrontEnd2;
-        activeUser = ReadFromDB.readFromDbToLoginIn(usernameInput, passwordInput);
+        activeUser = ReadFromDB.readFromDBToLogin(usernameInput, passwordInput);
 
         if (activeUser != null) {
             loginAttempts = 0;

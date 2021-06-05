@@ -1,12 +1,10 @@
 package MonkeLogic.backEnd;
 
-import MonkeLogic.databasemethods.DBConnection;
 import MonkeLogic.databasemethods.DBInsert;
+import MonkeLogic.databasemethods.ReadFromDB;
 import MonkeLogic.dto.User;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class CreateUserBackEnd {
 
@@ -24,8 +22,13 @@ public class CreateUserBackEnd {
     private CreateUserBackEnd() {
     }
 
-    public void CreateNewUser(User user) throws SQLException {
-        DBInsert.CreateNewUser(user);
+    public void createNewUser(User user) throws SQLException {
+        User newUser = ReadFromDB.validationOfUsername(user.getUsername());
+        if (user.getUsername().equals(newUser.getUsername())) {
+            System.out.println("Please try again! ");
+        } else {
+            DBInsert.createNewUser(user);
+        }
     }
 }
 
