@@ -23,8 +23,7 @@
         <Button fx:id="createAccount" layoutX="385.0" layoutY="360.0" mnemonicParsing="false" onAction="#createAccount"
                 text="Create Account"/>
         <Button fx:id="editAccount" layoutX="502.0" layoutY="360.0" mnemonicParsing="false"
-                onAction="#editChosenAccount"
-                text="Edit Account"/>
+                onAction="#editChosenAccount" text="Edit Account"/>
         <Label fx:id="editWarning" layoutX="130.0" layoutY="39.0" text="You Must Select an Account In order to Edit"/>
     </children>
 </AnchorPane>

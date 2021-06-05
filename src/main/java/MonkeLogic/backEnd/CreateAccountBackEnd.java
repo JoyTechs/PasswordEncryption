@@ -3,18 +3,16 @@ package MonkeLogic.backEnd;
 import MonkeLogic.databasemethods.DBInsert;
 import MonkeLogic.dto.Account;
 
-import java.sql.Connection;
-
 public class CreateAccountBackEnd {
 
     //region Creates a Singleton
-    private static CreateAccountBackEnd createAccountBackEnd;
+    private static CreateAccountBackEnd instance;
 
     public static CreateAccountBackEnd getInstance() {
-        if (createAccountBackEnd == null) {
-            createAccountBackEnd = new CreateAccountBackEnd();
+        if (instance == null) {
+            instance = new CreateAccountBackEnd();
         }
-        return createAccountBackEnd;
+        return instance;
     }
 
     private CreateAccountBackEnd() {

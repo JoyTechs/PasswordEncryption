@@ -1,5 +1,6 @@
 package MonkeLogic.databasemethods;
 
+import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.User;
 
 import java.sql.Connection;
@@ -53,5 +54,28 @@ public class DBUpdate {
         System.out.println("Operation done successfully");
     }
 
+    public static void updatePassword(String newPassword) {
+        c = DBConnection.getC();
+
+        try {
+            c.setAutoCommit(false);
+
+            String query = "UPDATE USERS SET PASSWORD = ?  WHERE ID = ?";
+            statement = c.prepareStatement(query);
+            statement.setString(1, newPassword);
+            statement.setInt(2, SessionManager.getActiveUser().getUserID());
+            statement.executeUpdate();
+
+
+            c.commit();
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        System.out.println("Operation done successfully");
+    }
+
+
     //TODO: Add Update for Account.
+
 }

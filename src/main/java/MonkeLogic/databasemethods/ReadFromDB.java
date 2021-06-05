@@ -2,6 +2,7 @@ package MonkeLogic.databasemethods;
 
 import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.Account;
+import MonkeLogic.dto.SecurityQuestion;
 import MonkeLogic.dto.User;
 
 import java.sql.Connection;
@@ -65,7 +66,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return null;
     }
@@ -95,7 +96,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return tempList;
     }
@@ -108,7 +109,7 @@ public class ReadFromDB {
         try {
             String query = "SELECT * FROM ACCOUNT WHERE ID = ?";
             statement = c.prepareStatement(query);
-            statement.setString(1, String.valueOf(user.getUserID()));
+            statement.setString(1, String.valueOf(SessionManager.getActiveUser().getUserID()));
 
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -126,7 +127,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return tempList;
     }
@@ -154,8 +155,71 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return false;
+    }
+
+    public static Boolean getSecurityQuestion(SecurityQuestion securityQuestion) {
+        c = DBConnection.getC();
+
+        try {
+            String query = "SELECT * FROM SECURITY_QUESTIONS WHERE USERID = ? and QUESTION = ? and ANSWER = ?";
+            statement = c.prepareStatement(query);
+            statement.setInt(1, securityQuestion.getUserID());
+            statement.setInt(2, securityQuestion.getQuestionNr());
+            statement.setString(3, securityQuestion.getAnswer());
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+                count = count + 1;
+                if (count == 1) {
+                    return true;
+                } else {
+                }
+            }
+
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public static int getUserIDFromUsername(String username) {
+
+        c = DBConnection.getC();
+
+        try {
+            String query = "SELECT * FROM USERS WHERE USERNAME = ? LIMIT 0,1";
+            statement = c.prepareStatement(query);
+            statement.setString(1, username);
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+                count = count + 1;
+                System.out.println(count);
+
+                if (count == 1) {
+                    int userID = resultSet.getInt("ID");
+                    SessionManager.setActiveUser(new User(resultSet.getInt("ID"),
+                            resultSet.getString("USERNAME"),
+                            resultSet.getString("PASSWORD"),
+                            resultSet.getString("CLEARANCELEVEL"),
+                            resultSet.getBoolean("HASSECURITYQUESTION")));
+                    return userID;
+                } else {
+                    System.out.println("Username and password is incorrect");
+                }
+            }
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return -1;
     }
 }

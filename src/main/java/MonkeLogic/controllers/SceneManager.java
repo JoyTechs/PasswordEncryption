@@ -94,6 +94,10 @@ public class SceneManager {
         answerSecurityQuestionScene();
     }
 
+    public void resetPassword() {
+        resetPasswordScene();
+    }
+
 
     //endregion
 
@@ -216,7 +220,7 @@ public class SceneManager {
             mediaView.fitWidthProperty().bind(primaryStage.widthProperty());
             mediaView.fitHeightProperty().bind(primaryStage.heightProperty());
             mediaPlayer.setVolume(0.3);
-            mediaPlayer.setStopTime(Duration.seconds(30));
+            mediaPlayer.setStopTime(Duration.seconds(3));
             mediaPlayer.setOnEndOfMedia(() -> {
                 mediaView.setVisible(false);
                 answerSecurityQuestion();
@@ -230,6 +234,19 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
+
+    private void resetPasswordScene() {
+        try {
+            System.out.println("Reset Password");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MonkeLogic/ResetPassword.fxml"));
+            scene.setRoot(loader.load());
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     //endregion
 
 
