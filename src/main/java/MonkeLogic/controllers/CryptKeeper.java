@@ -1,7 +1,8 @@
 package MonkeLogic.controllers;
 
-import MonkeLogic.databasemethods.DBInsert;
-import MonkeLogic.dto.EncryptedString;
+import MonkeLogic.databasemethods.ReadFromDB;
+import MonkeLogic.dto.SaltAndKey;
+import MonkeLogic.dto.UserEncryption;
 import MonkeLogic.encryption.AdvancedDecrypter;
 import MonkeLogic.encryption.AdvancedEncrypter;
 
@@ -13,6 +14,9 @@ public class CryptKeeper {
     //region Lists Containing the Keys and Salts for Crypto
     private static final List<String> secretKeys = new ArrayList<>();
     private static final List<String> salts = new ArrayList<>();
+    private static int usedKey;
+    private static int usedSalt;
+
     //endregion
 
     //region Singleton
@@ -53,23 +57,33 @@ public class CryptKeeper {
         String secretKey = secretKeys.get(rngKey);
         String salt = salts.get(rngSalt);
 
-        DBInsert.initEncrypt(new EncryptedString(rngKey, rngSalt));
+        UserEncryption.getInstance().setSecretKey(rngKey);
+        UserEncryption.getInstance().setSalt(rngSalt);
+
         return AdvancedEncrypter.encrypt(strToEncrypt, secretKey, salt);
     }
     //endregion
 
     //region This Paragraph fetches the Key and Salt used for the encrypted String
-    public static String deCrypt(String strToDecrypt, int usedKey, int usedSalt) {
-        String secretKey = secretKeys.get(usedKey);
-        String salt = salts.get(usedSalt);
+    public static String deCrypt(String strToDecrypt, int userID) {
+
+        SaltAndKey saltAndKey = ReadFromDB.getSaltsAndKeys(userID);
+
+        String secretKey = secretKeys.get(saltAndKey.getKey());
+        String salt = salts.get(saltAndKey.getSalt());
 
         return AdvancedDecrypter.decrypt(strToDecrypt, secretKey, salt);
 
     }
     //endregion
 
-    public static String enCrypt (){
-        return null;
+    public static String enCrypt(String strToEncrypt, int userID) {
+
+        SaltAndKey saltAndKey = ReadFromDB.getSaltsAndKeys(userID);
+
+        String secretKey = secretKeys.get(saltAndKey.getKey());
+        String salt = secretKeys.get(saltAndKey.getSalt());
+        return AdvancedEncrypter.encrypt(strToEncrypt, secretKey, salt);
     }
 
 }

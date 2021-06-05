@@ -1,9 +1,8 @@
 package MonkeLogic.databasemethods;
 
+import MonkeLogic.controllers.CryptKeeper;
 import MonkeLogic.controllers.SessionManager;
-import MonkeLogic.dto.Account;
-import MonkeLogic.dto.SecurityQuestion;
-import MonkeLogic.dto.User;
+import MonkeLogic.dto.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,7 +43,7 @@ public class ReadFromDB {
             String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
             statement = c.prepareStatement(query);
             statement.setString(1, username);
-            statement.setString(2, password);
+            statement.setString(2, CryptKeeper.deCrypt(password, ReadFromDB.getUserIDFromUsername(username)));
 
             resultSet = statement.executeQuery();
             int count = 0;
@@ -57,8 +56,10 @@ public class ReadFromDB {
                     user = new User(Integer.parseInt(
                             resultSet.getString("ID")),
                             resultSet.getString("USERNAME"),
-                            resultSet.getString("PASSWORD"),
-                            resultSet.getString("CLEARANCELEVEL"));
+                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD"), resultSet.getInt("ID")),
+                            resultSet.getString("CLEARANCELEVEL"),
+                            resultSet.getBoolean("HASSECURITYQUESTION"));
+                    System.out.println(user);
                     return user;
                 } else {
                     System.out.println("Username and password is incorrect");
@@ -121,7 +122,7 @@ public class ReadFromDB {
                     user = new User(Integer.parseInt(
                             resultSet.getString("ID")),
                             resultSet.getString("USERNAME"),
-                            resultSet.getString("PASSWORD"),
+                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD"), resultSet.getInt("ID")),
                             resultSet.getString("CLEARANCELEVEL"));
                     return user;
                 } else {
@@ -154,7 +155,7 @@ public class ReadFromDB {
                         resultSet.getString("WEBSITE"),
                         resultSet.getString("EMPLOYEE"),
                         resultSet.getString("USERNAME"),
-                        resultSet.getString("PASSWORD"));
+                        CryptKeeper.deCrypt(resultSet.getString("PASSWORD"), resultSet.getInt("ID")));
                 tempList.add(tempAccount);
 
             }
@@ -185,7 +186,7 @@ public class ReadFromDB {
                         resultSet.getString("WEBSITE"),
                         resultSet.getString("EMPLOYEE"),
                         resultSet.getString("USERNAME"),
-                        resultSet.getString("PASSWORD"));
+                        CryptKeeper.deCrypt(resultSet.getString("PASSWORD"), resultSet.getInt("ID")));
                 tempList.add(tempAccount);
 
             }
@@ -270,9 +271,10 @@ public class ReadFromDB {
 
                 if (count == 1) {
                     int userID = resultSet.getInt("ID");
-                    SessionManager.setActiveUser(new User(resultSet.getInt("ID"),
+                    SessionManager.setActiveUser(new User(
+                            userID,
                             resultSet.getString("USERNAME"),
-                            resultSet.getString("PASSWORD"),
+                            CryptKeeper.deCrypt(resultSet.getString("PASSWORD"), userID),
                             resultSet.getString("CLEARANCELEVEL"),
                             resultSet.getBoolean("HASSECURITYQUESTION")));
                     return userID;
@@ -287,4 +289,65 @@ public class ReadFromDB {
         }
         return -1;
     }
+
+    public static int getLastAddedUserID() {
+
+        c = DBConnection.getC();
+
+        try {
+            String query = "SELECT * FROM USERS WHERE USERNAME = ? LIMIT 0,1";
+            statement = c.prepareStatement(query);
+            statement.setString(1, UserEncryption.getInstance().getNewUser().getUsername());
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+                count = count + 1;
+                System.out.println(count);
+
+                if (count == 1) {
+                    int userID = resultSet.getInt("ID");
+                    return userID;
+                } else {
+                    System.out.println("Username and password is incorrect");
+                }
+            }
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return -1;
+    }
+
+    public static SaltAndKey getSaltsAndKeys(int userID) {
+
+        c = DBConnection.getC();
+
+        try {
+            String query = "SELECT * FROM SALTS WHERE USERID = ? LIMIT 0,1";
+            statement = c.prepareStatement(query);
+            statement.setString(1, String.valueOf(userID));
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+                count = count + 1;
+                System.out.println(count);
+
+                if (count == 1) {
+
+                    return new SaltAndKey(resultSet.getInt("SALT"), resultSet.getInt("SECRETKEY"));
+                } else {
+                    System.out.println("Username and password is incorrect");
+                }
+            }
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
 }

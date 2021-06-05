@@ -28,6 +28,7 @@ public class CreateUserBackEnd {
             System.out.println("Please try again! ");
         } else {
             DBInsert.createNewUser(user);
+            DBInsert.DBInitEncrypt();
         }
     }
 }

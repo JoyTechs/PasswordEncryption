@@ -1,6 +1,7 @@
 package MonkeLogic.databasemethods;
 
 import MonkeLogic.controllers.ChosenAccountForEdit;
+import MonkeLogic.controllers.CryptKeeper;
 import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.User;
 
@@ -42,7 +43,7 @@ public class DBUpdate {
             String query = "UPDATE USERS SET USERNAME = ? , PASSWORD = ?  WHERE ID =1";
             statement = c.prepareStatement(query);
             statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
+            statement.setString(2, CryptKeeper.enCrypt(user.getPassword(), 1));
 
             statement.executeUpdate();
 
