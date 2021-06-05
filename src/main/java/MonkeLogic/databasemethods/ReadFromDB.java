@@ -109,7 +109,7 @@ public class ReadFromDB {
         try {
             String query = "SELECT * FROM ACCOUNT WHERE ID = ?";
             statement = c.prepareStatement(query);
-            statement.setString(1, String.valueOf(user.getUserID()));
+            statement.setString(1, String.valueOf(SessionManager.getActiveUser().getUserID()));
 
             resultSet = statement.executeQuery();
             while (resultSet.next()) {

@@ -21,7 +21,6 @@ public class ResetPasswordBackEnd {
     }
     //endregion
 
-
     public static void setNewPassword(String newPassword) {
         DBUpdate.updatePassword(newPassword);
         SessionManager.setActiveUser(null);

@@ -1,5 +1,6 @@
 package MonkeLogic.frontEnd;
 
+import MonkeLogic.controllers.ChosenAccountForEdit;
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.databasemethods.ReadFromDB;
 import MonkeLogic.dto.Account;
@@ -38,6 +39,8 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     private Button searchBtn;
     @FXML
     private Button createAccount;
+    @FXML
+    private Label editWarning;
 
     private static ObservableList<Account> accountObservableLists;
     private static ArrayList<Account> allAccounts;
@@ -50,6 +53,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
+        editWarning.setVisible(false);
         loadAccounts();
     }
     //endregion
@@ -89,7 +93,13 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     //region FXML Methods
     @FXML
     public void editChosenAccount(ActionEvent e) {
-        sceneManager.editAccountInfo();
+        if (accountsTable.getSelectionModel().isEmpty()) {
+            editWarning.setVisible(true);
+        } else {
+            editWarning.setVisible(false);
+            ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
+            sceneManager.editAccountInfo();
+        }
     }
 
     @FXML
@@ -123,7 +133,6 @@ public class ShowAccountsUserFrontEnd implements Initializable {
             }
 
         }
-
 
     }
     //endregion
