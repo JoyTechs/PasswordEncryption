@@ -33,7 +33,6 @@ public class DBInsert {
 
     //endregion
 
-    //Todo: Check if the initialstart is used or not.
     public static void initialStart() {
 
         c = DBConnection.getC();
