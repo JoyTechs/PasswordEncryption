@@ -1,5 +1,7 @@
 package MonkeLogic.backEnd;
 
+import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.databasemethods.DBInsert;
 import MonkeLogic.databasemethods.ReadFromDB;
 import MonkeLogic.dto.User;
@@ -28,7 +30,11 @@ public class CreateUserBackEnd {
             System.out.println("Please try again! ");
         } else {
             DBInsert.createNewUser(user);
-
+            if (SessionManager.getActiveUserClearanceLevel().equals("Admin")) {
+                SceneManager.getInstance().showAccountsAdmin();
+            } else if (SessionManager.getActiveUserClearanceLevel().equals("User")) {
+                SceneManager.getInstance().showAccountsUser();
+            }
         }
     }
 }

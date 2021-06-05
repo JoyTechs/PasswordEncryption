@@ -10,7 +10,9 @@
         <Label layoutX="166.0" layoutY="214.0" text="Answer:"/>
         <TextField fx:id="securityAnswer" layoutX="226.0" layoutY="210.0"/>
         <Button fx:id="submitAnswer" layoutX="375.0" layoutY="285.0" mnemonicParsing="false"
-                text="Submit" onAction="#setUsersSecurityQuestion"/>
+                onAction="#setUsersSecurityQuestion" text="Submit"/>
+        <Label fx:id="warning" layoutX="202.0" layoutY="249.0" text="Question and Answer can't be empty"
+               visible="false"/>
     </children>
 
 </AnchorPane>

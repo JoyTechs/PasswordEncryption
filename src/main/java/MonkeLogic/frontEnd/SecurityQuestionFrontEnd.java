@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -24,6 +25,8 @@ public class SecurityQuestionFrontEnd implements Initializable {
     private TextField securityAnswer;
     @FXML
     private Button submitAnswer;
+    @FXML
+    private Label warning;
 
     private final ObservableList<String> securityQuestions = FXCollections.observableArrayList(
             "Where were you born?",
@@ -45,8 +48,9 @@ public class SecurityQuestionFrontEnd implements Initializable {
     @FXML
     public void setUsersSecurityQuestion(ActionEvent e) throws Exception {
         if (securityQuestionsListView.getSelectionModel().isEmpty()) {
-            //show warning
+            warning.setVisible(true);
         } else {
+            warning.setVisible(false);
             SecurityQuestionBackEnd.setUsersSecurityQuestion(securityAnswer.getText(),
                     securityQuestionsListView.getSelectionModel().getSelectedIndex());
         }

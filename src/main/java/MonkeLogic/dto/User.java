@@ -31,7 +31,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.clearanceLevel = clearanceLevel;
-        this.hasSecurityQuestion = false;
     }
 
     public User(int userID, String username, String password, String clearanceLevel, Boolean hasSecurityQuestion) {

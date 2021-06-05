@@ -55,24 +55,7 @@ public class DBInsert {
 
     //Todo: add methods for adding new Users, Security Questions and Accounts
 
-    public static void addSecurityQuestion(SecurityQuestion securityQuestion) {
 
-        try {
-            //TODO: FIX THIS HSIT
-            statement = c.createStatement();
-            String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
-                    "VALUES ('" + securityQuestion.getUserID() + "'," +
-                    " '" + securityQuestion.getQuestionNr() + "', " +
-                    "'" + CryptKeeper.enCrypt(securityQuestion.getAnswer()) + "')";
-            statement.executeUpdate(sql);
-
-            statement.close();
-            c.commit();
-        } catch (SQLException e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
-        System.out.println("Records created successfully");
-    }
 
     public static void createNewUser(User user) throws SQLException {
         c = DBConnection.getC();
@@ -143,5 +126,4 @@ public class DBInsert {
         }
         System.out.println("Security question linked to account");
     }
-
 }

@@ -111,7 +111,6 @@ public class EditAccountInfoFrontEnd implements Initializable {
             setInvalidPasswordVisibility(true);
         }
         if (noErrors().equals(true)) {
-            //Todo: implement Saving the updated account details.
             EditAccountInfoBackEnd.editAccount(new Account(website, username, password));
         }
     }
