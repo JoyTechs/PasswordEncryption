@@ -32,7 +32,7 @@ public class FirstStartBackEnd {
         User activeUser = ReadFromDB.readFromDBToLogin(username, password);
         if (activeUser != null) {
             SessionManager.setActiveUser(activeUser);
-            sceneManager.showAccountsAdmin();
+            sceneManager.setSecurityQuestion();
         }
     }
 }

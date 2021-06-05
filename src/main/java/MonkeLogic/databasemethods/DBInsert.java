@@ -41,7 +41,7 @@ public class DBInsert {
             c.setAutoCommit(false);
             statement = c.createStatement();
             String sql = "INSERT INTO USERS (USERNAME, PASSWORD, CLEARANCELEVEL, HASSECURITYQUESTION) " +
-                    "VALUES ('Admin', '" + CryptKeeper.enCrypt("FirstStart") + "', 'Admin', '" + true + "')";
+                    "VALUES ('Admin', '" + CryptKeeper.enCrypt("FirstStart") + "', 'Admin', '" + false + "')";
             statement.executeUpdate(sql);
 
             statement.close();
@@ -121,6 +121,7 @@ public class DBInsert {
 
             stmt.close();
             c.commit();
+
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }

@@ -3,6 +3,7 @@ package MonkeLogic.backEnd;
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.databasemethods.DBInsert;
+import MonkeLogic.databasemethods.DBUpdate;
 import MonkeLogic.dto.SecurityQuestion;
 
 public class SecurityQuestionBackEnd {
@@ -27,7 +28,7 @@ public class SecurityQuestionBackEnd {
 
         SecurityQuestion securityQuestion = new SecurityQuestion(SessionManager.getActiveUser().getUserID(), selectedIndex, securityAnswer);
         DBInsert.saveSecurityQuestion(securityQuestion);
-        SessionManager.getActiveUser().setHasSecurityQuestion(true);
+        DBUpdate.updateSecurityQuestion(true);
         if (SessionManager.getActiveUser().getClearanceLevel().equals("Admin")) {
             SceneManager.getInstance().showAccountsAdmin();
         } else if (SessionManager.getActiveUser().getClearanceLevel().equals("User")) {
