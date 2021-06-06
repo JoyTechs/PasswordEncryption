@@ -2,8 +2,9 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.ShowAccountsAdminFrontEnd">
+<AnchorPane maxHeight="400" maxWidth="600" minHeight="400.0" minWidth="600" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="MonkeLogic.frontEnd.ShowAccountsAdminFrontEnd">
     <children>
         <TableView fx:id="accountsTable" layoutY="75.0" prefHeight="275.0" prefWidth="600.0">
             <columns>

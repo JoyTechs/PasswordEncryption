@@ -53,10 +53,6 @@ public class DBInsert {
         System.out.println("Records created successfully");
     }
 
-    //Todo: add methods for adding new Users, Security Questions and Accounts
-
-
-
     public static void createNewUser(User user) throws SQLException {
         c = DBConnection.getC();
         Statement stmt = null;
@@ -111,7 +107,6 @@ public class DBInsert {
         try {
             c.setAutoCommit(false);
             stmt = c.createStatement();
-            //TODO: Fixa till detta
             String sql = "INSERT INTO SECURITY_QUESTIONS (USERID, QUESTION, ANSWER) " +
                     "VALUES ('" + securityQuestion.getUserID() + "', '"
                     + securityQuestion.getQuestionNr() + "', '"

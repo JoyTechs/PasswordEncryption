@@ -7,7 +7,6 @@ import MonkeLogic.frontEnd.AnswerSecurityQuestionFrontEnd;
 
 public class AnswerSecurityQuestionBackEnd {
     private static AnswerSecurityQuestionFrontEnd answerSecurityQuestionFrontEnd;
-    //TODO: add to StartUp
     //region Singleton
     private static AnswerSecurityQuestionBackEnd instance;
 
@@ -21,15 +20,18 @@ public class AnswerSecurityQuestionBackEnd {
 
     private AnswerSecurityQuestionBackEnd() {
     }
+
+    public static void setInstance() {
+        instance = null;
+    }
     //endregion
 
     public static void checkAnswer(SecurityQuestion securityQuestion, AnswerSecurityQuestionFrontEnd frontEnd) {
         answerSecurityQuestionFrontEnd = frontEnd;
         if (ReadFromDB.getSecurityQuestion(securityQuestion) == true) {
             SceneManager.getInstance().resetPassword();
-            //TODO: implement password Reset Scene.
         } else {
-
+            //TODO: add Something to else
         }
     }
 }

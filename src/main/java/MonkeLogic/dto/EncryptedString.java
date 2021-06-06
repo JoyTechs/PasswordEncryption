@@ -21,8 +21,6 @@ public class EncryptedString {
         this.secretKey = secretKey;
         this.salt = salt;
     }
-
-    //TODO: Se över denna
     public EncryptedString() {
         SessionManager.getActiveUser().getUserID();
     }

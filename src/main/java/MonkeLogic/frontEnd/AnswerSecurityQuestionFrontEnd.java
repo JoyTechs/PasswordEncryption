@@ -53,6 +53,7 @@ public class AnswerSecurityQuestionFrontEnd implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
+
         setSecurityQuestionsListView();
         setAllErrorMessages(false);
     }
@@ -65,7 +66,6 @@ public class AnswerSecurityQuestionFrontEnd implements Initializable {
     @FXML
     public void submitAnswer(ActionEvent e) throws Exception {
 
-        //TODO: implement Checks for Null.
         question = usersQuestion.getSelectionModel().getSelectedIndex();
         username = usernameInpt.getText();
         answer = usersAnswer.getText();

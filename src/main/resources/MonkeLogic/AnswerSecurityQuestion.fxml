@@ -5,6 +5,7 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.AnswerSecurityQuestionFrontEnd">
+
     <children>
         <Label layoutX="137.0" layoutY="67.0" text="Answer your Security Question">
             <font>

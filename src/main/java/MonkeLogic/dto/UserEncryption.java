@@ -26,6 +26,10 @@ public class UserEncryption {
         UserEncryption.salt = salt;
     }
 
+    public static void setInstance() {
+        instance = null;
+    }
+
     public User getNewUser() {
         return newUser;
     }

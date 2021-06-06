@@ -10,17 +10,21 @@ public class CryptKeeper {
     //endregion
 
     //region Singleton
-    private static CryptKeeper cryptKeeper;
+    private static CryptKeeper instance;
 
     private CryptKeeper() {
 
     }
 
     public static CryptKeeper getInstance() {
-        if (cryptKeeper == null) {
-            cryptKeeper = new CryptKeeper();
+        if (instance == null) {
+            instance = new CryptKeeper();
         }
-        return cryptKeeper;
+        return instance;
+    }
+
+    public static void setInstance() {
+        instance = null;
     }
     //endregion
 
@@ -37,5 +41,6 @@ public class CryptKeeper {
 
         return AdvancedEncrypter.encrypt(strToEncrypt, secretKey, salt);
     }
+
 
 }
