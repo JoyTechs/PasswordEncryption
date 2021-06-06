@@ -1,5 +1,10 @@
 package MonkeLogic.methods;
 
+import MonkeLogic.backEnd.AnswerSecurityQuestionBackEnd;
+import MonkeLogic.controllers.*;
+import MonkeLogic.databasemethods.*;
+import MonkeLogic.dto.UserEncryption;
+
 import java.sql.SQLException;
 
 public class Logout {
@@ -16,11 +21,29 @@ public class Logout {
 
     private Logout() {
     }
+
+    public static void setInstance() {
+        instance = null;
+    }
     //endregion
 
-    //TODO: Finish Class
     public static void logoutUser() throws SQLException, ClassNotFoundException {
-        //TODO: Set everything in StartUp to Null, then Call StartUp again.
+        CryptKeeper.setInstance();
+        UserEncryption.setInstance();
+        DBConnection.setInstance();
+        CreateTable.setInstance();
+        ReadFromDB.setInstance();
+        DBInsert.setInstance();
+        DBUpdate.setInstance();
+        DBSelect.setInstance();
+        DBDelete.setInstance();
+        SceneManager.setInstance();
+        Logout.setInstance();
+        ChosenAccountForEdit.setInstance();
+        SessionManager.setInstance();
+        UserEncryption.setInstance();
+        AnswerSecurityQuestionBackEnd.setInstance();
 
+        StartUp.getInstance();
     }
 }

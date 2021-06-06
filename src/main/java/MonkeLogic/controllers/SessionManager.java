@@ -17,6 +17,10 @@ public class SessionManager {
         return instance;
     }
 
+    public static void setInstance() {
+        instance = null;
+    }
+
     private SessionManager() {
     }
     //endregion

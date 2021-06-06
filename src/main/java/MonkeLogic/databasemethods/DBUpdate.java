@@ -121,6 +121,4 @@ public class DBUpdate {
         System.out.println("Operation done successfully");
     }
 
-    //TODO: Add Update for Account.
-
 }

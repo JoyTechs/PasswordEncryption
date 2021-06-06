@@ -117,11 +117,10 @@ public class ShowAccountsUserFrontEnd implements Initializable {
 
         ArrayList<Account> temp = new ArrayList<>();
 
-        if (!searchInpt.getText().equals("") || !searchInpt.getText().contains(" ")) {
+        if (!searchInpt.getText().isEmpty() && !searchInpt.getText().isBlank()) {
             for (Account account : allAccounts) {
-                if (account.getWebsite().equals(searchInpt.getText())) {
+                if (account.getWebsite().contains(searchInpt.getText())) {
                     temp.add(account);
-                    System.out.println("added " + account);
                 }
             }
             if (temp.size() <= 0) {
@@ -133,11 +132,10 @@ public class ShowAccountsUserFrontEnd implements Initializable {
             }
 
         } else {
-            loadAccounts();
+            setAccountObservableLists(allAccounts);
         }
 
     }
     //endregion
-
 
 }

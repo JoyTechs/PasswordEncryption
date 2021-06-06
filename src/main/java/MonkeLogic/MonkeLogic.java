@@ -24,6 +24,7 @@ public class MonkeLogic extends Application {
         primaryStage.setTitle("MonkeLogic");
         Scene scene = new Scene(new AnchorPane());
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.setPrimaryStage(primaryStage);
         sceneManager.setScene(scene);

@@ -18,6 +18,10 @@ public class ChosenAccountForEdit {
 
     private ChosenAccountForEdit() {
     }
+
+    public static void setInstance() {
+        instance = null;
+    }
     //endregion
 
     public static void setChosenAccount(Account chosenAccount) {

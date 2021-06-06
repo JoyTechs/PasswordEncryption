@@ -58,6 +58,8 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
+
+
         editWarning.setVisible(false);
         loadAccounts();
     }
@@ -103,11 +105,10 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
 
         ArrayList<Account> temp = new ArrayList<>();
 
-        if (!searchInpt.getText().equals("") || !searchInpt.getText().contains(" ")) {
+        if (!searchInpt.getText().isEmpty() && !searchInpt.getText().isBlank()) {
             for (Account account : allAccounts) {
-                if (account.getWebsite().equals(searchInpt.getText())) {
+                if (account.getWebsite().contains(searchInpt.getText())) {
                     temp.add(account);
-                    System.out.println("added " + account);
                 }
 
             }
@@ -120,7 +121,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
             }
 
         } else {
-            loadAccounts();
+            setAccountObservableLists(allAccounts);
         }
 
     }
