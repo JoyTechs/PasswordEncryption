@@ -44,7 +44,6 @@ public class DBUpdate {
             statement = c.prepareStatement(query);
             statement.setString(1, user.getUsername());
             statement.setString(2, CryptKeeper.enCrypt(user.getPassword()));
-
             statement.executeUpdate();
 
             c.commit();
@@ -68,9 +67,7 @@ public class DBUpdate {
             statement.setString(2, username);
             statement.setString(3, CryptKeeper.enCrypt(password));
             statement.setInt(4, ChosenAccountForEdit.getChosenAccount().getUserId());
-
             statement.executeUpdate();
-
 
             c.commit();
             statement.close();
@@ -91,7 +88,6 @@ public class DBUpdate {
             statement.setString(1, CryptKeeper.enCrypt(newPassword));
             statement.setInt(2, SessionManager.getActiveUser().getUserID());
             statement.executeUpdate();
-
 
             c.commit();
             statement.close();
@@ -120,5 +116,4 @@ public class DBUpdate {
         }
         System.out.println("Operation done successfully");
     }
-
 }
