@@ -38,8 +38,9 @@ public class StartUp {
             DBInsert.initialStart();
         }
 
-         */
-        DBInsert.initialStart();
+        */
+
+        //DBInsert.initialStart();
         System.out.println("ReadFromDB.getInstance has Started");
         SceneManager.getInstance();
         //TODO: ta bort // från denna raden CreateUserBackEnd.getInstance();

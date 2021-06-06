@@ -17,11 +17,13 @@
 
         <Button fx:id="searchBtn" layoutX="540.0" layoutY="35.0" mnemonicParsing="false" onAction="#search"
                 text="Search"/>
-        <Button fx:id="goBack" layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onAction="#logout" text="Logout"/>
-        <Button fx:id="createAccount" layoutX="385.0" layoutY="360.0" mnemonicParsing="false"
-                onAction="#createAccount" text="Create Account"/>
+        <Button fx:id="logout" layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onAction="#logout" text="Logout"/>
+        <Button fx:id="createAccount" layoutX="385.0" layoutY="360.0" mnemonicParsing="false" onAction="#createAccount"
+                text="Create Account"/>
         <Button fx:id="editAccount" layoutX="502.0" layoutY="360.0" mnemonicParsing="false"
                 onAction="#editChosenAccount" text="Edit Account"/>
-        <Label fx:id="editWarning" layoutX="130.0" layoutY="39.0" text="You Must Select an Account In order to Edit"/>
+        <Label fx:id="editWarning" layoutX="130.0" layoutY="39.0" text="You Must Select an Account In order to Edit"
+               visible="false"/>
+        <Label layoutX="385.0" layoutY="14.0" text="Search For Website"/>
     </children>
 </AnchorPane>

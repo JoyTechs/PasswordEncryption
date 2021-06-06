@@ -37,15 +37,15 @@ public class LoginBackEnd {
             loginAttempts = 0;
             SessionManager.setActiveUser(activeUser);
             if (SessionManager.getActiveUser().getHasSecurityQuestion()) {
-                if (activeUser.getClearanceLevel().equals("Admin")) {
+                if (SessionManager.getActiveUserClearanceLevel().equals("Admin")) {
                     sceneManager.showAccountsAdmin();
-                } else {
+                } else if (SessionManager.getActiveUserClearanceLevel().equals("User")) {
                     sceneManager.showAccountsUser();
                 }
             } else if (!SessionManager.getActiveUser().getHasSecurityQuestion()) {
                 sceneManager.setSecurityQuestion();
             }
-        } else {
+        } else if (activeUser == null) {
             loginAttempts++;
             System.out.println(loginAttempts);
             if (loginAttempts >= 3) {
