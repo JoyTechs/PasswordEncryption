@@ -24,7 +24,7 @@ public class DBSelect {
     private DBSelect() {
     }
 
-    public static void setInstance(){
+    public static void setInstance() {
         instance = null;
     }
     //endregion
