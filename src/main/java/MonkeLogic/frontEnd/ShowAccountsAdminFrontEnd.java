@@ -32,7 +32,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     @FXML
     private TableColumn password;
     @FXML
-    private Button goBack;
+    private Button logout;
     @FXML
     private Button editAccount;
     @FXML
@@ -109,6 +109,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
                     temp.add(account);
                     System.out.println("added " + account);
                 }
+
             }
             if (temp.size() <= 0) {
                 System.out.println("No Search Results");
@@ -118,6 +119,8 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
                 setSearchResults();
             }
 
+        } else {
+            loadAccounts();
         }
 
     }

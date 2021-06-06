@@ -1,4 +1,4 @@
-package MonkeLogic;
+package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.ResetPasswordBackEnd;
 import MonkeLogic.controllers.SceneManager;

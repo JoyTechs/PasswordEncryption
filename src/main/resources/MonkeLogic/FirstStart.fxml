@@ -32,7 +32,7 @@
     <Label fx:id="instructionLabel" layoutX="190.0" layoutY="29.0" prefHeight="120.0" prefWidth="220.0"
            text="Create an Admin Account for this Application" textAlignment="CENTER" wrapText="true">
         <font>
-            <Font size="18.0"/>
+            <Font size="24.0"/>
         </font>
     </Label>
 

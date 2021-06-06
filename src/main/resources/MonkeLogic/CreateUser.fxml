@@ -2,16 +2,17 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.CreateUserFrontEnd">
 
 
-    <Label fx:id="userNameLabel" layoutX="137.0" layoutY="163.0" text="Username"/>
+    <Label fx:id="userNameLabel" layoutX="165.0" layoutY="163.0" text="Username:  "/>
     <TextField fx:id="usernameInpt" layoutX="225.0" layoutY="159.0"/>
-    <Label fx:id="passwordLabel" layoutX="140.0" layoutY="213.0" text="Password"/>
+    <Label fx:id="passwordLabel" layoutX="166.0" layoutY="213.0" text="Password:  "/>
 
     <CheckBox fx:id="clearanceLevelCheckBox" layoutX="387.0" layoutY="163.0" mnemonicParsing="false"
-              text="Admin" onAction="#setClearanceLevelCheckBox"/>
+              onAction="#setClearanceLevelCheckBox" text="Admin"/>
 
     <PasswordField fx:id="passwordInpt" layoutX="225.0" layoutY="209.0"/>
     <TextField fx:id="passwordInptVisible" layoutX="225" layoutY="209"/>
@@ -19,7 +20,12 @@
 
     <CheckBox fx:id="showPassword" layoutX="387.0" layoutY="213.0" onAction="#setPasswordVisibility"/>
     <Button fx:id="goBack" layoutX="196.0" layoutY="261.0" onAction="#goBack" text="Go Back"/>
-    <Button fx:id="login" layoutX="325.0" layoutY="261.0" onAction="#createUser" text="Create Account"/>
+    <Button fx:id="login" layoutX="325.0" layoutY="261.0" onAction="#createUser" text="Create User"/>
+    <Label layoutX="236.0" layoutY="67.0" text="Create User">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Label>
 
 
 </AnchorPane>

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.SecurityQuestionFrontEnd">
     <children>
@@ -9,8 +10,15 @@
         <ChoiceBox fx:id="securityQuestionsListView" layoutX="225.0" layoutY="152.0" prefWidth="150.0"/>
         <Label layoutX="166.0" layoutY="214.0" text="Answer:"/>
         <TextField fx:id="securityAnswer" layoutX="226.0" layoutY="210.0"/>
-        <Button fx:id="submitAnswer" layoutX="375.0" layoutY="285.0" mnemonicParsing="false"
-                text="Submit" onAction="#setUsersSecurityQuestion"/>
+        <Button fx:id="submitAnswer" layoutX="270.0" layoutY="266.0" mnemonicParsing="false"
+                onAction="#setUsersSecurityQuestion" text="Confirm"/>
+        <Label fx:id="warning" layoutX="202.0" layoutY="249.0" text="Question and Answer can't be empty"
+               visible="false"/>
+        <Label layoutX="159.0" layoutY="62.0" text="Set Your Security Question">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
     </children>
 
 </AnchorPane>

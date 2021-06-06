@@ -30,7 +30,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     @FXML
     private TableColumn password;
     @FXML
-    private Button goBack;
+    private Button logout;
     @FXML
     private Button editAccount;
     @FXML
@@ -132,6 +132,8 @@ public class ShowAccountsUserFrontEnd implements Initializable {
                 setSearchResults();
             }
 
+        } else {
+            loadAccounts();
         }
 
     }

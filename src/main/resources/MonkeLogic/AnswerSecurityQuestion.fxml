@@ -2,9 +2,15 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.AnswerSecurityQuestionFrontEnd">
     <children>
+        <Label layoutX="137.0" layoutY="67.0" text="Answer your Security Question">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
         <ChoiceBox fx:id="usersQuestion" layoutX="186.0" layoutY="124.0" prefHeight="55.0" prefWidth="227.0"/>
         <Label fx:id="nullQuestion" layoutX="426.0" layoutY="143.0" text="No Question was Chosen" textFill="RED"
                visible="false"/>
@@ -17,9 +23,9 @@
         <Label fx:id="nullAnswer" layoutX="426.0" layoutY="267.0" text="No Answer was put in" textFill="RED"
                visible="false"/>
         <Label fx:id="wrongAnswer" layoutX="426.0" layoutY="267.0" text="Wrong Answer" textFill="RED" visible="false"/>
-        <Label layoutX="130.0" layoutY="228.0" text="Username:"/>
+        <Label layoutX="126.0" layoutY="228.0" text="Username:"/>
         <TextField fx:id="usernameInpt" layoutX="186.0" layoutY="224.0" prefHeight="25.0" prefWidth="227.0"/>
-        <Label layoutX="144.0" layoutY="267.0" text="Answer:"/>
+        <Label layoutX="140.0" layoutY="267.0" text="Answer:"/>
         <TextField fx:id="usersAnswer" layoutX="186.0" layoutY="263.0" prefHeight="25.0" prefWidth="227.0"/>
         <Button fx:id="submitAnswer" layoutX="413.0" layoutY="315.0" mnemonicParsing="false" onAction="#submitAnswer"
                 text="Submit"/>

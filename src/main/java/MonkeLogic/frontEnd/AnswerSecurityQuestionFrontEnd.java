@@ -72,7 +72,6 @@ public class AnswerSecurityQuestionFrontEnd implements Initializable {
 
         if (noErrors() == true) {
             setAllErrorMessages(false);
-            System.out.println("no errors = true");
             AnswerSecurityQuestionBackEnd.checkAnswer(new SecurityQuestion(ReadFromDB.getUserIDFromUsername(username), question, answer), this);
         } else {
             setNullUsername(checkIfNull(username));

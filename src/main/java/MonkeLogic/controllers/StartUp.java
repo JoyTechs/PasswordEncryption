@@ -38,7 +38,8 @@ public class StartUp {
             DBInsert.initialStart();
         }
 
-         */
+        */
+
         //DBInsert.initialStart();
         System.out.println("ReadFromDB.getInstance has Started");
         SceneManager.getInstance();

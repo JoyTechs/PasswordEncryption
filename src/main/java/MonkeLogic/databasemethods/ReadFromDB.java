@@ -175,9 +175,9 @@ public class ReadFromDB {
         Account tempAccount = null;
         ArrayList<Account> tempList = new ArrayList<>();
         try {
-            String query = "SELECT * FROM ACCOUNT WHERE ID = ?";
+            String query = "SELECT * FROM ACCOUNT WHERE USERID = ?";
             statement = c.prepareStatement(query);
-            statement.setString(1, String.valueOf(SessionManager.getActiveUser().getUserID()));
+            statement.setInt(1, SessionManager.getActiveUser().getUserID());
 
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
