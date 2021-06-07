@@ -76,7 +76,7 @@ public class CreateUserFrontEnd implements Initializable {
             }
 
         } else if (!isStringNull(username) && !isStringNull(password)) {
-            createUserBackEnd.createNewUser(new User(username, password, clearanceLevelString));
+            createUserBackEnd.createNewUser(new User(username, password, clearanceLevelString, false));
         }
     }
 

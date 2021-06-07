@@ -4,6 +4,7 @@ import MonkeLogic.encryption.AdvancedDecrypter;
 import MonkeLogic.encryption.AdvancedEncrypter;
 
 public class CryptKeeper {
+
     //region Lists Containing the Keys and Salts for Crypto
     private static final String secretKey = "9gLHTonoaDF";
     private static final String salt = "l4SQCfIvvnv";
