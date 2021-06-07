@@ -18,7 +18,7 @@ public class DeleteAccountBackEnd {
     private DeleteAccountBackEnd() {
     }
 
-    public void deleteAccount(){
-       DBDelete.deleteAccount(ChosenAccountForEdit.getChosenAccount().getId());
+    public void deleteAccount() {
+        DBDelete.deleteAccount(ChosenAccountForEdit.getChosenAccount().getId());
     }
 }

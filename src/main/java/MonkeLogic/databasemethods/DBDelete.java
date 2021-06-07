@@ -20,7 +20,8 @@ public class DBDelete {
 
     private DBDelete() {
     }
-    public static void setInstance(){
+
+    public static void setInstance() {
         instance = null;
     }
     //endregion
@@ -41,7 +42,7 @@ public class DBDelete {
             c.commit();
 
             statement.close();
-            } catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         System.out.println("Operation done successfully");

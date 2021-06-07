@@ -28,7 +28,7 @@ public class DBUpdate {
     private DBUpdate() {
     }
 
-    public static void setInstance(){
+    public static void setInstance() {
         instance = null;
     }
     //endregion

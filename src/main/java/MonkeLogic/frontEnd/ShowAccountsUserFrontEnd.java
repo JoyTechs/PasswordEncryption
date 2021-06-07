@@ -140,7 +140,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
         }
     }
 
-   /* //Todo: Updatera listan efter man har raderat bort något.
+    //Todo: Updatera listan efter man har raderat bort något.
     @FXML
     public void deleteUserAccount(ActionEvent e) {
         if (accountsTable.getSelectionModel().isEmpty()) {
@@ -151,6 +151,6 @@ public class ShowAccountsUserFrontEnd implements Initializable {
             deleteAccounts.deleteAccount();
             loadAccounts();
         }
-    }*/
+    }
     //endregion
 }

@@ -21,7 +21,7 @@ public class CreateTable {
         CreateTable();
     }
 
-    public static void setInstance(){
+    public static void setInstance() {
         instance = null;
     }
 

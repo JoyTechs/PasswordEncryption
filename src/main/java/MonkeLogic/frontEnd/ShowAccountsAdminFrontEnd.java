@@ -156,10 +156,11 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
             sceneManager.editAccountInfo();
         }
     }
+
     //endregion
     //Todo: Updatera listan efter man har raderat bort något.
     @FXML
-    public void deleteAccount(ActionEvent e) throws SQLException{
+    public void deleteAccount(ActionEvent e) throws SQLException {
         if (accountsTable.getSelectionModel().isEmpty()) {
             editWarning.setVisible(true);
         } else {
