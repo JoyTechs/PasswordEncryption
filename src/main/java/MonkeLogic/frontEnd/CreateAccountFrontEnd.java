@@ -1,6 +1,7 @@
 package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.CreateAccountBackEnd;
+import MonkeLogic.backEnd.PasswordGeneratorBackEnd;
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.dto.Account;
@@ -51,6 +52,8 @@ public class CreateAccountFrontEnd implements Initializable {
     private TextField passwordInptTextField;
     @FXML
     private CheckBox showPassword;
+    @FXML
+    private Button generatePassword;
     //endregion
 
     private String website;
@@ -175,4 +178,8 @@ public class CreateAccountFrontEnd implements Initializable {
     }
     //endregion
 
+    @FXML
+    public void generatePassword(ActionEvent e) {
+        passwordInpt.setText(PasswordGeneratorBackEnd.generate());
+    }
 }

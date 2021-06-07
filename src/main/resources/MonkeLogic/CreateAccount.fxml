@@ -30,12 +30,15 @@
     <CheckBox fx:id="showPassword" layoutX="387.0" layoutY="249.0" onAction="#setPasswordVisibility"/>
     <Label fx:id="showPasswordLabel" layoutX="404.0" layoutY="249.0" text="  Show Password"/>
 
-    <Button fx:id="goBack" layoutX="171.0" layoutY="299.0" onAction="#goBack" text="Go Back"/>
-    <Button fx:id="createAccount" layoutX="347.0" layoutY="299.0" onAction="#createAccount" text="Create Account"/>
+    <Button fx:id="goBack" layoutX="171.0" layoutY="317.0" onAction="#goBack" text="Go Back"/>
+    <Button fx:id="createAccount" layoutX="347.0" layoutY="317.0" onAction="#createAccount" text="Create Account"/>
     <Label layoutX="218.0" layoutY="54.0" text="Create Account">
         <font>
             <Font size="24.0"/>
         </font>
     </Label>
+    <Button fx:id="generatePassword" layoutX="242.0" layoutY="280.0" mnemonicParsing="false" text="Generate Password"
+            onAction="#generatePassword"/>
+
 
 </AnchorPane>
