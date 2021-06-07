@@ -1,12 +1,12 @@
 package MonkeLogic.databasemethods;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import MonkeLogic.dto.Account;
+
+import java.sql.*;
 
 public class DBDelete {
     private static Connection c = null;
+    private static PreparedStatement statement = null;
 
     //region Singleton
     private static DBDelete instance;
@@ -25,31 +25,23 @@ public class DBDelete {
     }
     //endregion
 
-    public static void Delete() {
+    public static void deleteAccount(int Id) {
         c = DBConnection.getC();
-        Statement stmt = null;
 
-        //Todo: Edit the sql query so we can input what we want.
+        String sql = "DELETE from ACCOUNT WHERE ID = ?";
+
         try {
             c.setAutoCommit(false);
-            stmt = c.createStatement();
-            String sql = "DELETE from USERS where ID=2;";
-            stmt.executeUpdate(sql);
+
+            statement = c.prepareStatement(sql);
+
+            statement.setInt(1, Id);
+            statement.executeUpdate();
+
             c.commit();
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM USERS;");
-
-            while (rs.next()) {
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-
-                System.out.println("USERNAME = " + username);
-                System.out.println("PASSWORD = " + password);
-                System.out.println();
-            }
-            rs.close();
-            stmt.close();
-        } catch (SQLException e) {
+            statement.close();
+            } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         System.out.println("Operation done successfully");
