@@ -37,13 +37,11 @@ public class Logout {
         DBUpdate.setInstance();
         DBSelect.setInstance();
         DBDelete.setInstance();
-        SceneManager.setInstance();
-        Logout.setInstance();
         ChosenAccountForEdit.setInstance();
         SessionManager.setInstance();
         UserEncryption.setInstance();
         AnswerSecurityQuestionBackEnd.setInstance();
-
         StartUp.getInstance();
+        SceneManager.getInstance().login();
     }
 }

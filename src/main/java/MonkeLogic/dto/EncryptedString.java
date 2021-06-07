@@ -21,6 +21,7 @@ public class EncryptedString {
         this.secretKey = secretKey;
         this.salt = salt;
     }
+
     public EncryptedString() {
         SessionManager.getActiveUser().getUserID();
     }

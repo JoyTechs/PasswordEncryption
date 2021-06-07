@@ -27,7 +27,8 @@ public class DBInsert {
 
     private DBInsert() {
     }
-    public static void setInstance(){
+
+    public static void setInstance() {
         instance = null;
     }
 

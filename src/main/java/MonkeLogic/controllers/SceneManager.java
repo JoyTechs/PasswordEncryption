@@ -214,7 +214,6 @@ public class SceneManager {
     private void memesScene() {
 
         try {
-            //TODO: CHECK WHY THE MEMES AREN'T RANDOMIZING, UPGRADE THEIR RESOLUTION
             MemesFrontEnd memesFrontEnd = new MemesFrontEnd();
             File meme = memesFrontEnd.getMemed();
             Media media = new Media(meme.toURI().toURL().toString());
@@ -223,10 +222,16 @@ public class SceneManager {
             mediaView.fitWidthProperty().bind(primaryStage.widthProperty());
             mediaView.fitHeightProperty().bind(primaryStage.heightProperty());
             mediaPlayer.setVolume(0.3);
-            mediaPlayer.setStopTime(Duration.seconds(30));
+            if (SessionManager.getIsThisElias()) {
+                mediaPlayer.setStopTime(Duration.INDEFINITE);
+            } else {
+                mediaPlayer.setStopTime(Duration.seconds(30));
+            }
+            System.out.println(mediaPlayer.getStopTime());
             mediaPlayer.setOnEndOfMedia(() -> {
                 mediaView.setVisible(false);
                 primaryStage.setFullScreen(false);
+                SessionManager.setIsThisElias(false);
                 answerSecurityQuestion();
             });
             scene = new Scene(new AnchorPane(mediaView));

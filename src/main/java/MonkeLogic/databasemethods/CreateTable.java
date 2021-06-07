@@ -1,7 +1,6 @@
 package MonkeLogic.databasemethods;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -21,7 +20,7 @@ public class CreateTable {
         CreateTable();
     }
 
-    public static void setInstance(){
+    public static void setInstance() {
         instance = null;
     }
 

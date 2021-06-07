@@ -40,7 +40,7 @@ public class StartUp {
 
         */
 
-        //DBInsert.initialStart();
+        DBInsert.initialStart();
         SceneManager.getInstance();
         Logout.getInstance();
         ChosenAccountForEdit.getInstance();

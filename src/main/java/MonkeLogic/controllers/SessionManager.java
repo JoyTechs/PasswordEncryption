@@ -5,7 +5,7 @@ import MonkeLogic.dto.User;
 
 public class SessionManager {
     private static User activeUser;
-
+    private static Boolean isThisElias;
     //region Singleton
     private static SessionManager instance;
 
@@ -35,5 +35,15 @@ public class SessionManager {
 
     public static void setActiveUser(User activeUser) {
         SessionManager.activeUser = activeUser;
+    }
+
+    public static Boolean getIsThisElias() {
+        System.out.println("Is this Elias " + isThisElias);
+        return isThisElias;
+    }
+
+    public static void setIsThisElias(Boolean isThisElias) {
+        System.out.println("Is this Elias " + isThisElias);
+        SessionManager.isThisElias = isThisElias;
     }
 }

@@ -32,7 +32,7 @@ public class LoginBackEnd {
         sceneManager = SceneManager.getInstance();
         loginFrontEnd = loginFrontEnd2;
         activeUser = ReadFromDB.readFromDBToLogin(usernameInput, passwordInput);
-
+        System.out.println(usernameInput);
         if (activeUser != null) {
             loginAttempts = 0;
             SessionManager.setActiveUser(activeUser);
@@ -49,6 +49,10 @@ public class LoginBackEnd {
             loginAttempts++;
             System.out.println(loginAttempts);
             if (loginAttempts >= 3) {
+
+                if (usernameInput.toLowerCase().contains("elias")) {
+                    SessionManager.setIsThisElias(true);
+                }
                 loginAttempts = 0;
                 sceneManager.memes();
             } else {
