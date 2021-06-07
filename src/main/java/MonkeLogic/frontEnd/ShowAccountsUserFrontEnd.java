@@ -1,5 +1,6 @@
 package MonkeLogic.frontEnd;
 
+import MonkeLogic.backEnd.DeleteAccountBackEnd;
 import MonkeLogic.controllers.ChosenAccountForEdit;
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.databasemethods.ReadFromDB;
@@ -40,11 +41,14 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     @FXML
     private Button createAccount;
     @FXML
+    private Button deleteUserAccount;
+    @FXML
     private Label editWarning;
 
     private static ObservableList<Account> accountObservableLists;
     private static ArrayList<Account> allAccounts;
     private static ArrayList<Account> searchResults;
+    private static final DeleteAccountBackEnd deleteAccounts = DeleteAccountBackEnd.getInstance();
     //endregion
 
     //region This happens when the instance is created
@@ -134,8 +138,19 @@ public class ShowAccountsUserFrontEnd implements Initializable {
         } else {
             setAccountObservableLists(allAccounts);
         }
+    }
 
+    //Todo: Updatera listan efter man har raderat bort något.
+    @FXML
+    public void deleteUserAccount(ActionEvent e) {
+        if (accountsTable.getSelectionModel().isEmpty()) {
+            editWarning.setVisible(true);
+        } else {
+            editWarning.setVisible(false);
+            ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
+            deleteAccounts.deleteAccount();
+            loadAccounts();
+        }
     }
     //endregion
-
 }

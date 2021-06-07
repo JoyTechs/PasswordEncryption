@@ -8,7 +8,6 @@ public class DBConnection {
 
     private static Connection c = null;
 
-
     private static DBConnection instance;
 
     public static DBConnection getInstance() throws SQLException, ClassNotFoundException {
@@ -35,6 +34,5 @@ public class DBConnection {
         }
         return c;
     }
-
 
 }

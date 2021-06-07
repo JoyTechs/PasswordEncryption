@@ -70,7 +70,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return null;
     }
@@ -98,21 +98,46 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return false;
     }
 
-    public static User lookForAdmin(User user) {
+    public static Boolean firstStart() {
+        c = DBConnection.getC();
+
+        try {
+            String query = "SELECT * FROM USERS WHERE ID = 1 and USERNAME = ? and PASSWORD = ?";
+            statement = c.prepareStatement(query);
+            statement.setString(1, "Admin");
+            statement.setString(2, CryptKeeper.enCrypt("FirstStart"));
+
+            resultSet = statement.executeQuery();
+            int count = 0;
+            while (resultSet.next()) {
+                count = count + 1;
+            }
+            if (count == 1) {
+                System.out.println("Username and password is correct");
+                return true;
+            } else {
+                System.out.println("Not First Start");
+            }
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return false;
+    }
+
+    public static boolean lookForDefaultAdmin() {
 
         c = DBConnection.getC();
 
         try {
-            String query = "SELECT * FROM USERS WHERE USERNAME = ? and PASSWORD = ? LIMIT 0,1";
+            String query = "SELECT * FROM USERS";
             statement = c.prepareStatement(query);
-            statement.setString(1, user.getUsername());
-            statement.setString(2, CryptKeeper.enCrypt(user.getPassword()));
-
             resultSet = statement.executeQuery();
             int count = 0;
             while (resultSet.next()) {
@@ -120,23 +145,20 @@ public class ReadFromDB {
                 System.out.println(count);
 
                 if (count == 1) {
-                    System.out.println("Username and password is correct");
                     user = new User(Integer.parseInt(
                             resultSet.getString("ID")),
                             resultSet.getString("USERNAME"),
                             CryptKeeper.deCrypt(resultSet.getString("PASSWORD")),
                             resultSet.getString("CLEARANCELEVEL"));
-                    return user;
-                } else {
-                    System.out.println("Username and password is incorrect");
+                    return true;
                 }
             }
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
-        return null;
+        return false;
     }
 
     public static ArrayList<Account> getAccountsAdmin() {
@@ -164,7 +186,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return tempList;
     }
@@ -195,37 +217,9 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return tempList;
-    }
-
-    public static Boolean firstStart() {
-        c = DBConnection.getC();
-
-        try {
-            String query = "SELECT * FROM USERS WHERE ID = 1 and USERNAME = ? and PASSWORD = ?";
-            statement = c.prepareStatement(query);
-            statement.setString(1, "Admin");
-            statement.setString(2, CryptKeeper.enCrypt("FirstStart"));
-
-            resultSet = statement.executeQuery();
-            int count = 0;
-            while (resultSet.next()) {
-                count = count + 1;
-            }
-            if (count == 1) {
-                System.out.println("Username and password is correct");
-                return true;
-            } else {
-                System.out.println("Not First Start");
-            }
-            statement.close();
-            resultSet.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return false;
     }
 
     public static Boolean getSecurityQuestion(SecurityQuestion securityQuestion) {
@@ -251,7 +245,7 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return false;
     }
@@ -287,9 +281,8 @@ public class ReadFromDB {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return -1;
     }
-
 }

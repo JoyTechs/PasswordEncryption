@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.CreateUserFrontEnd">
 
 
-    <Label fx:id="userNameLabel" layoutX="165.0" layoutY="163.0" text="Username:  "/>
-    <TextField fx:id="usernameInpt" layoutX="225.0" layoutY="159.0"/>
+    <Label fx:id="userNameLabel" layoutX="164.0" layoutY="154.0" text="Username:  "/>
+    <TextField fx:id="usernameInpt" layoutX="225.0" layoutY="150.0"/>
     <Label fx:id="passwordLabel" layoutX="166.0" layoutY="213.0" text="Password:  "/>
 
-    <CheckBox fx:id="clearanceLevelCheckBox" layoutX="387.0" layoutY="163.0" mnemonicParsing="false"
+    <CheckBox fx:id="clearanceLevelCheckBox" layoutX="384.0" layoutY="154.0" mnemonicParsing="false"
               onAction="#setClearanceLevelCheckBox" text="Admin"/>
 
     <PasswordField fx:id="passwordInpt" layoutX="225.0" layoutY="209.0"/>
@@ -19,13 +20,19 @@
     <Label fx:id="showPasswordLabel" layoutX="411.0" layoutY="213.0" text="Show Password"/>
 
     <CheckBox fx:id="showPassword" layoutX="387.0" layoutY="213.0" onAction="#setPasswordVisibility"/>
-    <Button fx:id="goBack" layoutX="196.0" layoutY="261.0" onAction="#goBack" text="Go Back"/>
-    <Button fx:id="login" layoutX="325.0" layoutY="261.0" onAction="#createUser" text="Create User"/>
+    <Button fx:id="goBack" layoutX="199.0" layoutY="273.0" onAction="#goBack" text="Go Back"/>
+    <Button fx:id="login" layoutX="335.0" layoutY="273.0" onAction="#createUser" text="Create User"/>
     <Label layoutX="236.0" layoutY="67.0" text="Create User">
         <font>
             <Font size="24.0"/>
         </font>
     </Label>
+    <Label layoutX="243.0" layoutY="184.0" text="Username is to short" textFill="#f90606" visible="false"/>
+    <Label layoutX="225.0" layoutY="184.0" text="Username is not allowed to contain spaces." textFill="#e80505"
+           visible="false"/>
+    <Label layoutX="236.0" layoutY="241.0" text="Password is to short." textFill="#f60808" visible="false"/>
+    <Label layoutX="222.0" layoutY="241.0" text="Password is not allowed to contain Spaces." textFill="#f80303"
+           visible="false"/>
 
 
 </AnchorPane>

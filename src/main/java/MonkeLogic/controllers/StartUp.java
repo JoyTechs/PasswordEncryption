@@ -29,18 +29,11 @@ public class StartUp {
         DBUpdate.getInstance();
         DBSelect.getInstance();
         DBDelete.getInstance();
-        /*
-        User user = new User();
-        user = ReadFromDB.lookForAdmin(user);
-        if (user == null){
-            System.out.println("Not First Start");
-        } else {
+
+        if (!ReadFromDB.lookForDefaultAdmin()) {
             DBInsert.initialStart();
         }
 
-        */
-
-        DBInsert.initialStart();
         SceneManager.getInstance();
         Logout.getInstance();
         ChosenAccountForEdit.getInstance();
