@@ -117,7 +117,11 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     }
 
     @FXML
-    public void search(ActionEvent e) {
+    public void searchTrigger(ActionEvent e) {
+        search();
+    }
+
+    private void search() {
 
         ArrayList<Account> temp = new ArrayList<>();
 
@@ -138,6 +142,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
         } else {
             setAccountObservableLists(allAccounts);
         }
+
     }
 
     //Todo: Updatera listan efter man har raderat bort något.
