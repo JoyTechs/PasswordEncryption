@@ -12,7 +12,7 @@ public class PasswordGeneratorBackEnd {
     private static final String CHAR_UPPERCASE = CHAR_LOWERCASE.toUpperCase();
     private static final String DIGIT = "0123456789";
     private static final String OTHER_PUNCTUATION = "!@#&()–[{}]:;',?/*";
-    private static final String OTHER_SYMBOL = "~$^+=<>";
+    private static final String OTHER_SYMBOL = "$^+<>";
     private static final String OTHER_SPECIAL = OTHER_PUNCTUATION + OTHER_SYMBOL;
     private static final int PASSWORD_LENGTH = 10;
 

@@ -114,7 +114,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
 
         if (!searchInpt.getText().isEmpty() && !searchInpt.getText().isBlank()) {
             for (Account account : allAccounts) {
-                if (account.getWebsite().contains(searchInpt.getText())) {
+                if (account.getWebsite().toLowerCase().contains(searchInpt.getText().toLowerCase())) {
                     temp.add(account);
                 }
             }
@@ -164,6 +164,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
             editWarning.setVisible(false);
             ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
             deleteAccounts.deleteAccount();
+            loadAccounts();
             search();
         }
     }

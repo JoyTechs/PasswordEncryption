@@ -96,9 +96,9 @@ public class EditAccountInfoFrontEnd implements Initializable {
         password = passwordInpt.getText();
 
         if (isStringToShort(website, 2)) {
-            setShortUsernameVisibility(true);
+            setShortWebsiteVisibility(true);
         } else if (doesStringContainSpaces(website)) {
-            setInvalidUsernameVisibility(true);
+            setInvalidWebsiteVisibility(true);
         }
         if (isStringToShort(username, 2)) {
             setShortUsernameVisibility(true);
@@ -128,7 +128,6 @@ public class EditAccountInfoFrontEnd implements Initializable {
     public void setPasswordVisibility(ActionEvent e) {
         passwordInptTextField.visibleProperty().bind(showPassword.selectedProperty());
         passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
-
     }
     //endregion
 
