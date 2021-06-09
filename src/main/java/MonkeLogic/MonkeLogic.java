@@ -2,7 +2,7 @@ package MonkeLogic;
 
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.controllers.StartUp;
-import MonkeLogic.databasemethods.ReadFromDB;
+import MonkeLogic.databasemethods.DBSelect;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -28,7 +28,7 @@ public class MonkeLogic extends Application {
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.setPrimaryStage(primaryStage);
         sceneManager.setScene(scene);
-        if (ReadFromDB.firstStart()) {
+        if (DBSelect.firstStart()) {
             sceneManager.firstStart();
         } else {
             sceneManager.login();

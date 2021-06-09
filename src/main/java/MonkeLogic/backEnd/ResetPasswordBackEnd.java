@@ -26,5 +26,4 @@ public class ResetPasswordBackEnd {
         SessionManager.setActiveUser(null);
         SceneManager.getInstance().login();
     }
-
 }

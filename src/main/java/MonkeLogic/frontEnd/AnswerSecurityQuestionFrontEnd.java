@@ -2,7 +2,7 @@ package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.AnswerSecurityQuestionBackEnd;
 import MonkeLogic.controllers.SceneManager;
-import MonkeLogic.databasemethods.ReadFromDB;
+import MonkeLogic.databasemethods.DBSelect;
 import MonkeLogic.dto.SecurityQuestion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -72,7 +72,7 @@ public class AnswerSecurityQuestionFrontEnd implements Initializable {
 
         if (noErrors() == true) {
             setAllErrorMessages(false);
-            AnswerSecurityQuestionBackEnd.checkAnswer(new SecurityQuestion(ReadFromDB.getUserIDFromUsername(username), question, answer), this);
+            AnswerSecurityQuestionBackEnd.checkAnswer(new SecurityQuestion(DBSelect.getUserIDFromUsername(username), question, answer), this);
         } else {
             setNullUsername(checkIfNull(username));
             setNullQuestion(checkIfNull(String.valueOf(question)));
@@ -121,5 +121,4 @@ public class AnswerSecurityQuestionFrontEnd implements Initializable {
         setWrongQuestion(show);
         setWrongUsername(show);
     }
-
 }

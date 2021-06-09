@@ -29,7 +29,5 @@ public class EditAccountInfoBackEnd {
         } else if (SessionManager.getActiveUser().getClearanceLevel().equals("User")) {
             SceneManager.getInstance().showAccountsUser();
         }
-
     }
-
 }

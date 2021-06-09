@@ -58,7 +58,6 @@ public class FirstStartFrontEnd implements Initializable {
         shortPassword.setVisible(false);
         invalidUsernameCharacter.setVisible(false);
         invalidPasswordCharacter.setVisible(false);
-
     }
     //endregion
 
@@ -86,13 +85,11 @@ public class FirstStartFrontEnd implements Initializable {
         if (noErrors().equals(true)) {
             FirstStartBackEnd.addAdmin(username, password);
         }
-
     }
     //endregion
 
     //region These Checks if Inputs are Correct
     private Boolean doesStringContainSpaces(String str) {
-
         return str.contains(" ");
     }
 
@@ -119,6 +116,7 @@ public class FirstStartFrontEnd implements Initializable {
     }
 
     public void setAllErrorVisibilities() {
+
         setShortUsernameVisibility(false);
         setShortPasswordVisibility(false);
         setInvalidUsernameVisibility(false);
@@ -126,17 +124,16 @@ public class FirstStartFrontEnd implements Initializable {
     }
 
     public Boolean noErrors() {
-        return !shortUsername.isVisible() && !shortPassword.isVisible() && !invalidUsernameCharacter.isVisible() && !invalidPasswordCharacter.isVisible();
+        return !shortUsername.isVisible()
+                && !shortPassword.isVisible()
+                && !invalidUsernameCharacter.isVisible()
+                && !invalidPasswordCharacter.isVisible();
     }
 
     @FXML
     public void setPasswordVisibility(ActionEvent e) {
-
         passwordInptVisible.visibleProperty().bind(showPassword.selectedProperty());
-
         passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
-
-
     }
     //endregion
 }

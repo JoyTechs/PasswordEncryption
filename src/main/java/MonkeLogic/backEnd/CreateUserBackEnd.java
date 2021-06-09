@@ -3,14 +3,12 @@ package MonkeLogic.backEnd;
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.controllers.SessionManager;
 import MonkeLogic.databasemethods.DBInsert;
-import MonkeLogic.databasemethods.ReadFromDB;
+import MonkeLogic.databasemethods.DBSelect;
 import MonkeLogic.dto.User;
 
 import java.sql.SQLException;
 
 public class CreateUserBackEnd {
-
-    //TODO: add Singleton, Use DBInsert and add to StartUp
 
     private static CreateUserBackEnd instance;
 
@@ -24,9 +22,9 @@ public class CreateUserBackEnd {
     private CreateUserBackEnd() {
     }
 
-    public void createNewUser(User user) throws SQLException {
+    public static void createNewUser(User user) throws SQLException {
 
-        if (ReadFromDB.validationOfUsername(user.getUsername())) {
+        if (DBSelect.validationOfUsername(user.getUsername())) {
             System.out.println("Please try again! ");
         } else {
             DBInsert.createNewUser(user);

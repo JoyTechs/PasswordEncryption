@@ -3,7 +3,7 @@ package MonkeLogic.frontEnd;
 import MonkeLogic.backEnd.DeleteAccountBackEnd;
 import MonkeLogic.controllers.ChosenAccountForEdit;
 import MonkeLogic.controllers.SceneManager;
-import MonkeLogic.databasemethods.ReadFromDB;
+import MonkeLogic.databasemethods.DBSelect;
 import MonkeLogic.dto.Account;
 import MonkeLogic.methods.Logout;
 import javafx.collections.FXCollections;
@@ -69,7 +69,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
     }
 
     public ArrayList<Account> setAllAccountsList() {
-        allAccounts = ReadFromDB.getAccountsUser();
+        allAccounts = DBSelect.getAccountsUser();
         return allAccounts;
     }
 
@@ -134,7 +134,6 @@ public class ShowAccountsUserFrontEnd implements Initializable {
                 searchResults = temp;
                 setSearchResults();
             }
-
         } else {
             setAccountObservableLists(allAccounts);
         }

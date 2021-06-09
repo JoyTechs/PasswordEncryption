@@ -106,5 +106,4 @@ public class CreateUserFrontEnd implements Initializable {
     private Boolean isStringNull(String str) {
         return str.equals("");
     }
-
 }

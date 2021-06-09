@@ -28,5 +28,4 @@ public class SecurityQuestion {
         return answer;
     }
     //endregion
-
 }

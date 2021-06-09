@@ -24,13 +24,12 @@ public class StartUp {
         UserEncryption.getInstance();
         DBConnection.getInstance();
         CreateTable.getInstance();
-        ReadFromDB.getInstance();
+        DBSelect.getInstance();
         DBInsert.getInstance();
         DBUpdate.getInstance();
-        DBSelect.getInstance();
         DBDelete.getInstance();
 
-        if (!ReadFromDB.lookForDefaultAdmin()) {
+        if (!DBSelect.lookForDefaultAdmin()) {
             DBInsert.initialStart();
         }
 
@@ -40,6 +39,5 @@ public class StartUp {
         SessionManager.getInstance();
         UserEncryption.getInstance();
         AnswerSecurityQuestionBackEnd.getInstance();
-
     }
 }

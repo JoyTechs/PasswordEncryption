@@ -3,8 +3,7 @@ package MonkeLogic.frontEnd;
 import MonkeLogic.backEnd.DeleteAccountBackEnd;
 import MonkeLogic.controllers.ChosenAccountForEdit;
 import MonkeLogic.controllers.SceneManager;
-import MonkeLogic.databasemethods.DBDelete;
-import MonkeLogic.databasemethods.ReadFromDB;
+import MonkeLogic.databasemethods.DBSelect;
 import MonkeLogic.dto.Account;
 import MonkeLogic.methods.Logout;
 import javafx.collections.FXCollections;
@@ -64,7 +63,6 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
 
-
         editWarning.setVisible(false);
         loadAccounts();
     }
@@ -74,11 +72,10 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     public void loadAccounts() {
         accountsTable.setPlaceholder(new Label("No Accounts Found"));
         setAccountObservableLists(setAllAccountsList());
-
     }
 
     public ArrayList<Account> setAllAccountsList() {
-        allAccounts = ReadFromDB.getAccountsAdmin();
+        allAccounts = DBSelect.getAccountsAdmin();
         return allAccounts;
     }
 
@@ -115,7 +112,6 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
                 if (account.getWebsite().contains(searchInpt.getText())) {
                     temp.add(account);
                 }
-
             }
             if (temp.size() <= 0) {
                 System.out.println("No Search Results");
@@ -124,11 +120,9 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
                 searchResults = temp;
                 setSearchResults();
             }
-
         } else {
             setAccountObservableLists(allAccounts);
         }
-
     }
 
     @FXML

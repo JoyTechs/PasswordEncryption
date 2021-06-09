@@ -19,7 +19,6 @@ public class SecurityQuestionBackEnd {
     }
 
     public SecurityQuestionBackEnd() {
-
     }
     //endregion
 

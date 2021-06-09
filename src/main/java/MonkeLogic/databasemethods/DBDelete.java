@@ -35,12 +35,10 @@ public class DBDelete {
             c.setAutoCommit(false);
 
             statement = c.prepareStatement(sql);
-
             statement.setInt(1, Id);
             statement.executeUpdate();
 
             c.commit();
-
             statement.close();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());

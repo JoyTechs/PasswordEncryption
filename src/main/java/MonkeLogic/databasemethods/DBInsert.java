@@ -47,7 +47,6 @@ public class DBInsert {
 
             statement.close();
             c.commit();
-
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -55,6 +54,7 @@ public class DBInsert {
     }
 
     public static void createNewUser(User user) throws SQLException {
+
         c = DBConnection.getC();
         Statement stmt = null;
 
@@ -70,17 +70,17 @@ public class DBInsert {
 
             stmt.close();
             c.commit();
-
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         System.out.println("Records created successfully");
-
     }
 
     public static void saveAccInfo(Account account) {
+
         c = DBConnection.getC();
         Statement stmt = null;
+
         try {
             c.setAutoCommit(false);
             stmt = c.createStatement();
@@ -90,12 +90,10 @@ public class DBInsert {
                     + account.getWebsite() + "', '"
                     + account.getUsername() + "', '"
                     + CryptKeeper.enCrypt(account.getPassword()) + "');";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
 
             stmt.close();
             c.commit();
-
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -103,8 +101,10 @@ public class DBInsert {
     }
 
     public static void saveSecurityQuestion(SecurityQuestion securityQuestion) {
+
         c = DBConnection.getC();
         Statement stmt = null;
+
         try {
             c.setAutoCommit(false);
             stmt = c.createStatement();
@@ -112,12 +112,10 @@ public class DBInsert {
                     "VALUES ('" + securityQuestion.getUserID() + "', '"
                     + securityQuestion.getQuestionNr() + "', '"
                     + CryptKeeper.enCrypt(securityQuestion.getAnswer()) + "');";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
 
             stmt.close();
             c.commit();
-
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }

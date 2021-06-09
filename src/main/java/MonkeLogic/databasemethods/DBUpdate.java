@@ -78,6 +78,7 @@ public class DBUpdate {
     }
 
     public static void updatePassword(String newPassword) {
+
         c = DBConnection.getC();
 
         try {
@@ -98,6 +99,7 @@ public class DBUpdate {
     }
 
     public static void updateSecurityQuestion(Boolean hasSecurityQuestion) {
+
         c = DBConnection.getC();
 
         try {

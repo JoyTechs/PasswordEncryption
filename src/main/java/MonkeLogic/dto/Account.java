@@ -92,5 +92,4 @@ public class Account {
         this.hasSecurityQuestion = hasSecurityQuestion;
     }
     //endregion
-
 }

@@ -2,7 +2,7 @@ package MonkeLogic.backEnd;
 
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.controllers.SessionManager;
-import MonkeLogic.databasemethods.ReadFromDB;
+import MonkeLogic.databasemethods.DBSelect;
 import MonkeLogic.dto.User;
 import MonkeLogic.frontEnd.LoginFrontEnd;
 
@@ -24,14 +24,13 @@ public class LoginBackEnd {
     }
 
     private LoginBackEnd() {
-
     }
     //endregion
 
     public LoginBackEnd(String usernameInput, String passwordInput, LoginFrontEnd loginFrontEnd2) {
         sceneManager = SceneManager.getInstance();
         loginFrontEnd = loginFrontEnd2;
-        activeUser = ReadFromDB.readFromDBToLogin(usernameInput, passwordInput);
+        activeUser = DBSelect.readFromDBToLogin(usernameInput, passwordInput);
         System.out.println(usernameInput);
         if (activeUser != null) {
             loginAttempts = 0;
