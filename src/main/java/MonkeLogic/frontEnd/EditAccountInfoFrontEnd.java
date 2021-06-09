@@ -1,6 +1,7 @@
 package MonkeLogic.frontEnd;
 
 import MonkeLogic.backEnd.EditAccountInfoBackEnd;
+import MonkeLogic.backEnd.PasswordGeneratorBackEnd;
 import MonkeLogic.controllers.ChosenAccountForEdit;
 import MonkeLogic.controllers.SceneManager;
 import MonkeLogic.controllers.SessionManager;
@@ -53,6 +54,8 @@ public class EditAccountInfoFrontEnd implements Initializable {
     private TextField passwordInptTextField;
     @FXML
     private CheckBox showPassword;
+    @FXML
+    private Button generatePassword;
     //endregion
 
     private static Account account;
@@ -184,4 +187,8 @@ public class EditAccountInfoFrontEnd implements Initializable {
                 && !invalidCharacterPassword.isVisible();
     }
     //endregion
+    @FXML
+    public void generatePassword(ActionEvent e) {
+        passwordInpt.setText(PasswordGeneratorBackEnd.generate());
+    }
 }

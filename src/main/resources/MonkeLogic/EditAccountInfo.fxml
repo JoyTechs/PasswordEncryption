@@ -1,44 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.EditAccountInfoFrontEnd">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-    <Label fx:id="websiteLabel" layoutX="174.0" layoutY="123.0" text="Website:  "/>
-    <TextField fx:id="websiteInpt" layoutX="225.0" layoutY="119.0"/>
-    <Label fx:id="websiteToShort" layoutX="250.0" layoutY="144.0" text="Website is to short" textFill="RED"
-           visible="false"/>
-    <Label fx:id="invalidCharacterWebsite" layoutX="191.0" layoutY="144.0"
-           text="Website is not allowed to contain spaces" textFill="RED" visible="false"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MonkeLogic.frontEnd.EditAccountInfoFrontEnd">
+
+    <Label fx:id="websiteLabel" layoutX="174.0" layoutY="123.0" text="Website:  " />
+    <TextField fx:id="websiteInpt" layoutX="225.0" layoutY="119.0" />
+    <Label fx:id="websiteToShort" layoutX="250.0" layoutY="144.0" text="Website is to short" textFill="RED" visible="false" />
+    <Label fx:id="invalidCharacterWebsite" layoutX="191.0" layoutY="144.0" text="Website is not allowed to contain spaces" textFill="RED" visible="false" />
 
 
-    <TextField fx:id="usernameInpt" layoutX="225.0" layoutY="174.0"/>
-    <Label fx:id="usernameLabel" layoutX="162.0" layoutY="178.0" text="Username:  "/>
+    <TextField fx:id="usernameInpt" layoutX="225.0" layoutY="174.0" />
+    <Label fx:id="usernameLabel" layoutX="162.0" layoutY="178.0" text="Username:  " />
 
-    <Label fx:id="usernameToShort" layoutX="243.0" layoutY="200.0" text="Username is to short." textFill="red"
-           visible="false"/>
-    <Label fx:id="invalidCharacterUsername" layoutX="185.0" layoutY="200.0"
-           text="Username is not allowed to contain spaces." textFill="red" visible="false"/>
+    <Label fx:id="usernameToShort" layoutX="243.0" layoutY="200.0" text="Username is to short." textFill="red" visible="false" />
+    <Label fx:id="invalidCharacterUsername" layoutX="185.0" layoutY="200.0" text="Username is not allowed to contain spaces." textFill="red" visible="false" />
 
-    <PasswordField fx:id="passwordInpt" layoutX="225.0" layoutY="229.0"/>
-    <TextField fx:id="passwordInptTextField" layoutX="225.0" layoutY="229.0"/>
-    <CheckBox fx:id="showPassword" layoutX="393.0" layoutY="233.0" onAction="#setPasswordVisibility"/>
-    <Label fx:id="showPasswordLabel" layoutX="410.0" layoutY="233.0" text="  Show Password"/>
-    <Label fx:id="passwordLabel" layoutX="165.0" layoutY="233.0" text="Password: "/>
-    <Label fx:id="passwordToShort" layoutX="247.0" layoutY="254.0" text="Password is to short." textFill="red"
-           visible="false"/>
-    <Label fx:id="invalidCharacterPassword" layoutX="188.0" layoutY="254.0"
-           text="Password is not allowed to contain spaces." textFill="red" visible="false"/>
+    <PasswordField fx:id="passwordInpt" layoutX="225.0" layoutY="229.0" />
+    <TextField fx:id="passwordInptTextField" layoutX="225.0" layoutY="229.0" />
+    <CheckBox fx:id="showPassword" layoutX="393.0" layoutY="233.0" onAction="#setPasswordVisibility" />
+    <Label fx:id="showPasswordLabel" layoutX="410.0" layoutY="233.0" text="  Show Password" />
+    <Label fx:id="passwordLabel" layoutX="165.0" layoutY="233.0" text="Password: " />
+    <Label fx:id="passwordToShort" layoutX="247.0" layoutY="254.0" text="Password is to short." textFill="red" visible="false" />
+    <Label fx:id="invalidCharacterPassword" layoutX="188.0" layoutY="254.0" text="Password is not allowed to contain spaces." textFill="red" visible="false" />
 
-    <Button fx:id="createAccount" layoutX="332.0" layoutY="287.0" onAction="#editAccount" text="Edit Account"/>
-    <Button fx:id="goBack" layoutX="195.0" layoutY="287.0" onAction="#goBack" text="Go Back"/>
+    <Button fx:id="createAccount" layoutX="332.0" layoutY="318.0" onAction="#editAccount" text="Edit Account" />
+    <Button fx:id="goBack" layoutX="192.0" layoutY="318.0" onAction="#goBack" text="Go Back" />
     <Label layoutX="233.0" layoutY="40.0" text="Edit Account">
         <font>
-            <Font size="24.0"/>
+            <Font size="24.0" />
         </font>
     </Label>
+    <Button fx:id="generatePassword" layoutX="390.0" layoutY="275.0" mnemonicParsing="false" onAction="#generatePassword" text="Generate Password" />
 
 
 </AnchorPane>
