@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 public class ShowAccountsAdminFrontEnd implements Initializable {
 
     //region TableView Variables
+
     @FXML
     private TableView accountsTable;
     @FXML
@@ -62,8 +63,6 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
-
-
         editWarning.setVisible(false);
         loadAccounts();
     }
@@ -129,7 +128,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
             }
 
         } else {
-            setAccountObservableLists(allAccounts);
+            setAccountObservableLists(setAllAccountsList());
         }
 
     }
@@ -159,6 +158,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
             sceneManager.editAccountInfo();
         }
     }
+
     @FXML
     public void deleteAccount(ActionEvent e) throws SQLException {
         if (accountsTable.getSelectionModel().isEmpty()) {
@@ -167,6 +167,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
             editWarning.setVisible(false);
             ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
             deleteAccounts.deleteAccount();
+            loadAccounts();
             search();
         }
     }

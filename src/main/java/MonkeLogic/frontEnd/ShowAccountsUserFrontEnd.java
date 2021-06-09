@@ -140,12 +140,11 @@ public class ShowAccountsUserFrontEnd implements Initializable {
             }
 
         } else {
-            setAccountObservableLists(allAccounts);
+            setAccountObservableLists(setAllAccountsList());
         }
 
     }
 
-    //Todo: Updatera listan efter man har raderat bort något.
     @FXML
     public void deleteUserAccount(ActionEvent e) {
         if (accountsTable.getSelectionModel().isEmpty()) {
@@ -155,6 +154,7 @@ public class ShowAccountsUserFrontEnd implements Initializable {
             ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
             deleteAccounts.deleteAccount();
             loadAccounts();
+            search();
         }
     }
     //endregion

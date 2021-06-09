@@ -88,9 +88,9 @@ public class CreateAccountFrontEnd implements Initializable {
 
 
         if (isStringToShort(website, 2)) {
-            setShortUsernameVisibility(true);
+            setShortWebsiteVisibility(true);
         } else if (doesStringContainSpaces(website)) {
-            setInvalidUsernameVisibility(true);
+            setInvalidWebsiteVisibility(true);
         }
         if (isStringToShort(username, 2)) {
             setShortUsernameVisibility(true);
@@ -171,6 +171,11 @@ public class CreateAccountFrontEnd implements Initializable {
     }
 
     @FXML
+    public void generatePassword(ActionEvent e) {
+        passwordInpt.setText(PasswordGeneratorBackEnd.generate());
+    }
+
+    @FXML
     public void setPasswordVisibility(ActionEvent e) {
         passwordInptTextField.visibleProperty().bind(showPassword.selectedProperty());
         passwordInpt.visibleProperty().bind(showPassword.selectedProperty().not());
@@ -178,8 +183,5 @@ public class CreateAccountFrontEnd implements Initializable {
     }
     //endregion
 
-    @FXML
-    public void generatePassword(ActionEvent e) {
-        passwordInpt.setText(PasswordGeneratorBackEnd.generate());
-    }
+
 }
