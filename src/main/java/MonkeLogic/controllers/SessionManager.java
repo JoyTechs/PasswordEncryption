@@ -5,7 +5,7 @@ import MonkeLogic.dto.User;
 
 public class SessionManager {
     private static User activeUser;
-    private static Boolean isThisElias = false;
+    private static Boolean isThisElias;
     //region Singleton
     private static SessionManager instance;
 

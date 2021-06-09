@@ -21,7 +21,6 @@ public class SceneManager {
     //region Variables
     private static SceneManager instance;
     private Scene scene;
-    private Scene memeScene;
     private Stage primaryStage;
     //endregion
 
@@ -40,9 +39,6 @@ public class SceneManager {
     private SceneManager() {
     }
 
-
-    //endregion
-
     //region Getters/Setters
     public void setScene(Scene scene) {
         this.scene = scene;
@@ -55,6 +51,8 @@ public class SceneManager {
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+    //endregion
+
     //endregion
 
     //region Scene Calling Methods
@@ -101,6 +99,8 @@ public class SceneManager {
     public void resetPassword() {
         resetPasswordScene();
     }
+
+
     //endregion
 
     //region Methods That Changes the Scenes
@@ -234,8 +234,8 @@ public class SceneManager {
                 SessionManager.setIsThisElias(false);
                 answerSecurityQuestion();
             });
-            memeScene = new Scene(new AnchorPane(mediaView));
-            primaryStage.setScene(memeScene);
+            scene = new Scene(new AnchorPane(mediaView));
+            primaryStage.setScene(scene);
             primaryStage.setFullScreen(true);
             primaryStage.show();
             mediaPlayer.play();
@@ -255,6 +255,8 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
+
     //endregion
+
 
 }

@@ -29,9 +29,11 @@ public class StartUp {
         DBUpdate.getInstance();
         DBSelect.getInstance();
         DBDelete.getInstance();
+
         if (!ReadFromDB.lookForDefaultAdmin()) {
             DBInsert.initialStart();
         }
+
         SceneManager.getInstance();
         Logout.getInstance();
         ChosenAccountForEdit.getInstance();

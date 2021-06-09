@@ -3,6 +3,7 @@ package MonkeLogic.frontEnd;
 import MonkeLogic.backEnd.DeleteAccountBackEnd;
 import MonkeLogic.controllers.ChosenAccountForEdit;
 import MonkeLogic.controllers.SceneManager;
+import MonkeLogic.databasemethods.DBDelete;
 import MonkeLogic.databasemethods.ReadFromDB;
 import MonkeLogic.dto.Account;
 import MonkeLogic.methods.Logout;
@@ -105,11 +106,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
 
     //region FXML Methods
     @FXML
-    public void searchTrigger(ActionEvent e) {
-        search();
-    }
-
-    private void search() {
+    public void search(ActionEvent e) {
 
         ArrayList<Account> temp = new ArrayList<>();
 
@@ -159,6 +156,9 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
             sceneManager.editAccountInfo();
         }
     }
+
+    //endregion
+    //Todo: Updatera listan efter man har raderat bort något.
     @FXML
     public void deleteAccount(ActionEvent e) throws SQLException {
         if (accountsTable.getSelectionModel().isEmpty()) {
@@ -167,9 +167,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
             editWarning.setVisible(false);
             ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
             deleteAccounts.deleteAccount();
-            search();
+            loadAccounts();
         }
     }
-    //endregion
-
 }
