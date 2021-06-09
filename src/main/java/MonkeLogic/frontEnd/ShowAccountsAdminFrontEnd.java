@@ -63,6 +63,7 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = SceneManager.getInstance();
 
+
         editWarning.setVisible(false);
         loadAccounts();
     }
@@ -103,7 +104,11 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
 
     //region FXML Methods
     @FXML
-    public void search(ActionEvent e) {
+    public void searchTrigger(ActionEvent e) {
+        search();
+    }
+
+    private void search() {
 
         ArrayList<Account> temp = new ArrayList<>();
 
@@ -151,8 +156,6 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
         }
     }
 
-    //endregion
-    //Todo: Updatera listan efter man har raderat bort något.
     @FXML
     public void deleteAccount(ActionEvent e) throws SQLException {
         if (accountsTable.getSelectionModel().isEmpty()) {
@@ -161,7 +164,8 @@ public class ShowAccountsAdminFrontEnd implements Initializable {
             editWarning.setVisible(false);
             ChosenAccountForEdit.setChosenAccount(accountObservableLists.get(accountsTable.getSelectionModel().getSelectedIndex()));
             deleteAccounts.deleteAccount();
-            loadAccounts();
+            search();
         }
     }
+    //endregion
 }

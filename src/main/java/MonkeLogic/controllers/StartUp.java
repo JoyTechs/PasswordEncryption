@@ -32,7 +32,6 @@ public class StartUp {
         if (!DBSelect.lookForDefaultAdmin()) {
             DBInsert.initialStart();
         }
-
         SceneManager.getInstance();
         Logout.getInstance();
         ChosenAccountForEdit.getInstance();
