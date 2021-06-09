@@ -32,10 +32,9 @@ public class Logout {
         UserEncryption.setInstance();
         DBConnection.setInstance();
         CreateTable.setInstance();
-        ReadFromDB.setInstance();
+        DBSelect.setInstance();
         DBInsert.setInstance();
         DBUpdate.setInstance();
-        DBSelect.setInstance();
         DBDelete.setInstance();
         ChosenAccountForEdit.setInstance();
         SessionManager.setInstance();

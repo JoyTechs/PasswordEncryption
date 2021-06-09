@@ -29,5 +29,4 @@ public class AdvancedDecrypter {
         }
         return null;
     }
-
 }

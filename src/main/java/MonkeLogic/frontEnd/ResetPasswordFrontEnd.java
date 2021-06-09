@@ -56,7 +56,6 @@ public class ResetPasswordFrontEnd implements Initializable {
             setAllWarnings(false);
             ResetPasswordBackEnd.setNewPassword(passwordInpt);
         }
-
     }
 
     private Boolean isStringNull(String stringInpt) {
@@ -88,6 +87,4 @@ public class ResetPasswordFrontEnd implements Initializable {
         setNullPasswordConfirm(show);
         setPasswordsNoMatch(show);
     }
-
-
 }

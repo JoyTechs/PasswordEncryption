@@ -1,7 +1,7 @@
 package MonkeLogic.backEnd;
 
 import MonkeLogic.controllers.SceneManager;
-import MonkeLogic.databasemethods.ReadFromDB;
+import MonkeLogic.databasemethods.DBSelect;
 import MonkeLogic.dto.SecurityQuestion;
 import MonkeLogic.frontEnd.AnswerSecurityQuestionFrontEnd;
 
@@ -28,7 +28,7 @@ public class AnswerSecurityQuestionBackEnd {
 
     public static void checkAnswer(SecurityQuestion securityQuestion, AnswerSecurityQuestionFrontEnd frontEnd) {
         answerSecurityQuestionFrontEnd = frontEnd;
-        if (ReadFromDB.getSecurityQuestion(securityQuestion) == true) {
+        if (DBSelect.getSecurityQuestion(securityQuestion) == true) {
             SceneManager.getInstance().resetPassword();
         } else {
             //TODO: add Something to else

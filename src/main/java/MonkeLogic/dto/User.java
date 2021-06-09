@@ -93,5 +93,4 @@ public class User {
         return hasSecurityQuestion;
     }
     //endregion Getters
-
 }
